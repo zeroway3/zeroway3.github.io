@@ -1,0 +1,83 @@
+# ==========================================================
+# 개인 정보는 이 파일에서 수정하세요 (name, description, author, url 등)
+# ==========================================================
+
+theme                    : null
+remote_theme             : "mmistakes/minimal-mistakes@4.24.0"
+minimal_mistakes_skin    : "default" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
+
+locale                   : "ko-KR"
+title                    : "이름을 입력하세요"
+title_separator          : "-"
+subtitle                 : "직함 또는 한 줄 소개를 입력하세요"
+name                     : "이름을 입력하세요"
+description              : "직함 · 한 줄 소개를 입력하세요 (예: Frontend Developer)"
+url                      : "https://zeroway3.github.io"
+baseurl                  : ""
+repository               : "zeroway3/zeroway3.github.io"
+teaser                   :
+logo                     :
+masthead_title           : " "
+
+# 검색 기능
+search                   : true
+
+# 작성자(프로필) 정보 — 사이드바에 표시됩니다
+author:
+  name             : "이름을 입력하세요"
+  avatar           : # "/assets/images/profile.jpg"  # 사진 추가 후 앞 # 지우고 경로 확인
+  bio              : "직함 · 한 줄 소개를 입력하세요"
+  location         : "Seoul, South Korea"
+  email            : "you@example.com"
+  links:
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/zeroway3"
+    - label: "Email"
+      icon: "fas fa-fw fa-envelope-square"
+      url: "mailto:you@example.com"
+    # - label: "LinkedIn"
+    #   icon: "fab fa-fw fa-linkedin"
+    #   url: "https://www.linkedin.com/in/아이디"
+
+footer:
+  links:
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/zeroway3"
+    - label: "Email"
+      icon: "fas fa-fw fa-envelope-square"
+      url: "mailto:you@example.com"
+
+# 빌드 관련 설정 (수정 불필요)
+markdown                 : kramdown
+remote_theme             : "mmistakes/minimal-mistakes@4.24.0"
+plugins:
+  - jekyll-remote-theme
+  - jekyll-feed
+  - jekyll-include-cache
+  - jekyll-paginate
+
+paginate                 : 5
+paginate_path            : /page:num/
+
+include:
+  - _pages
+
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: single
+      author_profile: true
+      read_time: true
+      comments: false
+      share: true
+      related: true
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: single
+      author_profile: true
