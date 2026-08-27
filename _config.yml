@@ -16,11 +16,13 @@ baseurl                  : ""
 repository               : "zeroway3/zeroway3.github.io"
 teaser                   :
 logo                     :
-# 왼쪽 위 사이트 제목(누르면 홈으로 이동). HTML 허용 — 한글/영문 이름을 함께 표시
-masthead_title           : '김영식 <span class="masthead-en">KIMYOUNGSIK</span>'
+# 왼쪽 위 사이트 제목 — 비워둠 (사이드바 프로필로 이름을 대신 표시)
+masthead_title           : " "
 
 # 글 URL 형식 (카테고리/제목)
 permalink                : /:categories/:title/
+# 글 상단에 표시되는 날짜 형식
+date_format              : "%Y년 %-m월 %-d일"
 
 # 검색 기능
 search                   : true
@@ -28,20 +30,26 @@ search                   : true
 # 작성자(프로필) 정보 — 사이드바에 표시됩니다
 author:
   name             : "김영식"
-  avatar           : "/assets/images/profile.jpg"
-  bio              : "실시간 데이터와 서버 안정성에 관심이 많은 백엔드 개발자"
+  avatar           : "/assets/images/blog-profile.jpg"
+  bio              : "**Backend-Driven Software Engineer**"
   location         : "Seoul, South Korea"
+  # 이름·프로필 사진 클릭 시 이동할 블로그 홈(About 페이지)
+  home             : "/about/"
   email            : "ys0000250000@gmail.com"
   links:
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/zeroway3"
-    - label: "Email"
-      icon: "fas fa-fw fa-envelope-square"
-      url: "mailto:ys0000250000@gmail.com"
+    - label: "포트폴리오"
+      icon: "fas fa-fw fa-briefcase"
+      url: "/"
     # - label: "LinkedIn"
     #   icon: "fab fa-fw fa-linkedin"
     #   url: "https://www.linkedin.com/in/아이디"
+
+# 푸터의 RSS Feed 링크 숨김
+atom_feed:
+  hide: true
 
 footer:
   links:
@@ -74,7 +82,8 @@ defaults:
     values:
       layout: single
       author_profile: true
-      read_time: true
+      read_time: false
+      show_date: true
       comments: false
       share: true
       related: true
