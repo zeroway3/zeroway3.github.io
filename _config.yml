@@ -7,35 +7,38 @@ remote_theme             : "mmistakes/minimal-mistakes@4.24.0"
 minimal_mistakes_skin    : "default" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
 
 locale                   : "ko-KR"
-title                    : "이름을 입력하세요"
+title                    : "김영식"
 title_separator          : "-"
-subtitle                 : "직함 또는 한 줄 소개를 입력하세요"
-name                     : "이름을 입력하세요"
-description              : "직함 · 한 줄 소개를 입력하세요 (예: Frontend Developer)"
+name                     : "김영식"
+description              : "실시간 IoT 데이터 파이프라인과 멀티테넌트 백엔드를 만드는 백엔드 개발자입니다."
 url                      : "https://zeroway3.github.io"
 baseurl                  : ""
 repository               : "zeroway3/zeroway3.github.io"
 teaser                   :
 logo                     :
-masthead_title           : " "
+# 왼쪽 위 사이트 제목(누르면 홈으로 이동). HTML 허용 — 한글/영문 이름을 함께 표시
+masthead_title           : '김영식 <span class="masthead-en">KIMYOUNGSIK</span>'
+
+# 글 URL 형식 (카테고리/제목)
+permalink                : /:categories/:title/
 
 # 검색 기능
 search                   : true
 
 # 작성자(프로필) 정보 — 사이드바에 표시됩니다
 author:
-  name             : "이름을 입력하세요"
-  avatar           : # "/assets/images/profile.jpg"  # 사진 추가 후 앞 # 지우고 경로 확인
-  bio              : "직함 · 한 줄 소개를 입력하세요"
+  name             : "김영식"
+  avatar           : "/assets/images/profile.jpg"
+  bio              : "실시간 데이터와 서버 안정성에 관심이 많은 백엔드 개발자"
   location         : "Seoul, South Korea"
-  email            : "you@example.com"
+  email            : "ys0000250000@gmail.com"
   links:
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/zeroway3"
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
-      url: "mailto:you@example.com"
+      url: "mailto:ys0000250000@gmail.com"
     # - label: "LinkedIn"
     #   icon: "fab fa-fw fa-linkedin"
     #   url: "https://www.linkedin.com/in/아이디"
@@ -47,7 +50,7 @@ footer:
       url: "https://github.com/zeroway3"
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
-      url: "mailto:you@example.com"
+      url: "mailto:ys0000250000@gmail.com"
 
 # 빌드 관련 설정 (수정 불필요)
 markdown                 : kramdown

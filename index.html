@@ -1,5 +1,821 @@
----
-layout: home
-author_profile: true
-title: ""
----
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>김영식 - Backend Developer Portfolio</title>
+  <meta name="description" content="실시간 IoT 데이터 파이프라인과 멀티테넌트 백엔드를 만드는 백엔드 개발자 김영식의 포트폴리오">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="김영식 - Backend Developer Portfolio">
+  <meta property="og:description" content="누적 27.8억 건 시계열 데이터, 초당 4,800개 IoT 포인트 실시간 파이프라인을 다루는 백엔드 개발자">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+<style>
+  :root{
+    --ink:#0e0c0b;
+    --ink-2:#1c1310;
+    --paper:#faf9f7;
+    --paper-2:#ffffff;
+    --text:#1a1512;
+    --muted:#6b6660;
+    --muted-2:#cfc7bd;
+    --accent:#FF6A13;
+    --accent-2:#E85D04;
+    --line:#e8e3db;
+    --line-dark:rgba(255,255,255,.12);
+    --radius:16px;
+    --maxw:1100px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    font-family:"Noto Sans KR","Segoe UI",-apple-system,BlinkMacSystemFont,sans-serif;
+    color:var(--text);
+    background:var(--paper);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%;display:block}
+  a{color:inherit;text-decoration:none}
+  .en{font-family:"Poppins","Noto Sans KR",sans-serif}
+  .accent{color:var(--accent)}
+  .section-inner{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  section{padding:96px 0}
+  .section-title{text-align:center;margin-bottom:56px}
+  .section-title .eyebrow{
+    display:inline-block;font-family:"Poppins",sans-serif;font-weight:600;
+    font-size:13px;letter-spacing:.18em;color:var(--accent);margin-bottom:12px;
+  }
+  .section-title h3{font-size:clamp(26px,4vw,36px);font-weight:900;margin:0 0 10px;letter-spacing:-.02em}
+  .section-title p{color:var(--muted);font-size:16px;margin:0}
+  .dark .section-title p{color:var(--muted-2)}
+
+  /* ---------- Header ---------- */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:200;
+    background:rgba(14,12,11,.78);backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(255,255,255,.08);
+  }
+  .header-inner{
+    max-width:var(--maxw);margin:0 auto;padding:0 24px;
+    height:64px;display:flex;align-items:center;justify-content:space-between;
+  }
+  .logo{font-family:"Poppins",sans-serif;font-weight:700;font-size:18px;color:#fff;letter-spacing:.02em}
+  .logo span{color:var(--accent)}
+  nav.gnb ul{list-style:none;display:flex;gap:28px;margin:0;padding:0}
+  nav.gnb a{color:#cdd3e6;font-size:14px;font-weight:500;transition:color .2s}
+  nav.gnb a:hover{color:#fff}
+  .nav-cta{
+    background:var(--accent);color:#fff;padding:9px 18px;border-radius:999px;
+    font-weight:700;font-size:13px;white-space:nowrap;
+  }
+  .m_btn_menu{display:none;background:none;border:0;color:#fff;font-size:20px;cursor:pointer}
+  @media(max-width:820px){
+    nav.gnb{position:fixed;top:64px;left:0;right:0;background:var(--ink);
+      transform:translateY(-140%);transition:transform .25s ease;border-bottom:1px solid var(--line-dark)}
+    nav.gnb.open{transform:translateY(0)}
+    nav.gnb ul{flex-direction:column;padding:20px 24px;gap:0}
+    nav.gnb li{border-bottom:1px solid var(--line-dark)}
+    nav.gnb a{display:block;padding:14px 0}
+    .m_btn_menu{display:block}
+    .nav-cta{display:none}
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    min-height:100svh;display:flex;align-items:center;
+    background:
+      radial-gradient(1200px 600px at 85% -10%, rgba(255,106,19,.22), transparent 60%),
+      radial-gradient(900px 500px at -10% 110%, rgba(232,93,4,.16), transparent 55%),
+      linear-gradient(180deg,var(--ink),var(--ink-2));
+    color:#fff;position:relative;overflow:hidden;padding:120px 0 80px;
+  }
+  .hero .section-inner{display:grid;grid-template-columns:1.2fr .8fr;gap:48px;align-items:center}
+  @media(max-width:820px){.hero .section-inner{grid-template-columns:1fr;text-align:center}}
+  .hero .eyebrow{
+    font-family:"Poppins",sans-serif;font-weight:600;font-size:13px;letter-spacing:.2em;
+    color:var(--accent);margin-bottom:18px;display:inline-block;
+    border:1px solid rgba(255,106,19,.5);padding:6px 14px;border-radius:999px;
+  }
+  .hero h1{font-size:clamp(38px,6vw,64px);font-weight:900;line-height:1.15;margin:0 0 20px;letter-spacing:-.02em}
+  .hero h1 .en{display:block;font-size:.34em;font-weight:600;letter-spacing:.12em;color:var(--muted-2);margin-top:10px}
+  .hero p.desc{font-size:17px;color:#c7cfe6;max-width:480px;margin:0 0 32px}
+  @media(max-width:820px){.hero p.desc{margin-left:auto;margin-right:auto}}
+  .hero .btn-group{display:flex;gap:14px;flex-wrap:wrap}
+  @media(max-width:820px){.hero .btn-group{justify-content:center}}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;padding:13px 24px;border-radius:999px;
+    font-weight:700;font-size:14px;transition:transform .2s,box-shadow .2s;
+  }
+  .btn-primary{background:var(--accent);color:#fff}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(255,106,19,.4)}
+  .btn-ghost{border:1px solid rgba(255,255,255,.3);color:#fff}
+  .btn-ghost:hover{background:rgba(255,255,255,.08)}
+  .hero-photo{
+    width:280px;height:280px;border-radius:28px;overflow:hidden;margin:0 auto;
+    border:1px solid rgba(255,255,255,.15);box-shadow:0 30px 60px rgba(0,0,0,.4);
+  }
+  .hero-photo img{width:100%;height:100%;object-fit:cover}
+  .hero-stats{display:flex;gap:28px;margin-top:36px;flex-wrap:wrap}
+  @media(max-width:820px){.hero-stats{justify-content:center}}
+  .hero-stats b{display:block;font-family:"Poppins",sans-serif;font-size:22px;color:var(--accent)}
+  .hero-stats span{font-size:12px;color:var(--muted-2)}
+  .scroll-cue{
+    position:absolute;bottom:28px;left:50%;transform:translateX(-50%);
+    color:var(--muted-2);font-size:12px;letter-spacing:.1em;text-align:center;
+  }
+  .scroll-cue i{display:block;margin-top:6px;animation:bounce 1.6s infinite}
+  @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+
+  /* ---------- Why ---------- */
+  .why{background:var(--ink-2);color:#fff}
+  .why .section-inner{text-align:center;max-width:760px}
+  .why .eyebrow{font-family:"Poppins",sans-serif;color:var(--accent);font-weight:600;letter-spacing:.18em;font-size:13px}
+  .why h3{font-size:clamp(24px,4vw,34px);font-weight:900;margin:14px 0 20px}
+  .why p{color:#c7cfe6;font-size:16px;margin-bottom:28px}
+  .why .btn-ghost{border-color:rgba(255,255,255,.3)}
+
+  /* ---------- reveal ---------- */
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.in{opacity:1;transform:translateY(0)}
+
+  /* ---------- Growth process ---------- */
+  .process-track{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
+  @media(max-width:900px){.process-track{grid-template-columns:repeat(3,1fr)}}
+  @media(max-width:560px){.process-track{grid-template-columns:repeat(2,1fr)}}
+  .process-step{
+    background:var(--paper-2);border:1px solid var(--line);border-radius:14px;padding:22px 16px;
+    cursor:pointer;text-align:center;transition:transform .2s,box-shadow .2s,border-color .2s;
+  }
+  .process-step:hover{transform:translateY(-4px);box-shadow:0 14px 28px rgba(15,23,42,.08);border-color:var(--accent)}
+  .process-step .num{font-family:"Poppins",sans-serif;font-weight:700;color:var(--accent);font-size:13px}
+  .process-step h4{font-size:14.5px;margin:8px 0 6px;font-weight:700;line-height:1.4}
+  .process-step small{color:var(--muted);font-size:12px}
+
+  /* ---------- Skills / philosophy cards ---------- */
+  .skill-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  @media(max-width:900px){.skill-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:560px){.skill-grid{grid-template-columns:1fr}}
+  .skill-card{
+    background:var(--ink);color:#fff;border-radius:var(--radius);padding:28px 22px;
+    min-height:220px;display:flex;flex-direction:column;justify-content:space-between;
+    border:1px solid var(--line-dark);
+  }
+  .skill-card i{font-size:26px;color:var(--accent);margin-bottom:14px}
+  .skill-card h4{font-size:17px;margin:0 0 8px;font-weight:800}
+  .skill-card p{font-size:13.5px;color:var(--muted-2);margin:0}
+
+  /* ---------- Tech stack ---------- */
+  .stack-groups{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  @media(max-width:820px){.stack-groups{grid-template-columns:1fr}}
+  .stack-card{background:var(--paper-2);border:1px solid var(--line);border-radius:var(--radius);padding:24px}
+  .stack-card h4{margin:0 0 14px;font-size:14px;letter-spacing:.08em;color:var(--muted);font-family:"Poppins",sans-serif;text-transform:uppercase}
+  .chip-row{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{
+    background:var(--paper);border:1px solid var(--line);border-radius:8px;
+    padding:6px 12px;font-size:13px;font-weight:500;
+  }
+
+  /* ---------- Projects grid ---------- */
+  .project-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  @media(max-width:900px){.project-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:560px){.project-grid{grid-template-columns:1fr}}
+  .project-card{
+    background:var(--paper-2);border:1px solid var(--line);border-radius:var(--radius);
+    overflow:hidden;cursor:pointer;transition:transform .2s,box-shadow .2s;
+  }
+  .project-card:hover{transform:translateY(-5px);box-shadow:0 18px 34px rgba(15,23,42,.1)}
+  .thumb-placeholder{
+    height:150px;display:flex;align-items:center;justify-content:center;
+    background:repeating-linear-gradient(135deg,#f3f0ec,#f3f0ec 10px,#e9e3da 10px,#e9e3da 20px);
+    border-bottom:1px dashed var(--line);color:var(--muted);font-size:12.5px;text-align:center;padding:10px;
+  }
+  .project-card .body{padding:20px}
+  .project-tag{
+    display:inline-block;font-size:11px;font-weight:700;color:var(--accent);
+    letter-spacing:.06em;margin-bottom:8px;font-family:"Poppins",sans-serif;
+  }
+  .project-card h4{margin:0 0 8px;font-size:16.5px;font-weight:800}
+  .project-card p{margin:0;font-size:13.5px;color:var(--muted)}
+
+  /* ---------- FAQ ---------- */
+  .faq{background:var(--ink-2);color:#fff}
+  .faq-item{border-bottom:1px solid var(--line-dark)}
+  .faq-q{
+    width:100%;text-align:left;background:none;border:0;color:#fff;padding:22px 4px;
+    display:flex;justify-content:space-between;align-items:center;gap:16px;cursor:pointer;
+    font-size:15.5px;font-weight:700;font-family:inherit;
+  }
+  .faq-q i{color:var(--accent);transition:transform .25s;flex-shrink:0}
+  .faq-item.open .faq-q i{transform:rotate(45deg)}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease}
+  .faq-a-inner{padding:0 4px 22px;color:#c7cfe6;font-size:14.5px;line-height:1.75}
+  .faq-a-inner a{color:var(--accent);font-weight:700;white-space:nowrap}
+
+  /* ---------- Contact / CTA ---------- */
+  .cta{
+    background:linear-gradient(135deg,var(--ink),#3a1704);color:#fff;text-align:center;
+  }
+  .cta h3{font-size:clamp(24px,4vw,34px);font-weight:900;margin:0 0 14px}
+  .cta p{color:#c7cfe6;margin:0 0 32px}
+  .cta .btn-group{justify-content:center;display:flex;gap:14px;flex-wrap:wrap}
+
+  footer{background:var(--ink);color:var(--muted-2);padding:28px 0;text-align:center;font-size:13px}
+  footer a{color:var(--muted-2)}
+  footer a:hover{color:#fff}
+
+  /* ---------- Modal ---------- */
+  .modal{position:fixed;inset:0;z-index:500;display:flex;align-items:center;justify-content:center;padding:20px}
+  .modal[hidden]{display:none}
+  .modal__dim{position:absolute;inset:0;background:rgba(10,8,7,.65);backdrop-filter:blur(2px)}
+  .modal__panel{
+    position:relative;background:#fff;border-radius:18px;max-width:560px;width:100%;
+    max-height:82vh;overflow-y:auto;padding:32px;box-shadow:0 30px 60px rgba(0,0,0,.35);
+  }
+  .modal__close{
+    position:absolute;top:16px;right:16px;background:var(--paper);border:1px solid var(--line);
+    width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:14px;color:var(--muted);
+  }
+  .modal__panel .project-tag{margin-bottom:10px}
+  .modal__panel h4{font-size:20px;margin:0 0 14px;font-weight:900}
+  .modal__panel .thumb-placeholder{height:160px;border-radius:10px;margin-bottom:18px;border:1px dashed var(--line)}
+  .modal__panel p{color:var(--text);font-size:14.5px;margin:0 0 14px}
+  .modal__panel .meta{color:var(--muted);font-size:12.5px;margin-bottom:16px}
+  .modal__panel .more-link{
+    display:inline-flex;align-items:center;gap:6px;font-weight:700;color:#c2410c;font-size:13.5px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="#top" class="logo">김영식<span>.</span></a>
+    <button type="button" class="m_btn_menu" aria-label="메뉴 열기">
+      <i class="fas fa-bars"></i>
+    </button>
+    <nav class="gnb">
+      <ul>
+        <li><a href="#growth">성장 여정</a></li>
+        <li><a href="#skills">개발 철학</a></li>
+        <li><a href="#stack">기술 스택</a></li>
+        <li><a href="#projects">프로젝트</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#contact" class="nav-cta">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="section-inner">
+      <div>
+        <span class="eyebrow en">BACKEND DEVELOPER</span>
+        <h1>김영식<span class="en">KIM YOUNGSIK</span></h1>
+        <p class="desc">
+          초당 4,800개 IoT 포인트를 다루는 실시간 데이터 파이프라인과,
+          누적 27.8억 건 시계열 이력을 운영하는 멀티테넌트 백엔드를 만듭니다.
+        </p>
+        <div class="btn-group">
+          <a href="#projects" class="btn btn-primary"><i class="fas fa-layer-group"></i> 프로젝트 보기</a>
+          <a href="#contact" class="btn btn-ghost"><i class="fas fa-envelope"></i> 연락하기</a>
+        </div>
+        <div class="hero-stats">
+          <div><b class="en">27.8억+</b><span>누적 시계열 이력</span></div>
+          <div><b class="en">94.6%</b><span>DB 저장 용량 절감</span></div>
+          <div><b class="en">4,800</b><span>실시간 관리 포인트</span></div>
+          <div><b class="en">11.6일</b><span>연속 무중단 가동</span></div>
+        </div>
+      </div>
+      <div class="hero-photo">
+        <img src="/assets/images/profile.jpg" alt="김영식 프로필 사진">
+      </div>
+    </div>
+    <div class="scroll-cue">SCROLL<i class="fas fa-chevron-down"></i></div>
+  </section>
+
+  <!-- WHY -->
+  <section class="why">
+    <div class="section-inner reveal">
+      <span class="eyebrow en">WHY ME</span>
+      <h3>현업에서 검증된 백엔드,<br>사이드 프로젝트로 넓힌 프론트·보안</h3>
+      <p>
+        회사에서는 실시간 데이터와 대용량 시스템을 다루는 백엔드 개발자로 일하면서,
+        런덤메이트로 프론트엔드를, 바이브쉴드로 보안 영역을 직접 채워왔습니다.
+        백엔드가 중심이라는 점은 변하지 않았습니다.
+      </p>
+      <button type="button" class="btn btn-ghost" data-modal-open="#statsModal">
+        <i class="fas fa-chart-line"></i> 핵심 성과 한눈에 보기
+      </button>
+    </div>
+  </section>
+
+  <!-- GROWTH PROCESS -->
+  <section id="growth">
+    <div class="section-inner">
+      <div class="section-title reveal">
+        <span class="eyebrow">GROWTH JOURNEY</span>
+        <h3>2018년부터 지금까지, 성장 여정</h3>
+        <p>각 단계를 클릭하면 그 시기에 무엇을 고민했는지 확인할 수 있어요</p>
+      </div>
+      <div class="process-track reveal">
+        <div class="process-step" data-modal-open="#stepModal1">
+          <div class="num en">01</div>
+          <h4>학부·해커톤</h4>
+          <small>2018.03 – 2025.02</small>
+        </div>
+        <div class="process-step" data-modal-open="#stepModal2">
+          <div class="num en">02</div>
+          <h4>국비교육·팀프로젝트</h4>
+          <small>2024.03 – 2024.08</small>
+        </div>
+        <div class="process-step" data-modal-open="#stepModal3">
+          <div class="num en">03</div>
+          <h4>엑센솔루션 입사</h4>
+          <small>2025.02 –</small>
+        </div>
+        <div class="process-step" data-modal-open="#stepModal4">
+          <div class="num en">04</div>
+          <h4>백엔드 핵심 프로젝트</h4>
+          <small>2025.03 – 2025.10</small>
+        </div>
+        <div class="process-step" data-modal-open="#stepModal5">
+          <div class="num en">05</div>
+          <h4>사이드 프로젝트 확장</h4>
+          <small>2026.01 –</small>
+        </div>
+        <div class="process-step" data-modal-open="#stepModal6">
+          <div class="num en">06</div>
+          <h4>지금, 그리고 다음</h4>
+          <small>2026.08 –</small>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS / 개발 철학 -->
+  <section id="skills" style="background:var(--paper-2)">
+    <div class="section-inner">
+      <div class="section-title reveal">
+        <span class="eyebrow">HOW I WORK</span>
+        <h3>제가 일하는 방식</h3>
+        <p>기술보다 먼저 답할 수 있어야 한다고 생각하는 세 가지 기준입니다</p>
+      </div>
+      <div class="skill-grid reveal">
+        <div class="skill-card">
+          <div><i class="fas fa-shield-alt"></i><h4>안정성 우선</h4>
+          <p>캐시 갱신이 실패해도 파이프라인은 멈추지 않아야 합니다. 실패를 가정하고 설계합니다.</p></div>
+        </div>
+        <div class="skill-card">
+          <div><i class="fas fa-ruler-combined"></i><h4>근거로 답하기</h4>
+          <p>"왜 1.5초인가"에 실측으로 답할 수 있어야 한다고 생각합니다. 감이 아니라 트레이드오프로 결정합니다.</p></div>
+        </div>
+        <div class="skill-card">
+          <div><i class="fas fa-arrows-alt"></i><h4>경계 밖으로</h4>
+          <p>백엔드가 중심이지만, 내가 만든 API가 어떻게 쓰이는지 프론트에서, 안전한지 보안 관점에서 직접 확인합니다.</p></div>
+        </div>
+        <div class="skill-card">
+          <div><i class="fas fa-comments"></i><h4>협업 가능한 코드</h4>
+          <p>Devhub 프로젝트 이후로, 인터페이스를 먼저 정하고 구현은 나중에 하는 습관이 생겼습니다.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TECH STACK -->
+  <section id="stack">
+    <div class="section-inner">
+      <div class="section-title reveal">
+        <span class="eyebrow">TECH STACK</span>
+        <h3>기술 스택</h3>
+        <p>백엔드·인프라를 중심으로, 필요에 따라 프론트·모바일까지</p>
+      </div>
+      <div class="stack-groups reveal">
+        <div class="stack-card">
+          <h4>Backend & DB</h4>
+          <div class="chip-row">
+            <span class="chip">NestJS</span><span class="chip">TypeScript</span>
+            <span class="chip">TypeORM</span><span class="chip">Prisma</span>
+            <span class="chip">Spring Boot</span><span class="chip">PostgreSQL</span>
+            <span class="chip">TimescaleDB</span><span class="chip">Redis</span>
+          </div>
+        </div>
+        <div class="stack-card">
+          <h4>Realtime & Infra</h4>
+          <div class="chip-row">
+            <span class="chip">WebSocket</span><span class="chip">SSE</span>
+            <span class="chip">GraphQL Sub</span><span class="chip">Docker</span>
+            <span class="chip">nginx</span><span class="chip">PM2</span>
+            <span class="chip">Prometheus</span><span class="chip">Grafana</span>
+          </div>
+        </div>
+        <div class="stack-card">
+          <h4>Frontend & Mobile</h4>
+          <div class="chip-row">
+            <span class="chip">Next.js</span><span class="chip">React</span>
+            <span class="chip">Zustand</span><span class="chip">Vue.js</span>
+            <span class="chip">Flutter</span><span class="chip">Modbus/MQTT</span>
+            <span class="chip">OPC-UA</span><span class="chip">BACnet</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" style="background:var(--paper-2)">
+    <div class="section-inner">
+      <div class="section-title reveal">
+        <span class="eyebrow">PROJECTS</span>
+        <h3>프로젝트</h3>
+        <p>카드를 클릭하면 상세 내용을 확인할 수 있어요</p>
+      </div>
+      <div class="project-grid reveal">
+
+        <div class="project-card" data-modal-open="#projModal1">
+          <div class="thumb-placeholder">🖼️ 파이프라인 아키텍처 다이어그램<br>추가 예정</div>
+          <div class="body">
+            <span class="project-tag">BACKEND · 회사</span>
+            <h4>실시간 데이터 파이프라인</h4>
+            <p>Redis Pub/Sub·Stream 이중화로 4,800개 포인트 실시간 수집·배포</p>
+          </div>
+        </div>
+
+        <div class="project-card" data-modal-open="#projModal2">
+          <div class="thumb-placeholder">🖼️ 인증 흐름도<br>추가 예정</div>
+          <div class="body">
+            <span class="project-tag">BACKEND · 회사</span>
+            <h4>인증·인가 체계</h4>
+            <p>JWT 2단 가드와 토큰 갱신 single-flight 처리</p>
+          </div>
+        </div>
+
+        <div class="project-card" data-modal-open="#projModal3">
+          <div class="thumb-placeholder">🖼️ TimescaleDB 대시보드<br>스크린샷 추가 예정</div>
+          <div class="body">
+            <span class="project-tag">BACKEND · 회사</span>
+            <h4>TimescaleDB 대용량 운영</h4>
+            <p>27.8억 건 이력, 압축 정책으로 653GB → 35GB</p>
+          </div>
+        </div>
+
+        <div class="project-card" data-modal-open="#projModal4">
+          <div class="thumb-placeholder">🖼️ 순찰관리 앱 스크린샷<br>추가 예정</div>
+          <div class="body">
+            <span class="project-tag">BACKEND · MOBILE · 회사</span>
+            <h4>순찰관리 오프라인 동기화</h4>
+            <p>Flutter 로컬 DB 기반 오프라인 우선 동기화 계층</p>
+          </div>
+        </div>
+
+        <div class="project-card" data-modal-open="#projModal5">
+          <div class="thumb-placeholder">🖼️ 런덤메이트 앱 스크린샷<br>추가 예정</div>
+          <div class="body">
+            <span class="project-tag">FRONTEND · 사이드</span>
+            <h4>런덤메이트</h4>
+            <p>WebSocket 실시간 채팅을 갖춘 러닝 크루 매칭 앱, App Store 출시</p>
+          </div>
+        </div>
+
+        <div class="project-card" data-modal-open="#projModal6">
+          <div class="thumb-placeholder">🖼️ 바이브쉴드 리포트 화면<br>스크린샷 추가 예정</div>
+          <div class="body">
+            <span class="project-tag">SECURITY · 사이드</span>
+            <h4>바이브쉴드</h4>
+            <p>AI 환각 API 탐지 83% · 로컬 실행형 보안 검사 도구, 모두의 창업 선정</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="faq">
+    <div class="section-inner">
+      <div class="section-title reveal">
+        <span class="eyebrow">FAQ</span>
+        <h3>자주 나오는 기술 질문</h3>
+        <p>면접에서 실제로 물어볼 법한 질문에 미리 답해봤습니다</p>
+      </div>
+
+      <div class="faq-list reveal">
+        <div class="faq-item">
+          <button class="faq-q">Redis Pub/Sub과 Stream을 왜 둘 다 쓰셨나요?<i class="fas fa-plus"></i></button>
+          <div class="faq-a"><div class="faq-a-inner">
+            화면은 최신값만 지연 없이 필요해서 Pub/Sub을, 알람 평가·이력 적재는 값이 유실되면 안 되기 때문에 Stream을 씁니다.
+            <code>deliveryReliability</code> 값(realtime / durable / both)으로 구독마다 채널을 선택하게 해서, 소비자 특성에 안 맞는 채널을 강제하지 않도록 했습니다.
+            <br><a href="/backend/pubsub-and-stream/">→ 자세히 읽기</a>
+          </div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">왜 1.5초 배치인가요? 500ms나 5초는 왜 아닌가요?<i class="fas fa-plus"></i></button>
+          <div class="faq-a"><div class="faq-a-inner">
+            500ms는 트랜잭션 수 대비 화면 체감 개선이 미미했고, 5초는 운영자가 느리다고 느끼는 지연이었습니다.
+            가장 느린 프로토콜(BACnet)의 폴링 사이클을 온전히 담는 최소 단위가 1.5초였고, 실측 p99 이벤트 루프 지연(38.6ms)에도 여유가 남는 값이었습니다.
+            <br><a href="/backend/pubsub-and-stream/">→ 자세히 읽기</a>
+          </div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">구독 캐시 주기를 30초로 정한 기준은요?<i class="fas fa-plus"></i></button>
+          <div class="faq-a"><div class="faq-a-inner">
+            구독 설정 변경 빈도가 데이터 유입 빈도보다 압도적으로 낮아서, 최대 30초 지연은 감내할 수 있다고 판단했습니다.
+            캐시 갱신 자체가 실패하면 예외만 로깅하고 기존 캐시를 그대로 유지해, 파이프라인 전체가 멈추지 않도록 했습니다.
+            <br><a href="/backend/pubsub-and-stream/">→ 자세히 읽기</a>
+          </div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">메시지 순서가 뒤바뀌면 어떻게 되나요?<i class="fas fa-plus"></i></button>
+          <div class="faq-a"><div class="faq-a-inner">
+            서버가 받은 순서를 신뢰하지 않고, 디바이스가 값을 측정한 시각을 기준으로 최신값을 판정합니다.
+            화면용 미러 테이블은 최신값 덮어쓰기로 충분하다고 보고 별도 순서 보장 장치를 두지 않았고, 원본 이력은 전량 적재해 필요하면 타임스탬프로 재정렬할 수 있습니다.
+            <br><a href="/backend/pubsub-and-stream/">→ 자세히 읽기</a>
+          </div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">poller와 API를 분리한 뒤 실제로 무엇이 좋아졌나요?<i class="fas fa-plus"></i></button>
+          <div class="faq-a"><div class="faq-a-inner">
+            배포와 장애가 서로 전이되지 않게 됐습니다. poller만 재시작해도 API가 끊기지 않고, API를 배포해도 수집이 멈추지 않아
+            조회 시점 기준 11.6일 연속 무중단 가동을 유지할 수 있었습니다.
+            <br><a href="/backend/pubsub-and-stream/">→ 자세히 읽기</a>
+          </div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">서비스별로 DB를 분리한 이유는? 스키마 분리로는 부족한가요?<i class="fas fa-plus"></i></button>
+          <div class="faq-a"><div class="faq-a-inner">
+            장애 격리(한 서비스의 쓰기 부하가 다른 서비스 커넥션 풀에 영향을 주지 않아야 함)와 배포 독립성(서비스마다 마이그레이션 시점이 다름) 때문입니다.
+            스키마만 나누면 커넥션 풀과 락 경쟁은 여전히 공유되어 리소스 격리가 되지 않습니다.
+            <br><a href="/backend/timescaledb-compression/">→ 자세히 읽기</a>
+          </div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">오프라인 동기화에서 같은 데이터를 양쪽에서 수정했으면요?<i class="fas fa-plus"></i></button>
+          <div class="faq-a"><div class="faq-a-inner">
+            순찰은 회차·구역별로 담당자 1인이 배정되는 운영 구조라 동시 수정 자체가 발생하지 않도록 이미 배제돼 있었습니다.
+            그래서 복잡한 병합 로직 대신, 작성 시각 기준 업로드와 회차·포인트 단위 고유 키로 중복만 막는 단순한 규칙을 선택했습니다.
+            <br><a href="/backend/patrol-offline-sync/">→ 자세히 읽기</a>
+          </div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">백엔드 개발자인데 프론트·보안까지 하는 이유는요?<i class="fas fa-plus"></i></button>
+          <div class="faq-a"><div class="faq-a-inner">
+            회사에서는 백엔드·서버 운영이 중심이고, 제가 만든 API가 실제로 어떻게 소비되는지(런덤메이트) 그리고 제가 만든 코드가 안전한지(바이브쉴드)를
+            직접 확인해보고 싶어서 사이드 프로젝트로 채웠습니다. 두 경험 모두 결국 백엔드를 더 잘하기 위한 확장이라고 생각합니다.
+            <br><a href="/frontend/randommate/">→ 자세히 읽기</a>
+          </div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="cta">
+    <div class="section-inner reveal">
+      <h3>함께 이야기 나누고 싶습니다</h3>
+      <p>궁금한 점이나 면접 제안이 있다면 편하게 연락 주세요.</p>
+      <div class="btn-group">
+        <a href="mailto:ys0000250000@gmail.com" class="btn btn-primary"><i class="fas fa-envelope"></i> 이메일 보내기</a>
+        <a href="https://github.com/zeroway3" target="_blank" class="btn btn-ghost"><i class="fab fa-github"></i> GitHub</a>
+        <a href="/about/" class="btn btn-ghost"><i class="fas fa-book-open"></i> 블로그에서 더 보기</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="section-inner">
+    © 2026 Kim Youngsik · <a href="https://github.com/zeroway3">GitHub</a> · <a href="mailto:ys0000250000@gmail.com">Email</a>
+  </div>
+</footer>
+
+<!-- ================= MODALS ================= -->
+
+<div id="statsModal" class="modal" role="dialog" aria-modal="true" hidden>
+  <div class="modal__dim" data-modal-close></div>
+  <div class="modal__panel">
+    <button class="modal__close" data-modal-close>✕</button>
+    <span class="project-tag">CAREER · SUMMARY</span>
+    <h4>엑센솔루션 1년 6개월 핵심 성과</h4>
+    <p>· 실시간 관리 포인트 약 4,800개 (1.5초 주기 배치 UPSERT)</p>
+    <p>· 누적 시계열 이력 27.8억 건 / 제어 로그 348만 건</p>
+    <p>· 압축 성과 653GB → 35GB (94.6% 절감, 18.7:1)</p>
+    <p>· 무중단 가동 11.6일 연속, 이벤트 루프 지연 p99 38.6ms</p>
+    <p>· 커밋 535건 (머지 PR 440건) · 담당 저장소 8개</p>
+  </div>
+</div>
+
+<div id="stepModal1" class="modal" role="dialog" aria-modal="true" hidden>
+  <div class="modal__dim" data-modal-close></div>
+  <div class="modal__panel">
+    <button class="modal__close" data-modal-close>✕</button>
+    <span class="project-tag">2018.03 – 2025.02</span>
+    <h4>학부·해커톤</h4>
+    <p>한남대학교 멀티미디어공학과 재학 중 영국 Brunel University, 싱가포르 SIT와의 2주 협업 해커톤에서 각각 1위를 했습니다.
+    낯선 팀원과 짧은 기간에 결과물을 내야 한다는 압박이 "일단 되게 만들고 다듬는" 감각을 길러줬습니다.</p>
+    <a href="/growth/devhub-www/" class="more-link">블로그에서 자세히 읽기 →</a>
+  </div>
+</div>
+
+<div id="stepModal2" class="modal" role="dialog" aria-modal="true" hidden>
+  <div class="modal__dim" data-modal-close></div>
+  <div class="modal__panel">
+    <button class="modal__close" data-modal-close>✕</button>
+    <span class="project-tag">2024.03 – 2024.08</span>
+    <h4>국비교육 · 팀프로젝트</h4>
+    <p>한국소프트웨어인재개발원 개발자 과정에서 형상관리 웹서비스 Devhub, 리워드 앱 WWW를 팀 프로젝트로 만들며
+    "혼자 짜는 코드"에서 "같이 쓰는 시스템"으로 넘어가는 경험을 했습니다.</p>
+    <a href="/growth/devhub-www/" class="more-link">블로그에서 자세히 읽기 →</a>
+  </div>
+</div>
+
+<div id="stepModal3" class="modal" role="dialog" aria-modal="true" hidden>
+  <div class="modal__dim" data-modal-close></div>
+  <div class="modal__panel">
+    <button class="modal__close" data-modal-close>✕</button>
+    <span class="project-tag">2025.02 –</span>
+    <h4>엑센솔루션 입사</h4>
+    <p>건물관리 솔루션(SI/FMS/BEMS) 기업에 입사해, 레거시 C#(.NET) 시스템을 Next.js·NestJS로 전면 리뉴얼하는 프로젝트에 합류했습니다.
+    첫 달은 코드보다 산업 프로토콜과 도메인을 이해하는 데 썼습니다.</p>
+    <a href="/backend/joining-si-renewal/" class="more-link">블로그에서 자세히 읽기 →</a>
+  </div>
+</div>
+
+<div id="stepModal4" class="modal" role="dialog" aria-modal="true" hidden>
+  <div class="modal__dim" data-modal-close></div>
+  <div class="modal__panel">
+    <button class="modal__close" data-modal-close>✕</button>
+    <span class="project-tag">2025.03 – 2025.10</span>
+    <h4>백엔드 핵심 프로젝트</h4>
+    <p>실시간 데이터 파이프라인(Pub/Sub·Stream), 인증·인가 체계(JWT, single-flight), TimescaleDB 대용량 운영까지
+    지금 포트폴리오의 뼈대가 되는 세 가지 축을 이 시기에 설계·구현했습니다.</p>
+    <a href="/backend/pubsub-and-stream/" class="more-link">블로그에서 자세히 읽기 →</a>
+  </div>
+</div>
+
+<div id="stepModal5" class="modal" role="dialog" aria-modal="true" hidden>
+  <div class="modal__dim" data-modal-close></div>
+  <div class="modal__panel">
+    <button class="modal__close" data-modal-close>✕</button>
+    <span class="project-tag">2026.01 –</span>
+    <h4>사이드 프로젝트로 확장</h4>
+    <p>런덤메이트로 프론트엔드 실시간 통신을, 바이브쉴드로 보안 아키텍처를 직접 경험하며
+    백엔드 중심의 시야를 의도적으로 넓혔습니다.</p>
+    <a href="/frontend/randommate/" class="more-link">블로그에서 자세히 읽기 →</a>
+  </div>
+</div>
+
+<div id="stepModal6" class="modal" role="dialog" aria-modal="true" hidden>
+  <div class="modal__dim" data-modal-close></div>
+  <div class="modal__panel">
+    <button class="modal__close" data-modal-close>✕</button>
+    <span class="project-tag">2026.08 –</span>
+    <h4>지금, 그리고 다음</h4>
+    <p>순찰관리 API와 Flutter 오프라인 동기화 작업을 최근 3주간 진행했습니다.
+    백엔드·프론트·모바일·보안을 오가며 쌓은 경험을 계속 이어가고 있습니다.</p>
+    <a href="/backend/patrol-offline-sync/" class="more-link">블로그에서 자세히 읽기 →</a>
+  </div>
+</div>
+
+<div id="projModal1" class="modal" role="dialog" aria-modal="true" hidden>
+  <div class="modal__dim" data-modal-close></div>
+  <div class="modal__panel">
+    <button class="modal__close" data-modal-close>✕</button>
+    <div class="thumb-placeholder">🖼️ 파이프라인 아키텍처 다이어그램 추가 예정</div>
+    <span class="project-tag">BACKEND · 회사 · 2025.03 – 2025.10</span>
+    <h4>실시간 데이터 파이프라인</h4>
+    <p>Modbus·MQTT·OPC-UA·BACnet 기반 IoT 포인트 약 4,800개를 초 단위로 폴링 수집하고,
+    Redis Pub/Sub(실시간)·Stream(무손실) 이중 채널로 배포합니다. 메시지당 DB 조회 0회 구조와
+    1.5초 배치 UPSERT로 안정적인 처리량을 확보했습니다.</p>
+    <a href="/backend/pubsub-and-stream/" class="more-link">블로그에서 자세히 읽기 →</a>
+  </div>
+</div>
+
+<div id="projModal2" class="modal" role="dialog" aria-modal="true" hidden>
+  <div class="modal__dim" data-modal-close></div>
+  <div class="modal__panel">
+    <button class="modal__close" data-modal-close>✕</button>
+    <div class="thumb-placeholder">🖼️ 인증 흐름도 추가 예정</div>
+    <span class="project-tag">BACKEND · 회사 · 2025.05 – 2026.08</span>
+    <h4>인증·인가 체계</h4>
+    <p>JWT 발급 전담 서버 분리, 서비스 단위 인가 + 화면별 read/write 권한 2단 가드를 구현했습니다.
+    axios 인터셉터에 single-flight 방식을 적용해 동시 401을 1회 갱신으로 병합했습니다.</p>
+    <a href="/backend/auth-single-flight/" class="more-link">블로그에서 자세히 읽기 →</a>
+  </div>
+</div>
+
+<div id="projModal3" class="modal" role="dialog" aria-modal="true" hidden>
+  <div class="modal__dim" data-modal-close></div>
+  <div class="modal__panel">
+    <button class="modal__close" data-modal-close>✕</button>
+    <div class="thumb-placeholder">🖼️ TimescaleDB 대시보드 스크린샷 추가 예정</div>
+    <span class="project-tag">BACKEND · 회사 · 2025.10 –</span>
+    <h4>TimescaleDB 대용량 운영</h4>
+    <p>이력·알람·제어로그를 하이퍼테이블로 전환해 누적 27.8억 건을 365일 보존·3개월 압축 정책으로 운영합니다.
+    저장 용량을 653GB에서 35GB로 94.6% 절감했습니다.</p>
+    <a href="/backend/timescaledb-compression/" class="more-link">블로그에서 자세히 읽기 →</a>
+  </div>
+</div>
+
+<div id="projModal4" class="modal" role="dialog" aria-modal="true" hidden>
+  <div class="modal__dim" data-modal-close></div>
+  <div class="modal__panel">
+    <button class="modal__close" data-modal-close>✕</button>
+    <div class="thumb-placeholder">🖼️ 순찰관리 앱 스크린샷 추가 예정</div>
+    <span class="project-tag">BACKEND · MOBILE · 회사 · 2026.08</span>
+    <h4>순찰관리 오프라인 동기화</h4>
+    <p>통신이 불안정한 지하·기계실에서도 점검 기록을 남길 수 있도록, Flutter 앱에 API 클라이언트 → 리포지토리 →
+    로컬 DB → 동기화 매니저로 이어지는 오프라인 우선 구조를 설계했습니다.</p>
+    <a href="/backend/patrol-offline-sync/" class="more-link">블로그에서 자세히 읽기 →</a>
+  </div>
+</div>
+
+<div id="projModal5" class="modal" role="dialog" aria-modal="true" hidden>
+  <div class="modal__dim" data-modal-close></div>
+  <div class="modal__panel">
+    <button class="modal__close" data-modal-close>✕</button>
+    <div class="thumb-placeholder">🖼️ 런덤메이트 앱 스크린샷 추가 예정</div>
+    <span class="project-tag">FRONTEND · 사이드 · 2026.01 – 2026.05</span>
+    <h4>런덤메이트</h4>
+    <p>GPS 러닝 기록, 크루 커뮤니티, WebSocket 실시간 채팅, 랭킹·챌린지 기능을 갖춘 소셜 러닝 앱을
+    기획부터 App Store 출시까지 완주했습니다. 커밋 127건 · 머지 PR 40건 이상.</p>
+    <a href="/frontend/randommate/" class="more-link">블로그에서 자세히 읽기 →</a>
+  </div>
+</div>
+
+<div id="projModal6" class="modal" role="dialog" aria-modal="true" hidden>
+  <div class="modal__dim" data-modal-close></div>
+  <div class="modal__panel">
+    <button class="modal__close" data-modal-close>✕</button>
+    <div class="thumb-placeholder">🖼️ 바이브쉴드 리포트 화면 스크린샷 추가 예정</div>
+    <span class="project-tag">SECURITY · 사이드 · 2026 –</span>
+    <h4>바이브쉴드</h4>
+    <p>AI 생성 코드의 취약점과 존재하지 않는 API(환각) 호출을 탐지하는 로컬 실행형 정적분석 도구.
+    환각 API 탐지율 83%, 오탐률 3.8%를 실측했고 중소벤처기업부 「모두의 창업 프로젝트」에 선정됐습니다.</p>
+    <a href="/security/vibeshield/" class="more-link">블로그에서 자세히 읽기 →</a>
+  </div>
+</div>
+
+<script>
+  // mobile nav
+  var menuBtn = document.querySelector('.m_btn_menu');
+  var gnb = document.querySelector('nav.gnb');
+  menuBtn.addEventListener('click', function(){ gnb.classList.toggle('open'); });
+  gnb.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){ gnb.classList.remove('open'); });
+  });
+
+  // scroll reveal
+  var revealEls = document.querySelectorAll('.reveal');
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, {threshold:.15});
+  revealEls.forEach(function(el){ io.observe(el); });
+
+  // modal open/close
+  document.querySelectorAll('[data-modal-open]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var target = document.querySelector(btn.getAttribute('data-modal-open'));
+      if (target) target.hidden = false;
+    });
+  });
+  document.querySelectorAll('.modal').forEach(function(modal){
+    modal.querySelectorAll('[data-modal-close]').forEach(function(btn){
+      btn.addEventListener('click', function(){ modal.hidden = true; });
+    });
+  });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape'){
+      document.querySelectorAll('.modal').forEach(function(m){ m.hidden = true; });
+    }
+  });
+
+  // faq accordion
+  document.querySelectorAll('.faq-item').forEach(function(item){
+    var q = item.querySelector('.faq-q');
+    var a = item.querySelector('.faq-a');
+    q.addEventListener('click', function(){
+      var isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(function(o){
+        o.classList.remove('open');
+        o.querySelector('.faq-a').style.maxHeight = null;
+      });
+      if (!isOpen){
+        item.classList.add('open');
+        a.style.maxHeight = a.scrollHeight + 'px';
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
