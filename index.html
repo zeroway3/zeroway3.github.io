@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>김영식 - Backend Developer Portfolio</title>
+  <title>김영식 - Backend-Driven Software Engineer</title>
   <meta name="description" content="실시간 IoT 데이터 파이프라인과 멀티테넌트 백엔드를 만드는 백엔드 개발자 김영식의 포트폴리오">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="김영식 - Backend Developer Portfolio">
+  <meta property="og:title" content="김영식 - Backend-Driven Software Engineer">
   <meta property="og:description" content="누적 27.8억 건 시계열 데이터, 초당 4,800개 IoT 포인트 실시간 파이프라인을 다루는 백엔드 개발자">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -56,7 +56,7 @@
 
   /* ---------- Header ---------- */
   header{
-    position:fixed;top:0;left:0;right:0;z-index:200;
+    position:fixed;top:0;left:0;right:0;z-index:400;
     background:rgba(14,12,11,.78);backdrop-filter:blur(10px);
     border-bottom:1px solid rgba(255,255,255,.08);
   }
@@ -64,8 +64,9 @@
     max-width:var(--maxw);margin:0 auto;padding:0 24px;
     height:64px;display:flex;align-items:center;justify-content:space-between;
   }
-  .logo{font-family:"Poppins",sans-serif;font-weight:700;font-size:18px;color:#fff;letter-spacing:.02em}
+  .logo{font-family:"Poppins",sans-serif;font-weight:700;font-size:16px;color:#fff;letter-spacing:.14em}
   .logo span{color:var(--accent)}
+  .header-right{display:flex;align-items:center;gap:18px}
   nav.gnb ul{list-style:none;display:flex;gap:28px;margin:0;padding:0}
   nav.gnb a{color:#cdd3e6;font-size:14px;font-weight:500;transition:color .2s}
   nav.gnb a:hover{color:#fff}
@@ -84,6 +85,38 @@
     .m_btn_menu{display:block}
     .nav-cta{display:none}
   }
+
+  .mode-toggle-fab{
+    position:fixed;right:24px;bottom:24px;z-index:401;
+    background:var(--ink);color:#fff;border:1px solid rgba(255,255,255,.25);
+    padding:12px 20px;border-radius:999px;font-size:13px;font-weight:700;
+    font-family:inherit;letter-spacing:.02em;cursor:pointer;white-space:nowrap;
+    box-shadow:0 10px 26px rgba(0,0,0,.28);transition:transform .2s,box-shadow .2s,background .2s;
+  }
+  .mode-toggle-fab:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(0,0,0,.35)}
+  @media(max-width:600px){.mode-toggle-fab{right:16px;bottom:16px;padding:11px 16px;font-size:12.5px}}
+
+  /* ---------- Personal (Off Duty) mode ---------- */
+  .personal-mode{
+    position:fixed;inset:0;z-index:300;background:var(--ink);overflow-y:auto;
+    animation:fadeIn .3s ease;
+  }
+  .personal-mode[hidden]{display:none}
+  @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+  .personal-mode__inner{max-width:var(--maxw);margin:0 auto;padding:100px 24px 80px}
+  .personal-intro{text-align:center;color:#fff;max-width:640px;margin:0 auto 56px}
+  .personal-intro h2{font-size:clamp(24px,4vw,34px);font-weight:900;margin:14px 0 16px;letter-spacing:-.02em}
+  .personal-intro p{color:var(--muted-2);font-size:15.5px;margin:0}
+  .personal-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+  @media(max-width:760px){.personal-grid{grid-template-columns:1fr}}
+  .personal-card{
+    margin:0;background:var(--ink-2);border:1px solid var(--line-dark);border-radius:var(--radius);
+    overflow:hidden;
+  }
+  .personal-card img{width:100%;height:320px;object-fit:cover}
+  .personal-card figcaption{padding:20px 22px}
+  .personal-card h4{color:#fff;margin:0 0 8px;font-size:16.5px;font-weight:800}
+  .personal-card p{color:var(--muted-2);margin:0;font-size:13.5px;line-height:1.7}
 
   /* ---------- Hero ---------- */
   .hero{
@@ -180,6 +213,13 @@
     padding:6px 12px;font-size:13px;font-weight:500;
   }
 
+  .project-note{
+    max-width:760px;margin:-30px auto 40px;padding:14px 20px;
+    background:var(--paper);border-left:3px solid var(--accent);border-radius:8px;
+    font-size:13.5px;color:var(--muted);text-align:center;
+  }
+  .project-note b{color:var(--text);font-weight:700}
+
   /* ---------- Projects grid ---------- */
   .project-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
   @media(max-width:900px){.project-grid{grid-template-columns:repeat(2,1fr)}}
@@ -254,22 +294,56 @@
 
 <header>
   <div class="header-inner">
-    <a href="#top" class="logo">김영식<span>.</span></a>
-    <button type="button" class="m_btn_menu" aria-label="메뉴 열기">
-      <i class="fas fa-bars"></i>
-    </button>
-    <nav class="gnb">
-      <ul>
-        <li><a href="#growth">성장 여정</a></li>
-        <li><a href="#skills">개발 철학</a></li>
-        <li><a href="#stack">기술 스택</a></li>
-        <li><a href="#projects">프로젝트</a></li>
-        <li><a href="#faq">FAQ</a></li>
-        <li><a href="#contact" class="nav-cta">Contact</a></li>
-      </ul>
-    </nav>
+    <a href="#top" class="logo">PORTFOLIO<span>.</span></a>
+    <div class="header-right">
+      <nav class="gnb">
+        <ul>
+          <li><a href="#growth">성장 여정</a></li>
+          <li><a href="#skills">개발 철학</a></li>
+          <li><a href="#stack">기술 스택</a></li>
+          <li><a href="#projects">프로젝트</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#contact" class="nav-cta">Contact</a></li>
+        </ul>
+      </nav>
+      <button type="button" class="m_btn_menu" aria-label="메뉴 열기">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
   </div>
 </header>
+
+<button type="button" id="modeToggle" class="mode-toggle-fab">
+  <span>Off Duty</span>
+</button>
+
+<!-- ================= OFF DUTY (PERSONAL MODE) ================= -->
+<div id="personalMode" class="personal-mode" hidden>
+  <div class="personal-mode__inner">
+    <div class="personal-intro">
+      <span class="eyebrow en">OFF DUTY</span>
+      <h2>포트폴리오엔 못 담았지만,<br>저를 설명하는 두 장의 사진입니다</h2>
+      <p>한번 잡으면 끝까지 하는 성향은, 일할 때만 나오는 게 아니더라고요.</p>
+    </div>
+
+    <div class="personal-grid">
+      <figure class="personal-card">
+        <img src="/assets/images/hallasan.jpg" alt="한라산 정상에서 찍은 사진">
+        <figcaption>
+          <h4>한라산 정상</h4>
+          <p>가장 높은 곳까지, 일단 시작하면 끝까지 갑니다.</p>
+        </figcaption>
+      </figure>
+      <figure class="personal-card">
+        <img src="/assets/images/faker.jpg" alt="롤 프로게이머 페이커와 함께 게임했던 기념 사진">
+        <figcaption>
+          <h4>리그 오브 레전드, 그리고 페이커</h4>
+          <p>한때 프로게이머 연습생 제의를 받을 정도로 몰입했었습니다. 지금은 하지 않지만, 뭔가에 진심으로 파고들었던 경험은 여전히 남아있습니다.</p>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</div>
 
 <main id="top">
 
@@ -277,11 +351,12 @@
   <section class="hero">
     <div class="section-inner">
       <div>
-        <span class="eyebrow en">BACKEND DEVELOPER</span>
+        <span class="eyebrow en">BACKEND-DRIVEN SOFTWARE ENGINEER</span>
         <h1>김영식<span class="en">KIM YOUNGSIK</span></h1>
         <p class="desc">
           초당 4,800개 IoT 포인트를 다루는 실시간 데이터 파이프라인과,
           누적 27.8억 건 시계열 이력을 운영하는 멀티테넌트 백엔드를 만듭니다.
+          백엔드에서 출발해 프론트엔드·모바일·보안까지 제품 전체 사이클을 다룹니다.
         </p>
         <div class="btn-group">
           <a href="#projects" class="btn btn-primary"><i class="fas fa-layer-group"></i> 프로젝트 보기</a>
@@ -436,6 +511,11 @@
         <span class="eyebrow">PROJECTS</span>
         <h3>프로젝트</h3>
         <p>카드를 클릭하면 상세 내용을 확인할 수 있어요</p>
+      </div>
+      <div class="project-note reveal">
+        아래 실시간 데이터 파이프라인 · 인증·인가 체계 · TimescaleDB 운영은 모두
+        <b>SI(시스템 통합, System Integration)</b> · <b>FMS(설비관리시스템, Facility Management System)</b>
+        리뉴얼 프로젝트(<span class="en">xnsolution_si · xnsolution_fms</span>)에서 나온 결과물입니다.
       </div>
       <div class="project-grid reveal">
 
@@ -770,6 +850,18 @@
   menuBtn.addEventListener('click', function(){ gnb.classList.toggle('open'); });
   gnb.querySelectorAll('a').forEach(function(a){
     a.addEventListener('click', function(){ gnb.classList.remove('open'); });
+  });
+
+  // work mode / off duty toggle (same button, same position — label just flips)
+  var personalMode = document.getElementById('personalMode');
+  var modeToggle = document.getElementById('modeToggle');
+  var modeToggleLabel = modeToggle.querySelector('span');
+  modeToggle.addEventListener('click', function(){
+    var isOff = personalMode.hidden; // about to turn ON off-duty mode
+    personalMode.hidden = !isOff;
+    document.body.style.overflow = isOff ? 'hidden' : '';
+    if (isOff) { personalMode.scrollTop = 0; }
+    modeToggleLabel.textContent = isOff ? 'Work Mode' : 'Off Duty';
   });
 
   // scroll reveal
