@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1220 600" font-family="Noto Sans KR, Segoe UI, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0e0c0b"/>
+      <stop offset="100%" stop-color="#1c1310"/>
+    </linearGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#FF6A13"/>
+    </marker>
+    <marker id="arrowMuted" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#6b6660"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="1220" height="600" fill="url(#bg)"/>
+
+  <text x="40" y="36" fill="#ffffff" font-size="20" font-weight="800">SI/FMS 멀티서비스 아키텍처</text>
+  <text x="40" y="58" fill="#cfc7bd" font-size="12.5">10개 이상 서비스 · Docker Compose 기반 운영 (역할 단위로 단순화한 개략도)</text>
+
+  <!-- arrows -->
+  <line x1="210" y1="300" x2="266" y2="300" stroke="#FF6A13" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <line x1="480" y1="260" x2="536" y2="260" stroke="#FF6A13" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <line x1="480" y1="340" x2="536" y2="340" stroke="#FF6A13" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <line x1="730" y1="250" x2="786" y2="250" stroke="#FF6A13" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <line x1="730" y1="350" x2="786" y2="350" stroke="#FF6A13" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <line x1="885" y1="290" x2="885" y2="310" stroke="#4a3a30" stroke-width="2"/>
+  <line x1="885" y1="390" x2="885" y2="426" stroke="#FF6A13" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <line x1="980" y1="250" x2="1026" y2="285" stroke="#FF6A13" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <line x1="980" y1="350" x2="1026" y2="315" stroke="#FF6A13" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <line x1="885" y1="130" x2="885" y2="206" stroke="#6b6660" stroke-width="2" stroke-dasharray="5,4" marker-end="url(#arrowMuted)"/>
+  <text x="895" y="175" fill="#6b6660" font-size="11">인가 체크</text>
+
+  <!-- Box A: 현장 디바이스 -->
+  <g>
+    <rect x="40" y="240" width="170" height="120" rx="12" fill="#1c1310" stroke="#33261f" stroke-width="1.5"/>
+    <text x="60" y="270" fill="#ffffff" font-size="14.5" font-weight="800">현장 디바이스</text>
+    <text x="60" y="288" fill="#cfc7bd" font-size="10.5">PLC · 센서 · 계측기</text>
+    <g font-size="10" fill="#1a1512" font-weight="700">
+      <rect x="60" y="298" width="58" height="20" rx="5" fill="#FF6A13"/><text x="69" y="312">Modbus</text>
+      <rect x="122" y="298" width="52" height="20" rx="5" fill="#FF6A13"/><text x="131" y="312">MQTT</text>
+      <rect x="60" y="322" width="58" height="20" rx="5" fill="#FF6A13"/><text x="66" y="336">OPC-UA</text>
+      <rect x="122" y="322" width="58" height="20" rx="5" fill="#FF6A13"/><text x="129" y="336">BACnet</text>
+      <rect x="60" y="346" width="58" height="18" rx="5" fill="#3a2e26" stroke="#FF6A13"/><text x="70" y="359" fill="#FF6A13">SNMP</text>
+    </g>
+  </g>
+
+  <!-- Box B: SI 커넥터 -->
+  <g>
+    <rect x="270" y="210" width="210" height="180" rx="12" fill="#1c1310" stroke="#33261f" stroke-width="1.5"/>
+    <text x="288" y="234" fill="#ffffff" font-size="14.5" font-weight="800">SI 커넥터</text>
+    <text x="288" y="250" fill="#cfc7bd" font-size="10.5">프로토콜 드라이버 · 폴링/응답 분리</text>
+    <rect x="285" y="262" width="180" height="56" rx="8" fill="#2a1f19"/>
+    <text x="300" y="285" fill="#ffffff" font-size="12.5" font-weight="700">Poller</text>
+    <text x="300" y="302" fill="#a89f96" font-size="10">수집 · 발행 · 이력 저장</text>
+    <rect x="285" y="326" width="180" height="56" rx="8" fill="#2a1f19"/>
+    <text x="300" y="349" fill="#ffffff" font-size="12.5" font-weight="700">API</text>
+    <text x="300" y="366" fill="#a89f96" font-size="10">조회 응답 전용 (Fastify)</text>
+  </g>
+
+  <!-- Box C: Redis -->
+  <g>
+    <rect x="540" y="210" width="190" height="180" rx="12" fill="#1c1310" stroke="#33261f" stroke-width="1.5"/>
+    <text x="558" y="234" fill="#ffffff" font-size="14.5" font-weight="800">Redis</text>
+    <text x="558" y="250" fill="#cfc7bd" font-size="10.5">브로커 이중 채널</text>
+    <rect x="555" y="262" width="160" height="56" rx="8" fill="#2a1f19"/>
+    <text x="570" y="285" fill="#ffffff" font-size="12.5" font-weight="700">Pub/Sub</text>
+    <text x="570" y="302" fill="#a89f96" font-size="10">실시간(최신값)</text>
+    <rect x="555" y="326" width="160" height="56" rx="8" fill="#2a1f19"/>
+    <text x="570" y="349" fill="#ffffff" font-size="12.5" font-weight="700">Stream</text>
+    <text x="570" y="366" fill="#a89f96" font-size="10">무손실(이력·알람)</text>
+  </g>
+
+  <!-- Box D1/D2: 백엔드 -->
+  <rect x="790" y="210" width="190" height="80" rx="12" fill="#1c1310" stroke="#FF6A13" stroke-width="1.5"/>
+  <text x="808" y="242" fill="#ffffff" font-size="13.5" font-weight="800">SI 백엔드</text>
+  <text x="808" y="260" fill="#a89f96" font-size="10">미러 테이블 · 업무 로직</text>
+  <text x="808" y="276" fill="#a89f96" font-size="10">Hexagonal Architecture</text>
+
+  <rect x="790" y="310" width="190" height="80" rx="12" fill="#1c1310" stroke="#FF6A13" stroke-width="1.5"/>
+  <text x="808" y="342" fill="#ffffff" font-size="13.5" font-weight="800">FMS 백엔드</text>
+  <text x="808" y="360" fill="#a89f96" font-size="10">설비·작업 자동화 로직</text>
+  <text x="808" y="376" fill="#a89f96" font-size="10">Hexagonal Architecture</text>
+
+  <!-- Box E: DB -->
+  <rect x="790" y="430" width="190" height="90" rx="12" fill="#1c1310" stroke="#33261f" stroke-width="1.5"/>
+  <text x="808" y="460" fill="#ffffff" font-size="13.5" font-weight="800">PostgreSQL</text>
+  <text x="808" y="478" fill="#ffffff" font-size="13.5" font-weight="800">TimescaleDB</text>
+  <text x="808" y="496" fill="#a89f96" font-size="10">하이퍼테이블 · 압축 정책</text>
+
+  <!-- Box F: 인증 서버 -->
+  <rect x="790" y="60" width="190" height="70" rx="12" fill="#1c1310" stroke="#33261f" stroke-width="1.5"/>
+  <text x="808" y="90" fill="#ffffff" font-size="13.5" font-weight="800">인증 서버</text>
+  <text x="808" y="108" fill="#a89f96" font-size="10">JWT 발급 전담</text>
+
+  <!-- Box G: 프론트엔드 -->
+  <rect x="1030" y="260" width="150" height="90" rx="12" fill="#1c1310" stroke="#33261f" stroke-width="1.5"/>
+  <text x="1048" y="292" fill="#ffffff" font-size="13" font-weight="800">Next.js</text>
+  <text x="1048" y="310" fill="#ffffff" font-size="13" font-weight="800">프론트엔드</text>
+  <text x="1048" y="330" fill="#a89f96" font-size="9.5">SI · FMS 화면</text>
+
+</svg>

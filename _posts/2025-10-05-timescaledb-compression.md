@@ -1,5 +1,5 @@
 ---
-title: "TimescaleDB로 27.8억 건 시계열 데이터 다루기"
+title: "TimescaleDB 운영"
 categories:
   - backend
 tags:

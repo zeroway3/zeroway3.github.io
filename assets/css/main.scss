@@ -4,6 +4,9 @@
 
 @charset "utf-8";
 
+/* ---- 커스텀: 포트폴리오와 동일한 브랜드 컬러(주황)를 블로그에도 적용 ---- */
+$primary-color: #FF6A13;
+
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
 @import "minimal-mistakes"; // main partials
 
@@ -20,6 +23,22 @@
   font-size: 0.85em;
   letter-spacing: 0.03em;
   color: #6b6660;
+}
+
+/* ---- 커스텀: 이전/다음 글 버튼 ---- */
+.pagination--pager {
+  border: 1px solid #e8e3db;
+  border-radius: 10px;
+  font-weight: 700;
+  transition: background .2s ease, color .2s ease, border-color .2s ease;
+}
+.pagination--pager:hover {
+  background: #FF6A13;
+  border-color: #FF6A13;
+  color: #fff;
+}
+.pagination--pager.disabled {
+  opacity: .35;
 }
 
 /* ---- 커스텀: 사이드바 프로필 사진을 정사각형으로, 더 크게 ---- */

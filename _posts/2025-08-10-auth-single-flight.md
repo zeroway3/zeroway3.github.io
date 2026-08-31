@@ -1,5 +1,5 @@
 ---
-title: "JWT 인가 체계와 토큰 갱신 동시성 제어"
+title: "인증·인가 체계"
 categories:
   - backend
 tags:

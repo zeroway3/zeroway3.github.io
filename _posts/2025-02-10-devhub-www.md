@@ -1,5 +1,5 @@
 ---
-title: "학부 시절과 국비교육, 그리고 첫 팀 프로젝트들"
+title: "Devhub·WWW 프로젝트"
 categories:
   - growth
 tags:

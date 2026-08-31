@@ -1,5 +1,5 @@
 ---
-title: "런덤메이트로 프론트엔드 시야를 넓히다"
+title: "런덤메이트"
 categories:
   - frontend
 tags:

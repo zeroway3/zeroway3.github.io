@@ -1,5 +1,5 @@
 ---
-title: "순찰관리 API와 Flutter 오프라인 동기화"
+title: "순찰관리 오프라인 동기화"
 categories:
   - backend
 tags:
