@@ -31,7 +31,7 @@ search                   : true
 author:
   name             : "김영식"
   avatar           : "/assets/images/blog-profile.jpg"
-  bio              : "**Backend-Driven Software Engineer**"
+  bio              : "**Backend Engineer**"
   location         : "Seoul, South Korea"
   # 이름·프로필 사진 클릭 시 이동할 블로그 홈(About 페이지)
   home             : "/about/"
@@ -85,7 +85,7 @@ defaults:
       read_time: false
       show_date: true
       comments: false
-      share: true
+      share: false
       related: true
   - scope:
       path: ""

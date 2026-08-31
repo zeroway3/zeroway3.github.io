@@ -12,27 +12,31 @@ author_profile: true
 
 ### (주)엑센솔루션 · 개발팀 (2025.02 ~ 현재)
 
-건물관리 솔루션(SI/FMS/BEMS) 기업에서 레거시 C#(.NET) 시스템을 Next.js·NestJS로 리뉴얼하는 프로젝트에 참여하며, 백엔드를 중심으로 프론트엔드·모바일·배포까지 담당하고 있습니다.
+건물관리 솔루션(SI/FMS/BEMS) 기업에 입사해 처음 3개월(2025.02–2025.05)은 2개 현장의 레거시 C#(.NET) 패키지 프로그램을 직접 유지관리하며 운영상의 한계를 체감했습니다. 이후 리뉴얼이 결정되자 자진 지원해 Next.js·NestJS 기반 리뉴얼 개발팀에 합류했고, 기존 패키지 분석부터 아키텍처 설계·정의·개발까지 전 과정에 참여하며 백엔드를 중심으로 프론트엔드·모바일·배포까지 담당하고 있습니다.
 
-- **4,800개** — 초 단위로 수집·배포하는 실시간 IoT 포인트
-- **27.8억 건** — 누적 시계열 이력 (제어 로그 348만 건)
+- **디바이스 3,501대 · 태그 3만 개** — 현장 실측 기반 규모
+- **초당 9,000건** — 처리 용량 산정 (시간당 약 3,200만 건)
+- **27.8억 건** — 누적 시계열 이력
 - **653GB → 35GB** — 압축 정책 적용 후 저장 용량 (94.6% 절감)
-- **11.6일 연속** — 무중단 가동, 이벤트 루프 지연 p99 38.6ms
-- **535건 · 440건 · 8개** — 커밋 · 머지 PR · 담당 저장소
+- **10개 이상** — 서비스로 구성된 멀티서비스 아키텍처
+- **535건 · 440건** — 커밋 · 머지 PR
+- **2개 현장** — FMS 배포·운영 중 (오피스빌딩 약 3개월, 대기업 사옥 폐쇄망 약 2개월)
 
 ## 개인 프로젝트
 
 회사에서는 백엔드·서버 운영에 집중하는 만큼, 부족한 프론트엔드·보안 역량은 개인 프로젝트로 직접 채우고 있습니다.
 
-### 런덤메이트 — 러닝 크루 매칭 앱 (App Store 출시)
-**2026.01 ~ 2026.05 · 프론트엔드(일부 서버)**
+### 런덤메이트 — 러닝 크루 매칭 앱 (App Store·웹 동시 배포)
+**2026.01 ~ 2026.05 · Frontend(Web)·배포 담당 (팀 프로젝트)**
 
-GPS 러닝 기록, 크루 커뮤니티, 실시간 채팅, 랭킹·챌린지 기능을 갖춘 소셜 러닝 앱을 기획부터 스토어 출시까지 완주했습니다. WebSocket 기반 1:1·크루 채팅, 팔로우·소셜 그래프, 주간·월간·연간 통계 차트를 구현하며 커밋 127건 · 변경 파일 402개 · 머지 PR 40건 이상을 쌓았습니다. 백엔드에서 보던 실시간 통신을 프론트엔드 입장에서 다시 구현해보며, 데이터가 화면에 그려지기까지의 전체 흐름을 이해하게 된 프로젝트입니다.
+GPS 러닝 기록, 크루 커뮤니티, 실시간 채팅을 갖춘 소셜 러닝 앱 팀 프로젝트에서 Frontend(Web) 개발을 전담했습니다. STOMP(WebSocket) 실시간 소켓 연동과 1:1·크루 채팅 기능을 개발했고, Docker 기반 빌드와 AWS ECS 배포 파이프라인을 구성·운영하며 dev→prod 배포 머지에도 참여했습니다. 커밋 127건 · 변경 파일 402개 · 머지 PR 40건 이상을 쌓았습니다.
 
-### 바이브쉴드 — AI 생성 코드 보안 검사 도구
-**2026 ~ 현재 · 관제시스템·보안 아키텍처 담당 (3인 팀) · 중소벤처기업부 「모두의 창업 프로젝트」 선정**
+- [App Store](https://apps.apple.com/kr/app/id6761368135) · [Web](https://www.rundommate.com/running)
 
-AI 코딩 도구가 생성한 코드의 취약점과 존재하지 않는 API(환각) 호출을 탐지하는 로컬 실행형 정적분석 도구입니다. Tree-sitter 기반 AST 파서와 YAML 룰베이스로 OWASP Top 10 9종을 탐지하고, PyPI·npm 공식 인덱스 화이트리스트 대조로 LLM 환각 API를 잡아냅니다. 현업 개발자 9인 PoC에서 환각 API 탐지율 83%(동일 샘플 Semgrep·SonarQube 0%), 오탐률 3.8%를 실측했습니다. 백엔드 개발자로 일하며 자연스럽게 관심이 옮겨간 "안전한 코드"라는 주제를 직접 도구로 만들어본 경험입니다.
+### VibeShield — AI 생성 코드 보안 검사 도구
+**2026.06 ~ 2026.08 · 관제시스템·보안 아키텍처 담당 (3인 팀) · 광운대학교 주관 중소벤처기업부 「모두의 창업 프로젝트」 1차 선정**
+
+AI 코딩 도구가 생성한 코드의 취약점과 존재하지 않는 API(환각) 호출을 탐지하는 로컬 실행형 정적분석 도구입니다. Tree-sitter 기반 AST 파서와 YAML 룰베이스로 OWASP Top 10 9종을 탐지해 ISMS-P·전자금융감독규정 조항에 매핑한 감사 리포트를 자동 생성하고, PyPI·npm 공식 인덱스 화이트리스트 대조로 LLM 환각 API·슬롭스쿼팅 패키지를 잡아냅니다. 현업 개발자 9인 PoC에서 환각 API 탐지율 83%(동일 샘플 Semgrep·SonarQube 0%), 오탐률 3.8%, 평균 설치 소요 24분, 감사 리포트 증빙력 4.3/5점을 실측했고, 테스트 도입을 5개사와 협의했습니다.
 
 ## 교육프로그램 및 해커톤
 
@@ -46,38 +50,35 @@ AI 코딩 도구가 생성한 코드의 취약점과 존재하지 않는 API(환
 ### 졸업 프로젝트
 
 - **WWW — 리워드 시스템 앱** (8인 융합캡스톤디자인 · 삼진정밀 기업협업 · 소프트웨어 담당)
-  졸업을 앞둔 마지막 학기에 진행한 캡스톤디자인 프로젝트. 빗물받이 제품 소개와 적립·관리 기능을 제공하는 앱으로, Vue.js·Spring Boot로 앱 개발과 UI/UX 디자인을 맡았습니다.
+  삼진정밀 기업협업으로 진행한 캡스톤디자인 프로젝트. 빗물받이 제품 소개와 적립·관리 기능을 제공하는 앱으로, Vue.js·Spring Boot로 앱 개발과 UI/UX 디자인을 맡았습니다.
 
 ### 국제 협업 해커톤
 
-- **영국 Brunel University x HDF GDC 프로그램** (2024.10) — Stylideas 주관 2주 협업 해커톤(LED 뷰티사업), 수료증·장학금 수상
-- **싱가포르 Singapore Institute of Technology x HDF WMDC 프로그램** (2025.02) — 2주 협업 해커톤, 수료증·장학금 수상
+- **싱가포르 SIT 해커톤** (2025.02) — 아시아 문명 박물관(Asian Civilisations Museum) 주관, Singapore Institute of Technology와 협업한 2주 해커톤(싱가포르 현지 진행), 수료증·장학금 수상
+- **영국 Brunel University 해커톤** (2024.10) — 영국 뷰티기업 Stylideas 주관, Brunel University와 협업한 2주 해커톤(LED 뷰티사업, 국내 진행), 수료증·장학금 수상
 
 ## Skills
 
 **Backend**
-: NestJS, TypeScript, TypeORM, Prisma, Java, Spring Boot/MVC, Python(Flask)
+: Node.js, NestJS, TypeORM, TypeScript
 
 **Database**
-: PostgreSQL / TimescaleDB, MySQL, Oracle, Redis (Pub/Sub · Stream)
+: PostgreSQL, TimescaleDB, Redis, MySQL
 
-**실시간**
-: WebSocket(socket.io), SSE, GraphQL Subscription(Apollo, graphql-ws)
-
-**인프라**
-: Docker/Docker Compose, nginx, PM2, Prometheus, Grafana, Shell
-
-**산업 프로토콜**
-: Modbus, MQTT, OPC-UA, BACnet, SNMP, EtherNet/IP
+**Realtime & Messaging**
+: Redis Pub/Sub·Stream, WebSocket, SSE, STOMP(사이드)
 
 **Frontend**
-: Next.js, React, TypeScript, Zustand, HTML5/CSS3, Vue.js
+: Next.js, React
 
-**Mobile**
-: Flutter
+**Infra & Monitoring**
+: Docker, GitHub Actions, Prometheus, Grafana, AWS ECS(사이드)
 
-**Test & Document**
-: Swagger, Postman, Git
+**Industrial Protocol**
+: Modbus, MQTT, OPC-UA, SNMP, BACnet
+
+**AI Tools**
+: Claude Code, Orca(멀티 에이전트 오케스트레이션)
 
 ## Contact
 
