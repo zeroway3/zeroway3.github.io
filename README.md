@@ -1,21 +1,10 @@
 # zeroway3.github.io
 
-Jekyll + [Minimal Mistakes](https://mmistakes.github.io/minimal-mistakes/) 테마로 만든 포트폴리오/블로그입니다.
+김영식의 포트폴리오입니다.
 
-## 로컬에서 미리보기
+산업 현장의 실시간 데이터를 다루는 백엔드 개발 경력과, 사이드 프로젝트에서 진행한 작업들을 정리해두었습니다.
 
-```bash
-bundle install
-bundle exec jekyll serve
-# http://localhost:4000
-```
+- 경력: SI/FMS(설비관리시스템) 백엔드 개발 — 다중 프로토콜 연동, 실시간 텔레메트리 파이프라인, 데이터 동기화 아키텍처
+- 프로젝트: VibeShield(AI 생성 코드 보안 점검 엔진), 런덤메이트(GPS 러닝 트래킹 소셜 앱)
 
-## 개인 정보 수정
-
-- `_config.yml` : 이름, 소개, 이메일, GitHub/LinkedIn 링크 등
-- `_pages/about.md` : About 페이지 내용 (소개, 스킬, 프로젝트)
-- `assets/images/profile.jpg` : 프로필 사진 추가 후 `_config.yml`의 `author.avatar` 주석 해제
-
-## 글 작성
-
-`_posts/` 폴더에 `YYYY-MM-DD-제목.md` 형식으로 파일을 추가하면 됩니다.
+https://zeroway3.github.io
