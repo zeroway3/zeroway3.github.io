@@ -293,6 +293,16 @@
   .project-detail p{color:var(--text);font-size:14.5px;margin:0 0 12px;line-height:1.75}
   .project-detail ul{margin:0 0 12px;padding-left:20px}
   .project-detail li{font-size:14px;color:var(--text);margin-bottom:6px;line-height:1.65}
+  .problem-solution-list{list-style:none;padding-left:0;display:flex;flex-direction:column;gap:14px}
+  .problem-solution-list li{
+    background:var(--paper-2);border:1px solid var(--line);border-radius:10px;
+    padding:14px 16px;margin-bottom:0;line-height:1.7;
+  }
+  .problem-solution-list li b{display:block;margin-bottom:6px;color:var(--text);font-size:14.5px}
+  .problem-solution-list .ps-label{
+    display:inline-block;min-width:40px;color:var(--accent-2);font-weight:800;font-size:11.5px;
+    letter-spacing:.02em;margin-right:6px;
+  }
   .project-detail .more-link{
     display:inline-flex;align-items:center;gap:6px;font-weight:700;color:var(--accent-2);font-size:13.5px;margin-right:16px;
   }
@@ -612,7 +622,6 @@
             5인 팀 프로젝트(PE 역할)로 만들며 초보 개발자를 위한 프로젝트 관리·이슈 트래킹·Git 기반 버전 관리·PR 코드 리뷰 플랫폼의
             프로젝트 페이지 관련 기능을 전담했습니다.
           </p>
-          <p class="philosophy"><i class="fas fa-comments"></i>이 프로젝트 이후로, 인터페이스를 먼저 정하고 구현은 나중에 하는 습관이 생겼습니다.</p>
         </div>
       </div>
     </div>
@@ -703,6 +712,11 @@
     <button class="modal__close" data-modal-close>✕</button>
     <div class="project-detail">
       <img class="gallery-main" src="/assets/images/projects/si-fms-architecture.svg" alt="SI/FMS 멀티서비스 아키텍처 다이어그램">
+      <div class="gallery-thumbs">
+        <img src="/assets/images/projects/si-fms-architecture.svg" class="active" alt="멀티서비스 아키텍처 다이어그램">
+        <img src="/assets/images/projects/si-fms-dataflow-mirroring.svg" alt="미러링 데이터플로우 다이어그램">
+        <img src="/assets/images/projects/si-fms-sequence-telemetry.svg" alt="텔레메트리 시퀀스 다이어그램">
+      </div>
       <span class="project-tag">BACKEND · 회사 · 2025.02 ~ 현재</span>
       <h4>SI/FMS 리뉴얼</h4>
       <div class="chip-row stack-badges">
@@ -739,15 +753,42 @@
         리포지토리 → 로컬 DB → 동기화 매니저로 이어지는 오프라인 우선 구조</li>
       </ul>
 
+      <ul class="problem-solution-list">
+        <li>
+          <b>실시간 알람(SSE) 성능 최적화</b><br>
+          <span class="ps-label">문제</span> 서로 다른 목적(캐싱·알람평가)의 두 컨슈머가 같은 텔레메트리를 이중 구독, 매 메시지마다 DB 조회 발생<br>
+          <span class="ps-label">해결</span> 구독 메타(30초)·알람규칙 존재여부(5초) 캐싱으로 불필요한 DB 접근 차단<br>
+          <span class="ps-label">결과</span> 초당 수백 건 유입 시에도 커넥션 풀 고갈 없이 안정 처리
+        </li>
+        <li>
+          <b>DB 커넥션 풀·타임아웃 정책</b><br>
+          <span class="ps-label">문제</span> API 서버(동시요청 多)와 폴러(순차처리 위주)가 같은 풀 설정을 써서 특성이 안 맞음<br>
+          <span class="ps-label">해결</span> 역할별 풀 사이즈 분리(API 20 / 폴러 10), idle·connection·statement 타임아웃 세분화<br>
+          <span class="ps-label">결과</span> 1초 이상 쿼리 자동 로깅 체계까지 확보해 병목을 조기 탐지 가능
+        </li>
+        <li>
+          <b>선언적 현장 배포 시스템</b><br>
+          <span class="ps-label">문제</span> 폐쇄망이라 원격 배포가 불가능, 현장마다 이미지 버전이 제각각으로 흐트러짐<br>
+          <span class="ps-label">해결</span> site.conf(선언) + USB 오프라인 번들 + state/(회수한 실제 상태) 구조로 표준화<br>
+          <span class="ps-label">결과</span> "선언과 실제의 차이"를 항상 추적 가능, 현장 간 일관성 확보
+        </li>
+        <li>
+          <b>GitHub Actions CI/CD 개선</b><br>
+          <span class="ps-label">문제</span> 배포 파이프라인 실패 시 원인(네트워크·DNS·포트)을 파악하기 어려움<br>
+          <span class="ps-label">해결</span> SSH 연결 진단 스텝 추가, 불안정한 @master 참조를 @v1 고정 버전으로 교체<br>
+          <span class="ps-label">결과</span> 배포 실패 원인 진단 시간 단축, 파이프라인 안정성 개선
+        </li>
+        <li>
+          <b>설비 자동화(UBM) 누적 로직</b><br>
+          <span class="ps-label">문제</span> 분당 1행씩 적재 시 행 수 폭증, 매분·정시 트리거가 겹치며 중복 적재 위험<br>
+          <span class="ps-label">해결</span> 15분 버킷 단위 누적 + 처리 시각 기록(lastRuntimeAt) 기반 재처리 차단<br>
+          <span class="ps-label">결과</span> 스케줄러 중복 실행에도 데이터 정합성(멱등성) 유지
+        </li>
+      </ul>
+
       <h5>그 외 설계·구현</h5>
       <ul>
         <li><b>API 설계</b>: CQRS 스타일로 Command/Query 컨트롤러를 분리해 다수 도메인의 REST API를 설계·구현</li>
-        <li><b>DB 커넥션 풀·타임아웃 정책</b>: 워크로드 특성별 풀 사이즈 분리(API 20 / 폴러 10), idle·connection·statement
-        타임아웃 설정, 1초 이상 쿼리 자동 로깅으로 병목 조기 탐지</li>
-        <li><b>데이터 동기화(미러링) 아키텍처</b>: 레거시 분리 후 즉시 upsert + Redis Stream 기반 증분 동기화 2단 경로로 정합성 유지</li>
-        <li><b>설비 자동화 로직</b>: 사용량계측(UBM)·상태기반정비(CBM)·순찰 자동생성 스케줄러, 멱등성 보장</li>
-        <li><b>실시간 알람(SSE) 성능 최적화</b>: 초당 수백 건 트래픽 유입 시 발생하던 DB 커넥션 풀 고갈·메모리 부족 문제를
-        캐싱 전략(구독 메타 30초, 배치 UPSERT 1.5초, 알람 규칙 5분)으로 해결</li>
         <li><b>팀 전파</b>: 백엔드 설계 컨벤션 수립 및 인수인계서 작성</li>
       </ul>
 
@@ -786,6 +827,7 @@
         <img src="/assets/images/projects/randommate/02-web-running.png" class="active" alt="웹 러닝 기록 화면">
         <img src="/assets/images/projects/randommate/01-server-monitoring.png" alt="서버 모니터링 대시보드">
         <img src="/assets/images/projects/randommate/03-playstore.png" alt="Google Play 스토어 등록 화면">
+        <img src="/assets/images/projects/randommate/sequence-stomp-chat.svg" alt="STOMP 채팅 연결 시퀀스 다이어그램">
       </div>
       <span class="project-tag">FRONTEND · 사이드(팀 프로젝트) · 2026.01 – 2026.05</span>
       <h4>런덤메이트</h4>
@@ -798,6 +840,21 @@
         전담했습니다. STOMP(WebSocket) 실시간 소켓 연동과 1:1·크루 채팅 기능을 개발했고, Docker 기반 빌드와
         AWS ECS 배포 파이프라인을 구성·운영하며 dev→prod 배포 머지에도 참여했습니다. 커밋 127건 · 머지 PR 40건 이상.
       </p>
+
+      <ul class="problem-solution-list">
+        <li>
+          <b>STOMP 채팅 싱글턴 연결 관리</b><br>
+          <span class="ps-label">문제</span> 채팅·크루 등 여러 페이지가 각자 소켓 연결을 만들면 중복 연결·중복 재연결 로직 발생<br>
+          <span class="ps-label">해결</span> refCount 기반 싱글턴 패턴으로 공유 클라이언트를 관리하고, listener Set으로 여러 컴포넌트에 메시지를 동시 전달<br>
+          <span class="ps-label">결과</span> 페이지 전환 중에도 연결이 끊기지 않고, 중복 소켓 없이 채팅·크루 기능이 안정적으로 동작
+        </li>
+        <li>
+          <b>러닝 통계 차트 — Mock 폴백 제거, 실데이터 집계로 전환</b><br>
+          <span class="ps-label">문제</span> 주간·월간·연간 통계 차트가 백엔드의 특정 사전집계 응답(weeklyBreakdown 등)이 없으면 조용히 Mock 데이터로 폴백, 일부 기간대 차트가 실제로는 가짜 데이터를 표시<br>
+          <span class="ps-label">해결</span> 원본 러닝 세션 데이터에서 날짜 범위(주 시작일 보정 등)를 직접 계산해 클라이언트에서 실시간 집계하도록 재작성<br>
+          <span class="ps-label">결과</span> 특정 응답 형식에 의존하지 않고, Mock 폴백 없이 실제 세션 데이터 기반의 정확한 통계 차트로 전환
+        </li>
+      </ul>
     </div>
   </div>
 </div>

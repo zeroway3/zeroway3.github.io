@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1220 600" font-family="Noto Sans KR, Segoe UI, sans-serif">
+  <defs>
+    <linearGradient id="bgR" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0e0c0b"/>
+      <stop offset="100%" stop-color="#1c1310"/>
+    </linearGradient>
+    <marker id="arrowR" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#FF6A13"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="1220" height="600" fill="url(#bgR)"/>
+
+  <text x="40" y="34" fill="#ffffff" font-size="20" font-weight="800">시퀀스 — STOMP 채팅 연결 (Singleton 매니저)</text>
+  <text x="40" y="56" fill="#cfc7bd" font-size="12.5">여러 페이지가 각자 소켓을 열지 않고, refCount 기반 공유 클라이언트 하나를 재사용</text>
+
+  <!-- lifelines -->
+  <g stroke="#33261f" stroke-width="1.5" stroke-dasharray="4,4">
+    <line x1="120" y1="120" x2="120" y2="560"/>
+    <line x1="380" y1="120" x2="380" y2="560"/>
+    <line x1="640" y1="120" x2="640" y2="560"/>
+    <line x1="900" y1="120" x2="900" y2="560"/>
+    <line x1="1100" y1="120" x2="1100" y2="560"/>
+  </g>
+
+  <g font-size="12" font-weight="800" fill="#ffffff" text-anchor="middle">
+    <rect x="35" y="80" width="170" height="34" rx="8" fill="#1c1310" stroke="#33261f"/>
+    <text x="120" y="102">채팅 페이지 컴포넌트</text>
+    <rect x="295" y="80" width="170" height="34" rx="8" fill="#1c1310" stroke="#33261f"/>
+    <text x="380" y="102">크루 페이지 컴포넌트</text>
+    <rect x="555" y="80" width="170" height="34" rx="8" fill="#1c1310" stroke="#FF6A13"/>
+    <text x="640" y="102">stomp-manager (싱글턴)</text>
+    <rect x="820" y="80" width="160" height="34" rx="8" fill="#1c1310" stroke="#33261f"/>
+    <text x="900" y="102">STOMP Client</text>
+    <rect x="1020" y="80" width="160" height="34" rx="8" fill="#1c1310" stroke="#33261f"/>
+    <text x="1100" y="102">채팅 서버</text>
+  </g>
+
+  <g font-size="11.3" fill="#cfc7bd">
+    <line x1="120" y1="145" x2="636" y2="145" stroke="#FF6A13" stroke-width="2" marker-end="url(#arrowR)"/>
+    <text x="130" y="137">① acquireStompClient() — refCount++</text>
+
+    <line x1="380" y1="180" x2="636" y2="180" stroke="#FF6A13" stroke-width="2" marker-end="url(#arrowR)"/>
+    <text x="390" y="172">② 다른 컴포넌트도 동일 호출 — 이미 연결돼 있으면 기존 client 그대로 반환</text>
+
+    <line x1="640" y1="215" x2="896" y2="215" stroke="#6b6660" stroke-width="1.5" stroke-dasharray="3,3"/>
+    <text x="650" y="207" fill="#a89f96">최초 1회만 — sharedClient가 없을 때만 새로 생성</text>
+
+    <line x1="900" y1="250" x2="1096" y2="250" stroke="#FF6A13" stroke-width="2" marker-end="url(#arrowR)"/>
+    <text x="910" y="242">③ CONNECT (Access Token)</text>
+
+    <line x1="1100" y1="285" x2="904" y2="285" stroke="#FF6A13" stroke-width="2" marker-end="url(#arrowR)"/>
+    <text x="740" y="277">④ CONNECTED</text>
+
+    <rect x="820" y="305" width="360" height="90" rx="8" fill="#2a1f19" stroke="#FF6A13" stroke-width="1.2"/>
+    <text x="838" y="326" fill="#ffffff" font-weight="700">⑤ onConnected — 4개 큐 구독</text>
+    <text x="838" y="344" fill="#a89f96" font-size="10">/user/queue/chat · chat-events</text>
+    <text x="838" y="360" fill="#a89f96" font-size="10">/user/queue/chat-read · errors</text>
+    <text x="838" y="378" fill="#a89f96" font-size="10">listener Set에 등록된 컴포넌트로 브로드캐스트</text>
+
+    <line x1="640" y1="440" x2="120" y2="440" stroke="#FF6A13" stroke-width="2" marker-end="url(#arrowR)"/>
+    <line x1="640" y1="470" x2="380" y2="470" stroke="#FF6A13" stroke-width="2" marker-end="url(#arrowR)"/>
+    <text x="130" y="432">⑥ 메시지 수신 시 등록된 모든 리스너에 동시 전달 (listener(dest, body))</text>
+
+    <line x1="120" y1="510" x2="636" y2="510" stroke="#6b6660" stroke-width="1.5" stroke-dasharray="3,3"/>
+    <text x="130" y="502" fill="#a89f96">⑦ 컴포넌트 unmount 시 release() — refCount-- , 0이 되면 그때 disconnect</text>
+  </g>
+
+  <rect x="40" y="530" width="1140" height="55" rx="10" fill="#1c1310" stroke="#33261f"/>
+  <text x="60" y="552" fill="#FF6A13" font-size="12.5" font-weight="800">왜 싱글턴인가</text>
+  <text x="60" y="570" fill="#ffffff" font-size="11">채팅·크루 등 여러 화면이 각자 연결을 만들면 중복 소켓·중복 재연결 로직이 생김 → refCount 기반 공유로 연결을 1개로 유지</text>
+</svg>

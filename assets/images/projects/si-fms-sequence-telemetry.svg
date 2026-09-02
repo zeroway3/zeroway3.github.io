@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1220 640" font-family="Noto Sans KR, Segoe UI, sans-serif">
+  <defs>
+    <linearGradient id="bg3" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0e0c0b"/>
+      <stop offset="100%" stop-color="#1c1310"/>
+    </linearGradient>
+    <marker id="arrow3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#FF6A13"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="1220" height="640" fill="url(#bg3)"/>
+
+  <text x="40" y="34" fill="#ffffff" font-size="20" font-weight="800">시퀀스 — 실시간 텔레메트리 파이프라인</text>
+  <text x="40" y="56" fill="#cfc7bd" font-size="12.5">메시지 1건이 발행되는 순간부터 화면 반영·DB 저장까지, 메시지당 DB 조회 0회</text>
+
+  <!-- lifelines -->
+  <g stroke="#33261f" stroke-width="1.5" stroke-dasharray="4,4">
+    <line x1="120" y1="120" x2="120" y2="600"/>
+    <line x1="340" y1="120" x2="340" y2="600"/>
+    <line x1="560" y1="120" x2="560" y2="600"/>
+    <line x1="780" y1="120" x2="780" y2="600"/>
+    <line x1="1000" y1="120" x2="1000" y2="600"/>
+  </g>
+
+  <!-- lifeline headers -->
+  <g font-size="12" font-weight="800" fill="#ffffff" text-anchor="middle">
+    <rect x="45" y="80" width="150" height="34" rx="8" fill="#1c1310" stroke="#33261f"/>
+    <text x="120" y="102">si_connect Poller</text>
+    <rect x="265" y="80" width="150" height="34" rx="8" fill="#1c1310" stroke="#33261f"/>
+    <text x="340" y="102">Redis Pub/Sub·Stream</text>
+    <rect x="485" y="80" width="150" height="34" rx="8" fill="#1c1310" stroke="#FF6A13"/>
+    <text x="560" y="102">TelemetrySubscriber</text>
+    <rect x="705" y="80" width="150" height="34" rx="8" fill="#1c1310" stroke="#33261f"/>
+    <text x="780" y="102">subCache(30s)·WS</text>
+    <rect x="925" y="80" width="150" height="34" rx="8" fill="#1c1310" stroke="#33261f"/>
+    <text x="1000" y="102">PostgreSQL</text>
+  </g>
+
+  <!-- steps -->
+  <g font-size="11.5" fill="#cfc7bd">
+    <line x1="120" y1="150" x2="336" y2="150" stroke="#FF6A13" stroke-width="2" marker-end="url(#arrow3)"/>
+    <text x="130" y="142">① 값 발행 (Pub/Sub 실시간 + Stream 무손실 동시)</text>
+
+    <line x1="340" y1="190" x2="556" y2="190" stroke="#FF6A13" stroke-width="2" marker-end="url(#arrow3)"/>
+    <text x="350" y="182">② 메시지 수신</text>
+
+    <line x1="560" y1="230" x2="776" y2="230" stroke="#6b6660" stroke-width="1.5" stroke-dasharray="3,3"/>
+    <text x="570" y="222" fill="#a89f96">③ subCache 조회 — DB 조회 0회 (TTL 만료 시 비동기 갱신, await 안 함)</text>
+
+    <line x1="560" y1="270" x2="776" y2="270" stroke="#FF6A13" stroke-width="2" marker-end="url(#arrow3)"/>
+    <text x="570" y="262">④ 라이브 캐시 갱신 + WebSocket 즉시 브로드캐스트</text>
+
+    <rect x="510" y="300" width="220" height="46" rx="8" fill="#2a1f19" stroke="#FF6A13" stroke-width="1.2"/>
+    <text x="525" y="320" fill="#ffffff" font-weight="700">⑤ 배치 큐 적재</text>
+    <text x="525" y="336" fill="#a89f96" font-size="10">1.5초 주기로 모아서 처리</text>
+
+    <line x1="560" y1="380" x2="996" y2="380" stroke="#FF6A13" stroke-width="2" marker-end="url(#arrow3)"/>
+    <text x="570" y="372">⑥ 1.5초마다 배치 UPSERT — 현재값 미러 테이블 반영</text>
+
+    <line x1="120" y1="440" x2="996" y2="440" stroke="#6b6660" stroke-width="1.5" stroke-dasharray="3,3"/>
+    <text x="130" y="432" fill="#a89f96">⑦ 과거 이력 조회가 필요하면 si_connect DB로 별도 read-only 커넥션(2번째 TypeORM 커넥션) 직접 SQL 조회</text>
+  </g>
+
+  <rect x="40" y="480" width="1140" height="110" rx="10" fill="#1c1310" stroke="#33261f"/>
+  <text x="60" y="508" fill="#FF6A13" font-size="13" font-weight="800">왜 메시지당 DB 조회가 0회인가</text>
+  <text x="60" y="530" fill="#ffffff" font-size="11.5">초기 구조는 메시지마다 구독 메타를 DB로 조회 + 값마다 개별 UPSERT → 초당 수백 건 유입 시 Promise 누적으로</text>
+  <text x="60" y="548" fill="#ffffff" font-size="11.5">DB 커넥션 풀 고갈·메모리 부족(OOM) 발생. subCache(30초) + 배치 UPSERT(1.5초)로 전환해 해결.</text>
+  <text x="60" y="570" fill="#a89f96" font-size="10.5">디바이스 3,501대 · 태그 3만 개 규모에서 초당 9,000건(시간당 약 3,200만 건) 처리 용량 검증</text>
+</svg>
