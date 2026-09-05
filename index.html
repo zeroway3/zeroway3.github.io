@@ -253,7 +253,7 @@
   .career-item .ai-note b{color:var(--accent-2)}
 
   /* ---------- Tech stack ---------- */
-  .stack-groups{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px}
+  .stack-groups{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px;align-items:start}
   .stack-card{
     position:relative;background:var(--paper-2);border:1px solid var(--line);border-radius:var(--radius);
     padding:26px 24px 24px;overflow:hidden;
@@ -281,26 +281,11 @@
     padding:6px 12px;font-size:13px;font-weight:500;transition:transform .18s ease,box-shadow .18s ease,background .18s ease,color .18s ease;
   }
   .chip:hover{transform:translateY(-2px);box-shadow:0 8px 16px -6px rgba(15,23,42,.25)}
-  .chip.chip-featured{
-    color:#fff;font-weight:700;border:1px solid transparent;position:relative;
-    background:linear-gradient(100deg,var(--accent-2),var(--accent) 45%,#ffb27a 55%,var(--accent) 65%,var(--accent-2));
-    background-size:220% 100%;
-    animation:chipShine 5s ease-in-out infinite;
-    box-shadow:0 6px 16px -6px rgba(255,106,19,.55);
-  }
-  .chip.chip-featured:hover{transform:translateY(-2px) scale(1.03)}
-  @keyframes chipShine{0%{background-position:0% 0}50%{background-position:100% 0}100%{background-position:0% 0}}
   .project-detail .stack-badges{margin:14px 0 22px}
   .project-detail .stack-badges .chip{font-size:12.5px;color:var(--muted)}
-  .stack-legend{
-    margin:24px 0 0;text-align:center;font-size:12.5px;color:var(--muted);
-    display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;
-  }
-  .chip-legend-sample{cursor:default;font-size:11.5px;padding:3px 10px}
 
   /* ---------- Projects grid ---------- */
-  .project-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-  @media(max-width:900px){.project-grid{grid-template-columns:repeat(2,1fr)}}
+  .project-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
   @media(max-width:560px){.project-grid{grid-template-columns:1fr}}
   .project-card{
     background:var(--paper-2);border:1px solid var(--line);border-radius:var(--radius);
@@ -584,13 +569,13 @@
           <div class="chip-row">
             <span class="chip">Node.js</span><span class="chip">NestJS</span>
             <span class="chip">TypeORM</span><span class="chip">TypeScript</span>
-            <span class="chip chip-featured">Kotlin</span><span class="chip">Spring Boot</span>
+            <span class="chip">Kotlin</span><span class="chip">Spring Boot</span>
           </div>
         </div>
         <div class="stack-card">
           <h4><i class="fas fa-database"></i>Database</h4>
           <div class="chip-row">
-            <span class="chip">PostgreSQL</span><span class="chip chip-featured">TimescaleDB</span>
+            <span class="chip">PostgreSQL</span><span class="chip">TimescaleDB</span>
             <span class="chip">Redis</span><span class="chip">MySQL</span>
             <span class="chip">MongoDB</span>
           </div>
@@ -598,7 +583,7 @@
         <div class="stack-card">
           <h4><i class="fas fa-bolt"></i>Realtime & Messaging</h4>
           <div class="chip-row">
-            <span class="chip chip-featured">Kafka</span><span class="chip">Redis Pub/Sub·Stream</span>
+            <span class="chip">Kafka</span><span class="chip">Redis Pub/Sub·Stream</span>
             <span class="chip">WebSocket</span><span class="chip">SSE</span><span class="chip">STOMP</span>
           </div>
         </div>
@@ -612,7 +597,7 @@
           <h4><i class="fas fa-cloud"></i>Cloud & Infra</h4>
           <div class="chip-row">
             <span class="chip">AWS EKS</span><span class="chip">AWS ECS</span>
-            <span class="chip">AWS RDS·ElastiCache</span><span class="chip chip-featured">Terraform</span>
+            <span class="chip">AWS RDS·ElastiCache</span><span class="chip">Terraform</span>
             <span class="chip">Docker</span><span class="chip">GitHub Actions</span>
             <span class="chip">Prometheus</span><span class="chip">Grafana</span><span class="chip">k6</span>
           </div>
@@ -628,12 +613,11 @@
         <div class="stack-card">
           <h4><i class="fas fa-brain"></i>AI</h4>
           <div class="chip-row">
-            <span class="chip">Claude Code</span><span class="chip chip-featured">Claude API (Anthropic)</span>
+            <span class="chip">Claude Code</span><span class="chip">Claude API (Anthropic)</span>
             <span class="chip">Orca (멀티 에이전트 오케스트레이션)</span>
           </div>
         </div>
       </div>
-      <p class="stack-legend"><span class="chip chip-featured chip-legend-sample">예시</span> 표시된 항목은 최근 프로젝트에서 새로 다룬 핵심 기술입니다</p>
     </div>
   </section>
 
