@@ -127,7 +127,20 @@
       linear-gradient(180deg,var(--ink),var(--ink-2));
     color:#fff;position:relative;overflow:hidden;padding:120px 0 80px;
   }
-  .hero .section-inner{max-width:760px;margin:0 auto;text-align:center}
+  .hero::before,.hero::after{
+    content:"";position:absolute;border-radius:50%;filter:blur(90px);opacity:.55;
+    z-index:0;pointer-events:none;animation:heroBlob 16s ease-in-out infinite;
+  }
+  .hero::before{width:440px;height:440px;background:var(--accent);top:-12%;right:2%}
+  .hero::after{width:380px;height:380px;background:#ff9a52;bottom:-18%;left:-4%;animation-delay:4s}
+  @keyframes heroBlob{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(34px,-26px) scale(1.14)}}
+  .hero-grid{
+    position:absolute;inset:0;z-index:0;opacity:.5;pointer-events:none;
+    background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);
+    background-size:56px 56px;
+    mask-image:radial-gradient(ellipse 70% 60% at 50% 30%,#000 40%,transparent 85%);
+  }
+  .hero .section-inner{max-width:760px;margin:0 auto;text-align:center;position:relative;z-index:2}
   .hero .eyebrow{
     font-family:"Poppins",sans-serif;font-weight:600;font-size:13px;letter-spacing:.2em;
     color:var(--accent);margin-bottom:18px;display:inline-block;
@@ -146,10 +159,14 @@
   .btn-ghost:hover{background:rgba(255,255,255,.08)}
   .btn-sm{padding:9px 18px;font-size:12.5px}
   .hero-stats{display:flex;gap:28px;flex-wrap:wrap;justify-content:center}
-  .hero-stats b{display:block;font-family:"Poppins",sans-serif;font-size:22px;color:var(--accent)}
+  .hero-stats b{
+    display:block;font-family:"Poppins",sans-serif;font-size:28px;font-weight:800;
+    background:linear-gradient(135deg,#fff,var(--accent) 130%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
   .hero-stats span{font-size:12px;color:var(--muted-2)}
   .scroll-cue{
-    position:absolute;bottom:28px;left:50%;transform:translateX(-50%);
+    position:absolute;bottom:28px;left:50%;transform:translateX(-50%);z-index:2;
     color:var(--muted-2);font-size:12px;letter-spacing:.1em;text-align:center;
   }
   .scroll-cue i{display:block;margin-top:6px;animation:bounce 1.6s infinite}
@@ -158,6 +175,45 @@
   /* ---------- reveal ---------- */
   .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
   .reveal.in{opacity:1;transform:translateY(0)}
+  .highlights-grid .highlight-card:nth-child(1){transition-delay:0s}
+  .highlights-grid .highlight-card:nth-child(2){transition-delay:.08s}
+  .highlights-grid .highlight-card:nth-child(3){transition-delay:.16s}
+  .highlights-grid .highlight-card:nth-child(4){transition-delay:.24s}
+  .highlights-grid .highlight-card:nth-child(5){transition-delay:.32s}
+
+  /* ---------- Highlights ---------- */
+  .highlights{
+    background:linear-gradient(180deg,var(--ink-2),var(--ink));
+    padding:64px 0;position:relative;overflow:hidden;
+  }
+  .highlights-grid{
+    display:grid;grid-template-columns:repeat(5,1fr);gap:16px;
+  }
+  @media(max-width:980px){.highlights-grid{grid-template-columns:repeat(3,1fr)}}
+  @media(max-width:620px){.highlights-grid{grid-template-columns:repeat(2,1fr)}}
+  .highlight-card{
+    background:rgba(255,255,255,.035);border:1px solid var(--line-dark);border-radius:16px;
+    padding:26px 18px;text-align:center;transition:transform .25s ease,border-color .25s ease,background .25s ease;
+  }
+  .highlight-card:hover{
+    transform:translateY(-6px);border-color:rgba(255,106,19,.5);background:rgba(255,106,19,.06);
+  }
+  .highlight-icon{
+    width:44px;height:44px;margin:0 auto 14px;border-radius:12px;
+    display:flex;align-items:center;justify-content:center;font-size:17px;color:var(--accent);
+    background:rgba(255,106,19,.12);border:1px solid rgba(255,106,19,.3);
+  }
+  .highlight-card b{
+    display:block;font-family:"Poppins",sans-serif;font-size:30px;font-weight:800;margin-bottom:8px;
+    background:linear-gradient(135deg,#fff,var(--accent) 140%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .highlight-card p{margin:0 0 12px;font-size:13px;color:var(--muted-2);line-height:1.55}
+  .highlight-card p .hl-sub{color:#8a8378;font-size:11.5px}
+  .highlight-src{
+    display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:var(--accent);
+    font-family:"Poppins",sans-serif;border-top:1px dashed var(--line-dark);padding-top:10px;width:100%;
+  }
 
   /* ---------- Career & Experience ---------- */
   .career-group{margin-bottom:52px}
@@ -198,15 +254,49 @@
 
   /* ---------- Tech stack ---------- */
   .stack-groups{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px}
-  .stack-card{background:var(--paper-2);border:1px solid var(--line);border-radius:var(--radius);padding:24px}
-  .stack-card h4{margin:0 0 14px;font-size:14px;letter-spacing:.08em;color:var(--muted);font-family:"Poppins",sans-serif;text-transform:uppercase}
+  .stack-card{
+    position:relative;background:var(--paper-2);border:1px solid var(--line);border-radius:var(--radius);
+    padding:26px 24px 24px;overflow:hidden;
+    transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;
+  }
+  .stack-card::before{
+    content:"";position:absolute;top:0;left:0;right:0;height:3px;
+    background:linear-gradient(90deg,var(--accent),var(--accent-2));
+  }
+  .stack-card:hover{
+    transform:translateY(-4px);border-color:rgba(255,106,19,.4);
+    box-shadow:0 20px 40px -12px rgba(255,106,19,.25);
+  }
+  .stack-card h4{
+    display:flex;align-items:center;gap:10px;margin:0 0 16px;font-size:13.5px;letter-spacing:.06em;
+    color:var(--text);font-family:"Poppins",sans-serif;text-transform:uppercase;font-weight:700;
+  }
+  .stack-card h4 i{
+    width:30px;height:30px;flex-shrink:0;border-radius:9px;display:flex;align-items:center;justify-content:center;
+    background:rgba(255,106,19,.12);color:var(--accent);font-size:13px;
+  }
   .chip-row{display:flex;flex-wrap:wrap;gap:8px}
   .chip{
     background:var(--paper);border:1px solid var(--line);border-radius:8px;
-    padding:6px 12px;font-size:13px;font-weight:500;
+    padding:6px 12px;font-size:13px;font-weight:500;transition:transform .18s ease,box-shadow .18s ease,background .18s ease,color .18s ease;
   }
+  .chip:hover{transform:translateY(-2px);box-shadow:0 8px 16px -6px rgba(15,23,42,.25)}
+  .chip.chip-featured{
+    color:#fff;font-weight:700;border:1px solid transparent;position:relative;
+    background:linear-gradient(100deg,var(--accent-2),var(--accent) 45%,#ffb27a 55%,var(--accent) 65%,var(--accent-2));
+    background-size:220% 100%;
+    animation:chipShine 5s ease-in-out infinite;
+    box-shadow:0 6px 16px -6px rgba(255,106,19,.55);
+  }
+  .chip.chip-featured:hover{transform:translateY(-2px) scale(1.03)}
+  @keyframes chipShine{0%{background-position:0% 0}50%{background-position:100% 0}100%{background-position:0% 0}}
   .project-detail .stack-badges{margin:14px 0 22px}
   .project-detail .stack-badges .chip{font-size:12.5px;color:var(--muted)}
+  .stack-legend{
+    margin:24px 0 0;text-align:center;font-size:12.5px;color:var(--muted);
+    display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;
+  }
+  .chip-legend-sample{cursor:default;font-size:11.5px;padding:3px 10px}
 
   /* ---------- Projects grid ---------- */
   .project-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
@@ -372,6 +462,7 @@
 
   <!-- HERO -->
   <section class="hero">
+    <div class="hero-grid"></div>
     <div class="section-inner">
       <div>
         <span class="eyebrow en">BACKEND ENGINEER</span>
@@ -382,14 +473,52 @@
           백엔드에서 출발해 프론트엔드·모바일·보안까지 제품 전체 사이클을 다룹니다.
         </p>
         <div class="hero-stats">
-          <div><b class="en">27.8억+</b><span>누적 시계열 이력</span></div>
-          <div><b class="en">94.6%</b><span>DB 저장 용량 절감</span></div>
-          <div><b class="en">9,000건/s</b><span>실시간 처리 용량</span></div>
-          <div><b class="en">10개+</b><span>멀티서비스 아키텍처</span></div>
+          <div><b class="en" data-count-to="27.8" data-count-decimals="1" data-count-suffix="억+">0</b><span>누적 시계열 이력</span></div>
+          <div><b class="en" data-count-to="94.6" data-count-decimals="1" data-count-suffix="%">0</b><span>DB 저장 용량 절감</span></div>
+          <div><b class="en" data-count-to="9000" data-count-decimals="0" data-count-suffix="건/s" data-count-sep="1">0</b><span>실시간 처리 용량</span></div>
+          <div><b class="en" data-count-to="10" data-count-decimals="0" data-count-suffix="개+">0</b><span>멀티서비스 아키텍처</span></div>
         </div>
       </div>
     </div>
     <div class="scroll-cue">SCROLL<i class="fas fa-chevron-down"></i></div>
+  </section>
+
+  <!-- HIGHLIGHTS -->
+  <section id="highlights" class="highlights">
+    <div class="section-inner">
+      <div class="highlights-grid">
+        <div class="highlight-card reveal">
+          <div class="highlight-icon"><i class="fas fa-bolt"></i></div>
+          <b class="en" data-count-to="9000" data-count-decimals="0" data-count-suffix="건/s" data-count-sep="1">0</b>
+          <p>실시간 처리 용량 검증</p>
+          <span class="highlight-src">SI/FMS</span>
+        </div>
+        <div class="highlight-card reveal">
+          <div class="highlight-icon"><i class="fas fa-database"></i></div>
+          <b class="en" data-count-to="27.8" data-count-decimals="1" data-count-suffix="억건">0</b>
+          <p>누적 시계열 데이터 운영</p>
+          <span class="highlight-src">SI/FMS</span>
+        </div>
+        <div class="highlight-card reveal">
+          <div class="highlight-icon"><i class="fas fa-shield-alt"></i></div>
+          <b class="en" data-count-to="83" data-count-decimals="0" data-count-suffix="%">0</b>
+          <p>AI 생성 코드 환각 API 탐지율<br><span class="hl-sub">동일 샘플 Semgrep·SonarQube 0%</span></p>
+          <span class="highlight-src">VibeShield</span>
+        </div>
+        <div class="highlight-card reveal">
+          <div class="highlight-icon"><i class="fas fa-robot"></i></div>
+          <b class="en" data-count-to="60" data-count-decimals="0" data-count-suffix="%">0</b>
+          <p>Kafka+AI 2차 필터로<br><span class="hl-sub">뉴스 알림 노이즈 감소</span></p>
+          <span class="highlight-src">AlphaAdopter</span>
+        </div>
+        <div class="highlight-card reveal">
+          <div class="highlight-icon"><i class="fas fa-mobile-alt"></i></div>
+          <b class="en" data-count-static="2">2</b>
+          <p>App Store + 웹<br><span class="hl-sub">동시 실배포·운영</span></p>
+          <span class="highlight-src">런덤메이트</span>
+        </div>
+      </div>
+    </div>
   </section>
 
   <!-- PROJECTS -->
@@ -451,45 +580,45 @@
       </div>
       <div class="stack-groups reveal">
         <div class="stack-card">
-          <h4>Backend</h4>
+          <h4><i class="fas fa-server"></i>Backend</h4>
           <div class="chip-row">
             <span class="chip">Node.js</span><span class="chip">NestJS</span>
             <span class="chip">TypeORM</span><span class="chip">TypeScript</span>
-            <span class="chip">Kotlin</span><span class="chip">Spring Boot</span>
+            <span class="chip chip-featured">Kotlin</span><span class="chip">Spring Boot</span>
           </div>
         </div>
         <div class="stack-card">
-          <h4>Database</h4>
+          <h4><i class="fas fa-database"></i>Database</h4>
           <div class="chip-row">
-            <span class="chip">PostgreSQL</span><span class="chip">TimescaleDB</span>
+            <span class="chip">PostgreSQL</span><span class="chip chip-featured">TimescaleDB</span>
             <span class="chip">Redis</span><span class="chip">MySQL</span>
             <span class="chip">MongoDB</span>
           </div>
         </div>
         <div class="stack-card">
-          <h4>Realtime & Messaging</h4>
+          <h4><i class="fas fa-bolt"></i>Realtime & Messaging</h4>
           <div class="chip-row">
-            <span class="chip">Kafka</span><span class="chip">Redis Pub/Sub·Stream</span>
+            <span class="chip chip-featured">Kafka</span><span class="chip">Redis Pub/Sub·Stream</span>
             <span class="chip">WebSocket</span><span class="chip">SSE</span><span class="chip">STOMP</span>
           </div>
         </div>
         <div class="stack-card">
-          <h4>Frontend</h4>
+          <h4><i class="fas fa-window-restore"></i>Frontend</h4>
           <div class="chip-row">
             <span class="chip">Next.js</span><span class="chip">React</span><span class="chip">Vite</span>
           </div>
         </div>
         <div class="stack-card">
-          <h4>Cloud & Infra</h4>
+          <h4><i class="fas fa-cloud"></i>Cloud & Infra</h4>
           <div class="chip-row">
             <span class="chip">AWS EKS</span><span class="chip">AWS ECS</span>
-            <span class="chip">AWS RDS·ElastiCache</span><span class="chip">Terraform</span>
+            <span class="chip">AWS RDS·ElastiCache</span><span class="chip chip-featured">Terraform</span>
             <span class="chip">Docker</span><span class="chip">GitHub Actions</span>
             <span class="chip">Prometheus</span><span class="chip">Grafana</span><span class="chip">k6</span>
           </div>
         </div>
         <div class="stack-card">
-          <h4>Industrial Protocol</h4>
+          <h4><i class="fas fa-industry"></i>Industrial Protocol</h4>
           <div class="chip-row">
             <span class="chip">Modbus</span><span class="chip">MQTT</span>
             <span class="chip">OPC-UA</span><span class="chip">SNMP</span>
@@ -497,13 +626,14 @@
           </div>
         </div>
         <div class="stack-card">
-          <h4>AI</h4>
+          <h4><i class="fas fa-brain"></i>AI</h4>
           <div class="chip-row">
-            <span class="chip">Claude Code</span><span class="chip">Claude API (Anthropic)</span>
+            <span class="chip">Claude Code</span><span class="chip chip-featured">Claude API (Anthropic)</span>
             <span class="chip">Orca (멀티 에이전트 오케스트레이션)</span>
           </div>
         </div>
       </div>
+      <p class="stack-legend"><span class="chip chip-featured chip-legend-sample">예시</span> 표시된 항목은 최근 프로젝트에서 새로 다룬 핵심 기술입니다</p>
     </div>
   </section>
 
@@ -1064,6 +1194,41 @@
     });
   }, {threshold:.15});
   revealEls.forEach(function(el){ io.observe(el); });
+
+  // count-up numbers (hero stats + highlight cards)
+  function animateCount(el){
+    if (el.dataset.counted) return;
+    el.dataset.counted = '1';
+    var target = parseFloat(el.getAttribute('data-count-to'));
+    var decimals = parseInt(el.getAttribute('data-count-decimals') || '0', 10);
+    var suffix = el.getAttribute('data-count-suffix') || '';
+    var useSep = el.getAttribute('data-count-sep') === '1';
+    var duration = 1400, start = null;
+    function format(value){
+      var text = decimals > 0 ? value.toFixed(decimals) : Math.round(value).toString();
+      if (useSep) text = Number(text).toLocaleString('en-US', {minimumFractionDigits:decimals, maximumFractionDigits:decimals});
+      return text + suffix;
+    }
+    function frame(ts){
+      if (!start) start = ts;
+      var p = Math.min((ts - start) / duration, 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = format(target * eased);
+      if (p < 1) requestAnimationFrame(frame); else el.textContent = format(target);
+    }
+    requestAnimationFrame(frame);
+  }
+  window.addEventListener('load', function(){
+    setTimeout(function(){
+      document.querySelectorAll('.hero-stats [data-count-to]').forEach(animateCount);
+    }, 300);
+  });
+  var countIo = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting){ animateCount(e.target); countIo.unobserve(e.target); }
+    });
+  }, {threshold:.4});
+  document.querySelectorAll('.highlight-card [data-count-to]').forEach(function(el){ countIo.observe(el); });
 
   // project modal open/close
   document.querySelectorAll('[data-modal-open]').forEach(function(btn){
