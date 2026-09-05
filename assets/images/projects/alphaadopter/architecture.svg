@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1220 600" font-family="Noto Sans KR, Segoe UI, sans-serif">
+  <defs>
+    <linearGradient id="bgAA" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0e0c0b"/>
+      <stop offset="100%" stop-color="#1c1310"/>
+    </linearGradient>
+    <marker id="arrowAA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#FF6A13"/>
+    </marker>
+    <marker id="arrowMutedAA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#6b6660"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="1220" height="600" fill="url(#bgAA)"/>
+
+  <text x="40" y="36" fill="#ffffff" font-size="20" font-weight="800">AlphaAdopter 아키텍처</text>
+  <text x="40" y="58" fill="#cfc7bd" font-size="12.5">뉴스 수집 → Kafka → 매칭(AI 2차 필터) → Redis Pub/Sub → SSE 실시간 전달</text>
+
+  <!-- arrows -->
+  <line x1="196" y1="300" x2="252" y2="300" stroke="#FF6A13" stroke-width="2.5" marker-end="url(#arrowAA)"/>
+  <line x1="440" y1="220" x2="496" y2="220" stroke="#FF6A13" stroke-width="2.5" marker-end="url(#arrowAA)"/>
+  <line x1="440" y1="300" x2="496" y2="300" stroke="#FF6A13" stroke-width="2.5" marker-end="url(#arrowAA)"/>
+  <line x1="710" y1="260" x2="766" y2="260" stroke="#FF6A13" stroke-width="2.5" marker-end="url(#arrowAA)"/>
+  <line x1="936" y1="260" x2="992" y2="260" stroke="#FF6A13" stroke-width="2.5" marker-end="url(#arrowAA)"/>
+  <line x1="1055" y1="320" x2="1055" y2="380" stroke="#FF6A13" stroke-width="2.5" marker-end="url(#arrowAA)"/>
+  <line x1="380" y1="450" x2="380" y2="380" stroke="#6b6660" stroke-width="2" stroke-dasharray="5,4" marker-end="url(#arrowMutedAA)"/>
+  <text x="390" y="420" fill="#6b6660" font-size="11">스케줄러(60초)</text>
+  <line x1="600" y1="345" x2="600" y2="450" stroke="#4a3a30" stroke-width="2"/>
+
+  <!-- Box A: NAVER API HUB -->
+  <g>
+    <rect x="26" y="240" width="170" height="120" rx="12" fill="#1c1310" stroke="#33261f" stroke-width="1.5"/>
+    <text x="46" y="270" fill="#ffffff" font-size="14.5" font-weight="800">뉴스 소스</text>
+    <text x="46" y="288" fill="#cfc7bd" font-size="10.5">NAVER API HUB</text>
+    <rect x="46" y="300" width="120" height="20" rx="5" fill="#FF6A13"/>
+    <text x="56" y="314" fill="#1a1512" font-size="10" font-weight="700">Search News API</text>
+    <text x="46" y="342" fill="#a89f96" font-size="9.5">25,000회/일 할당량</text>
+  </g>
+
+  <!-- Box B: Collector -->
+  <g>
+    <rect x="252" y="180" width="188" height="140" rx="12" fill="#1c1310" stroke="#33261f" stroke-width="1.5"/>
+    <text x="270" y="204" fill="#ffffff" font-size="14.5" font-weight="800">수집기</text>
+    <text x="270" y="220" fill="#cfc7bd" font-size="10.5">NewsCollectorScheduler</text>
+    <rect x="266" y="232" width="160" height="34" rx="8" fill="#2a1f19"/>
+    <text x="278" y="253" fill="#ffffff" font-size="11.5" font-weight="700">구독 키워드 폴링</text>
+    <rect x="266" y="272" width="160" height="34" rx="8" fill="#2a1f19"/>
+    <text x="278" y="293" fill="#ffffff" font-size="11.5" font-weight="700">Kafka(news.raw) 발행</text>
+  </g>
+
+  <!-- Box C: Kafka -->
+  <g>
+    <rect x="496" y="140" width="214" height="240" rx="12" fill="#1c1310" stroke="#33261f" stroke-width="1.5"/>
+    <text x="514" y="164" fill="#ffffff" font-size="14.5" font-weight="800">Kafka</text>
+    <text x="514" y="180" fill="#cfc7bd" font-size="10.5">Strimzi Operator (EKS)</text>
+    <rect x="510" y="192" width="184" height="50" rx="8" fill="#2a1f19"/>
+    <text x="522" y="212" fill="#ffffff" font-size="12" font-weight="700">news.raw</text>
+    <text x="522" y="230" fill="#a89f96" font-size="9.5">수집된 원본 뉴스</text>
+    <rect x="510" y="252" width="184" height="50" rx="8" fill="#2a1f19"/>
+    <text x="522" y="272" fill="#ffffff" font-size="12" font-weight="700">news.matched</text>
+    <text x="522" y="290" fill="#a89f96" font-size="9.5">구독 매칭 + AI 필터 통과분</text>
+    <rect x="510" y="312" width="184" height="52" rx="8" fill="#241a15" stroke="#4a3a30"/>
+    <text x="522" y="332" fill="#cfc7bd" font-size="10.5" font-weight="700">MongoDB</text>
+    <text x="522" y="350" fill="#a89f96" font-size="9.5">원본 저장 (스키마 유연성)</text>
+  </g>
+
+  <!-- Box D: Matching Engine -->
+  <g>
+    <rect x="766" y="140" width="170" height="240" rx="12" fill="#1c1310" stroke="#33261f" stroke-width="1.5"/>
+    <text x="784" y="164" fill="#ffffff" font-size="14.5" font-weight="800">매칭 엔진</text>
+    <text x="784" y="180" fill="#cfc7bd" font-size="10.5">Spring Boot + JPA</text>
+    <rect x="780" y="192" width="140" height="46" rx="8" fill="#2a1f19"/>
+    <text x="792" y="211" fill="#ffffff" font-size="11" font-weight="700">문자열 매칭 (1차)</text>
+    <text x="792" y="226" fill="#a89f96" font-size="9">구독 캐시(30초)</text>
+    <rect x="780" y="248" width="140" height="60" rx="8" fill="#3a2e26" stroke="#FF6A13"/>
+    <text x="792" y="268" fill="#FF6A13" font-size="11" font-weight="800">Claude Haiku (2차)</text>
+    <text x="792" y="284" fill="#cfc7bd" font-size="9">관련도 0~100점 판단</text>
+    <text x="792" y="298" fill="#cfc7bd" font-size="9">노이즈 60% 감소 실측</text>
+    <rect x="780" y="318" width="140" height="46" rx="8" fill="#241a15" stroke="#4a3a30"/>
+    <text x="792" y="337" fill="#cfc7bd" font-size="10.5" font-weight="700">PostgreSQL</text>
+    <text x="792" y="352" fill="#a89f96" font-size="9">정규화 저장 (RDS)</text>
+  </g>
+
+  <!-- Box E: Redis -->
+  <g>
+    <rect x="992" y="220" width="126" height="100" rx="12" fill="#1c1310" stroke="#33261f" stroke-width="1.5"/>
+    <text x="1008" y="248" fill="#ffffff" font-size="13" font-weight="800">Redis</text>
+    <text x="1008" y="264" fill="#cfc7bd" font-size="10">Pub/Sub</text>
+    <text x="1008" y="280" fill="#a89f96" font-size="9">멀티 파드 대비</text>
+    <text x="1008" y="296" fill="#a89f96" font-size="9">(ElastiCache)</text>
+  </g>
+
+  <!-- Box F: SSE -->
+  <g>
+    <rect x="992" y="380" width="126" height="90" rx="12" fill="#1c1310" stroke="#33261f" stroke-width="1.5"/>
+    <text x="1008" y="408" fill="#ffffff" font-size="13" font-weight="800">SSE</text>
+    <text x="1008" y="424" fill="#cfc7bd" font-size="10">실시간 알림</text>
+    <text x="1008" y="440" fill="#a89f96" font-size="9">React 클라이언트</text>
+  </g>
+
+  <!-- Box G: 비회원 다이제스트 -->
+  <g>
+    <rect x="452" y="450" width="296" height="90" rx="12" fill="#1c1310" stroke="#33261f" stroke-width="1.5"/>
+    <text x="470" y="478" fill="#ffffff" font-size="13" font-weight="800">일일 다이제스트</text>
+    <text x="470" y="496" fill="#cfc7bd" font-size="10">비회원 대상 · 매일 09:00 이메일 발송</text>
+    <text x="470" y="514" fill="#a89f96" font-size="9">읽음·클릭 참여도 추적 (개인화 필터링 준비)</text>
+  </g>
+
+  <line x1="600" y1="450" x2="600" y2="380" stroke="#4a3a30" stroke-width="2"/>
+</svg>
