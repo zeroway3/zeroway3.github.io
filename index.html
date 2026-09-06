@@ -285,26 +285,27 @@
   .project-card{
     background:var(--paper-2);border:1px solid var(--line);border-radius:var(--radius);
     transition:transform .2s,box-shadow .2s,border-color .2s;
-    display:flex;flex-direction:column;gap:16px;padding:26px 24px 24px;
+    display:flex;flex-direction:column;gap:12px;padding:22px 20px 20px;
   }
   .project-card:hover{transform:translateY(-5px);box-shadow:0 18px 34px rgba(15,23,42,.1);border-color:var(--text)}
   .project-tag{
     display:inline-block;font-size:11px;font-weight:700;color:var(--accent);
-    letter-spacing:.06em;margin-bottom:8px;font-family:"Poppins",sans-serif;
+    letter-spacing:.06em;margin-bottom:6px;font-family:"Poppins",sans-serif;
   }
-  .project-card h4{margin:0 0 4px;font-size:19px;font-weight:900}
-  .pc-period{display:block;font-size:12px;color:var(--muted);font-family:"Poppins",sans-serif}
-  .pc-block{font-size:13.5px;line-height:1.7;color:var(--text)}
+  .project-card h4{margin:0 0 2px;font-size:18px;font-weight:900}
+  .pc-period{display:block;font-size:11.5px;color:var(--muted);font-family:"Poppins",sans-serif}
+  .pc-block{font-size:13px;line-height:1.55;color:var(--text)}
   .pc-block .pc-label{
     display:block;font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--accent-2);
-    text-transform:uppercase;margin-bottom:6px;font-family:"Poppins",sans-serif;
+    text-transform:uppercase;margin-bottom:4px;font-family:"Poppins",sans-serif;
   }
-  .pc-block ul{margin:0;padding-left:18px}
-  .pc-block li{margin-bottom:4px}
+  .pc-block ul{margin:0;padding-left:16px}
+  .pc-block li{margin-bottom:2px}
+  .pc-stack{font-size:11.5px;color:var(--muted);line-height:1.5;letter-spacing:.01em}
   .pc-links{display:flex;flex-wrap:wrap;gap:8px}
   .btn-outline{border:1px solid var(--line);color:var(--text)}
   .btn-outline:hover{background:var(--paper);border-color:var(--text)}
-  .pc-actions{display:flex;gap:10px;margin-top:auto;padding-top:16px;border-top:1px solid var(--line)}
+  .pc-actions{display:flex;gap:10px;margin-top:auto;padding-top:14px;border-top:1px solid var(--line)}
   .pc-actions .btn{flex:1;justify-content:center}
 
   /* ---------- FAQ ---------- */
@@ -526,21 +527,19 @@
             <span class="pc-period">2026.01 – 2026.05</span>
           </div>
           <div class="pc-block">
-            <span class="pc-label">대표 기능</span>
-            GPS 러닝 기록, 크루 커뮤니티, STOMP(WebSocket) 기반 1:1·크루 실시간 채팅. App Store·웹 동시 배포.
+            <span class="pc-label">목표</span>
+            혼자 기록만 남기는 러닝 앱이 아니라, 크루를 만들어 함께 뛰고 실시간으로 소통할 수 있는
+            소셜 러닝 서비스를 만드는 것이 목표였습니다.
           </div>
           <div class="pc-block">
-            <span class="pc-label">내가 한 일</span>
+            <span class="pc-label">대표 기능</span>
             <ul>
               <li>Frontend(Web) 개발 전담</li>
               <li>STOMP 실시간 소켓·채팅 기능 구현</li>
               <li>Docker 빌드 + AWS ECS 배포 파이프라인 구성·운영, dev→prod 배포 참여</li>
             </ul>
           </div>
-          <div class="chip-row">
-            <span class="chip">Next.js</span><span class="chip">React</span><span class="chip">STOMP</span>
-            <span class="chip">WebSocket</span><span class="chip">Docker</span><span class="chip">AWS ECS</span>
-          </div>
+          <div class="pc-stack">Next.js · React · STOMP · WebSocket · Docker · AWS ECS</div>
           <div class="pc-links">
             <a class="btn btn-outline btn-sm" href="https://apps.apple.com/kr/app/id6761368135" target="_blank" rel="noopener"><i class="fab fa-app-store-ios"></i> App Store</a>
             <a class="btn btn-outline btn-sm" href="https://www.rundommate.com/running" target="_blank" rel="noopener"><i class="fas fa-globe"></i> Web</a>
@@ -558,22 +557,19 @@
             <span class="pc-period">2026.06 – 2026.08</span>
           </div>
           <div class="pc-block">
-            <span class="pc-label">대표 기능</span>
-            AI 생성 코드의 보안 취약점·존재하지 않는 API(환각) 탐지. OWASP Top 10을 ISMS-P·전자금융감독규정
-            조항에 매핑한 감사 리포트 자동 생성.
+            <span class="pc-label">목표</span>
+            AI 코딩 도구가 만든 코드를 사람이 일일이 검증하지 않아도, 취약점과 존재하지 않는
+            API(환각) 호출을 자동으로 잡아내는 것이 목표였습니다.
           </div>
           <div class="pc-block">
-            <span class="pc-label">내가 한 일</span>
+            <span class="pc-label">대표 기능</span>
             <ul>
               <li>관제시스템·보안 아키텍처 담당</li>
               <li>Tree-sitter AST 파서 + YAML 룰베이스 탐지 엔진 설계</li>
               <li>PyPI·npm 화이트리스트 대조로 슬롭스쿼팅 패키지 탐지 기능 구현</li>
             </ul>
           </div>
-          <div class="chip-row">
-            <span class="chip">TypeScript</span><span class="chip">Electron</span><span class="chip">Next.js</span>
-            <span class="chip">YAML Rules</span><span class="chip">Vitest</span><span class="chip">Vercel</span>
-          </div>
+          <div class="pc-stack">TypeScript · Electron · Next.js · YAML Rules · Vitest · Vercel</div>
           <div class="pc-actions">
             <button class="btn btn-outline btn-sm" data-modal-open="#projModal3"><i class="fas fa-file-alt"></i> README</button>
             <button class="btn btn-outline btn-sm" data-modal-open="#gallery3"><i class="fas fa-image"></i> 이미지</button>
@@ -587,23 +583,19 @@
             <span class="pc-period">2026.09</span>
           </div>
           <div class="pc-block">
-            <span class="pc-label">대표 기능</span>
-            Kafka 기반 실시간 수집·매칭 파이프라인 + Claude Haiku 2차 AI 필터로 알림 노이즈 60% 감소,
-            Redis·SSE로 실시간 알림 전달.
+            <span class="pc-label">목표</span>
+            관심 키워드·종목 뉴스를 실시간으로 감지하면서도, 노이즈 없이 진짜 필요한 알림만
+            골라 전달하는 것이 목표였습니다.
           </div>
           <div class="pc-block">
-            <span class="pc-label">내가 한 일</span>
+            <span class="pc-label">대표 기능</span>
             <ul>
               <li>개인 프로젝트, 설계·개발·배포 전체 담당</li>
               <li>Kotlin/Spring Boot 백엔드, Kafka·Redis·SSE 실시간 계층 구현</li>
               <li>Terraform으로 AWS EKS·RDS·ElastiCache IaC 구축, GitHub Actions OIDC CI/CD</li>
             </ul>
           </div>
-          <div class="chip-row">
-            <span class="chip">Kotlin</span><span class="chip">Spring Boot</span><span class="chip">Kafka</span>
-            <span class="chip">MongoDB</span><span class="chip">PostgreSQL</span><span class="chip">Redis</span>
-            <span class="chip">React·TypeScript·Vite</span><span class="chip">AWS EKS</span><span class="chip">Terraform</span>
-          </div>
+          <div class="pc-stack">Kotlin · Spring Boot · Kafka · MongoDB · PostgreSQL · Redis · React·TypeScript·Vite · AWS EKS · Terraform</div>
           <div class="pc-actions">
             <button class="btn btn-outline btn-sm" data-modal-open="#projModal4"><i class="fas fa-file-alt"></i> README</button>
             <button class="btn btn-outline btn-sm" data-modal-open="#gallery4"><i class="fas fa-image"></i> 이미지</button>
