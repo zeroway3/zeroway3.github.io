@@ -222,7 +222,7 @@
   /* 경력/프로젝트/교육을 그룹별로 한 줄짜리 워크플로우(타임라인)로 보여주고,
      클릭하면 상세 내용이 모달로 뜬다 (아래 .career-detail, 프로젝트 모달과 동일 패턴) */
   .workflow-row{position:relative;display:inline-flex;max-width:100%;overflow-x:auto;padding:10px 4px 22px;-webkit-overflow-scrolling:touch}
-  .workflow-row::before{content:"";position:absolute;left:26px;right:26px;top:39px;height:2px;background:var(--line);z-index:0}
+  .workflow-row::before{content:"";position:absolute;left:26px;right:26px;top:18px;height:2px;background:var(--line);z-index:0}
   .workflow-node{
     position:relative;z-index:1;flex:0 0 auto;width:180px;padding:0 14px;
     display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;
@@ -1050,9 +1050,17 @@
       <p>
         FMS(설비관리시스템) API 서버·SI(시스템 통합) 백엔드 개발에도 참여했습니다(15개월간 84건의
         non-merge 커밋). 순찰관리 기능에서는 야간 교대 일정이 자정을 넘길 때 다음 날로 쪼개지지 않고
-        하나의 순찰로 이어지도록 처리하고, 스케줄러가
-        중복 실행돼도 데이터가 중복 생성되지 않는 idempotency 로직을 직접 구현했습니다. 실시간 소켓 연결
-        장애 대응에도 프론트엔드 쪽에서 원인을 추적해 백엔드 게이트웨이 수정에 참여했습니다.
+        하나의 순찰로 이어지도록 처리하고, 스케줄러가 중복 실행돼도 데이터가 중복 생성되지 않는
+        idempotency 로직을 직접 구현했습니다. 실시간 소켓 연결 장애 대응에도 프론트엔드 쪽에서 원인을
+        추적해 백엔드 게이트웨이 수정에 참여했습니다.
+      </p>
+      <p>
+        참여한 SI 백엔드는 Redis Pub/Sub(실시간)·Streams(재생 가능) 이중 채널로 텔레메트리를 수집하고,
+        노드 그래프 기반 가상 태그 수식 컴파일러, 조건 평가+상태머신 구조의 알람 룰 엔진, 쿨다운·우선순위
+        기반 컨트롤 룰 스케줄러, 시나리오 기반 SOP 실행 엔진을 갖추고 있습니다. TimescaleDB는 압축·보존
+        정책까지 마이그레이션에 명시돼 있고, GraphQL에는 리소스 단위 권한을 검사하는 선언적 인가 데코레이터가
+        WebSocket 게이트웨이의 룸 접근 제어와 동일하게 적용돼 있습니다. 이 구조를 이해하고 유지보수·장애
+        대응 과정에서 일부 기여했습니다.
       </p>
 
       <h5>프론트엔드</h5>
