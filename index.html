@@ -253,23 +253,25 @@
   .career-detail .ai-note b{color:var(--accent-2)}
 
   /* ---------- Tech stack ---------- */
-  .stack-groups{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px;align-items:start}
-  .stack-card{
-    position:relative;background:var(--paper-2);border:1px solid var(--line);border-radius:var(--radius);
-    padding:26px 24px 24px;overflow:hidden;
-    transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;
+  .stack-rows{display:flex;flex-direction:column;border-top:1px solid var(--line)}
+  .stack-row{
+    display:flex;align-items:center;gap:36px;padding:22px 6px;
+    border-bottom:1px solid var(--line);transition:background .2s ease;
   }
-  .stack-card::before{
-    content:"";position:absolute;top:0;left:0;right:0;height:3px;
-    background:var(--ink);
+  .stack-row:hover{background:var(--paper)}
+  .stack-row__index{
+    flex:0 0 auto;width:26px;font-family:"Poppins",sans-serif;font-size:12px;
+    font-weight:700;color:var(--muted-2);letter-spacing:.02em;
   }
-  .stack-card:hover{
-    transform:translateY(-4px);border-color:var(--text);
-    box-shadow:0 20px 40px -12px rgba(0,0,0,.18);
-  }
-  .stack-card h4{
-    margin:0 0 16px;font-size:13.5px;letter-spacing:.06em;
+  .stack-row__label{
+    flex:0 0 210px;font-size:14px;letter-spacing:.05em;
     color:var(--text);font-family:"Poppins",sans-serif;text-transform:uppercase;font-weight:700;
+  }
+  .stack-row .chip-row{flex:1 1 auto;min-width:0}
+  @media(max-width:760px){
+    .stack-row{flex-wrap:wrap;column-gap:16px;row-gap:10px;padding:18px 4px}
+    .stack-row__label{order:1}
+    .stack-row .chip-row{order:2;flex:1 1 100%}
   }
   .chip-row{display:flex;flex-wrap:wrap;gap:8px}
   .chip{
@@ -556,38 +558,43 @@
         <span class="eyebrow">TECH STACK</span>
         <h3>기술 스택</h3>
       </div>
-      <div class="stack-groups reveal">
-        <div class="stack-card">
-          <h4>Backend</h4>
+      <div class="stack-rows reveal">
+        <div class="stack-row">
+          <span class="stack-row__index">01</span>
+          <span class="stack-row__label">Backend</span>
           <div class="chip-row">
             <span class="chip">Node.js</span><span class="chip">NestJS</span>
             <span class="chip">TypeORM</span><span class="chip">TypeScript</span>
             <span class="chip">Kotlin</span><span class="chip">Spring Boot</span>
           </div>
         </div>
-        <div class="stack-card">
-          <h4>Database</h4>
+        <div class="stack-row">
+          <span class="stack-row__index">02</span>
+          <span class="stack-row__label">Database</span>
           <div class="chip-row">
             <span class="chip">PostgreSQL</span><span class="chip">TimescaleDB</span>
             <span class="chip">Redis</span><span class="chip">MySQL</span>
             <span class="chip">MongoDB</span>
           </div>
         </div>
-        <div class="stack-card">
-          <h4>Realtime & Messaging</h4>
+        <div class="stack-row">
+          <span class="stack-row__index">03</span>
+          <span class="stack-row__label">Realtime & Messaging</span>
           <div class="chip-row">
             <span class="chip">Kafka</span><span class="chip">Redis Pub/Sub·Stream</span>
             <span class="chip">WebSocket</span><span class="chip">SSE</span><span class="chip">STOMP</span>
           </div>
         </div>
-        <div class="stack-card">
-          <h4>Frontend</h4>
+        <div class="stack-row">
+          <span class="stack-row__index">04</span>
+          <span class="stack-row__label">Frontend</span>
           <div class="chip-row">
             <span class="chip">Next.js</span><span class="chip">React</span><span class="chip">Vite</span>
           </div>
         </div>
-        <div class="stack-card">
-          <h4>Cloud & Infra</h4>
+        <div class="stack-row">
+          <span class="stack-row__index">05</span>
+          <span class="stack-row__label">Cloud & Infra</span>
           <div class="chip-row">
             <span class="chip">AWS EKS</span><span class="chip">AWS ECS</span>
             <span class="chip">AWS RDS·ElastiCache</span><span class="chip">Terraform</span>
@@ -595,16 +602,18 @@
             <span class="chip">Prometheus</span><span class="chip">Grafana</span><span class="chip">k6</span>
           </div>
         </div>
-        <div class="stack-card">
-          <h4>Industrial Protocol</h4>
+        <div class="stack-row">
+          <span class="stack-row__index">06</span>
+          <span class="stack-row__label">Industrial Protocol</span>
           <div class="chip-row">
             <span class="chip">Modbus</span><span class="chip">MQTT</span>
             <span class="chip">OPC-UA</span><span class="chip">SNMP</span>
             <span class="chip">BACnet</span>
           </div>
         </div>
-        <div class="stack-card">
-          <h4>AI</h4>
+        <div class="stack-row">
+          <span class="stack-row__index">07</span>
+          <span class="stack-row__label">AI</span>
           <div class="chip-row">
             <span class="chip">Claude Code</span><span class="chip">Claude API (Anthropic)</span>
             <span class="chip">Orca (멀티 에이전트 오케스트레이션)</span>
