@@ -301,20 +301,6 @@
   .pc-actions{display:flex;gap:10px;margin-top:auto;padding-top:14px;border-top:1px solid var(--line)}
   .pc-actions .btn{flex:1;justify-content:center}
 
-  /* ---------- FAQ ---------- */
-  .faq{background:var(--ink-2);color:#fff}
-  .faq-item{border-bottom:1px solid var(--line-dark)}
-  .faq-q{
-    width:100%;text-align:left;background:none;border:0;color:#fff;padding:22px 4px;
-    display:flex;justify-content:space-between;align-items:center;gap:16px;cursor:pointer;
-    font-size:15.5px;font-weight:700;font-family:inherit;
-  }
-  .faq-q i{color:var(--accent);transition:transform .25s;flex-shrink:0}
-  .faq-item.open .faq-q i{transform:rotate(45deg)}
-  .faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease}
-  .faq-a-inner{padding:0 4px 22px;color:var(--muted-2);font-size:14.5px;line-height:1.75}
-  .faq-a-inner a{color:var(--accent);font-weight:700;white-space:nowrap}
-
   /* ---------- Contact / CTA ---------- */
   .cta{
     background:linear-gradient(135deg,var(--ink),var(--ink-2));color:#fff;text-align:center;
@@ -405,7 +391,6 @@
           <li><a href="#projects">프로젝트</a></li>
           <li><a href="#stack">기술 스택</a></li>
           <li><a href="#career">경력·경험</a></li>
-          <li><a href="#faq">일하는 방식</a></li>
           <li><a href="#contact" class="nav-cta">Contact</a></li>
         </ul>
       </nav>
@@ -740,69 +725,6 @@
               <span class="workflow-hint">자세히 보기 ↗</span>
             </button>
           </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section id="faq" class="faq">
-    <div class="section-inner">
-      <div class="section-title reveal">
-        <span class="eyebrow">HOW I WORK</span>
-        <h3>제가 일하는 방식</h3>
-      </div>
-
-      <div class="faq-list reveal">
-        <div class="faq-item">
-          <button class="faq-q">Pub/Sub과 Stream, 두 채널을 함께 쓰기로 한 이유<i class="fas fa-plus"></i></button>
-          <div class="faq-a"><div class="faq-a-inner">
-            화면은 최신값만 지연 없이 필요해서 Pub/Sub을, 알람 평가·이력 적재는 값이 유실되면 안 되기 때문에 Stream을 씁니다.
-            <code>deliveryReliability</code> 값(realtime / durable / both)으로 구독마다 채널을 선택하게 해서, 소비자 특성에 안 맞는 채널을 강제하지 않도록 했습니다.
-          </div></div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-q">배치 주기를 1.5초로 정한 이유<i class="fas fa-plus"></i></button>
-          <div class="faq-a"><div class="faq-a-inner">
-            500ms는 트랜잭션 수 대비 화면 체감 개선이 미미했고, 5초는 운영자가 느리다고 느끼는 지연이었습니다.
-            가장 느린 프로토콜(BACnet)의 폴링 사이클을 온전히 담는 최소 단위가 1.5초였고, 실측 p99 이벤트 루프 지연(38.6ms)에도 여유가 남는 값이었습니다.
-          </div></div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-q">구독 캐시를 30초로 잡은 이유<i class="fas fa-plus"></i></button>
-          <div class="faq-a"><div class="faq-a-inner">
-            구독 설정 변경 빈도가 데이터 유입 빈도보다 압도적으로 낮아서, 최대 30초 지연은 감내할 수 있다고 판단했습니다.
-            캐시 갱신 자체가 실패하면 예외만 로깅하고 기존 캐시를 그대로 유지해, 파이프라인 전체가 멈추지 않도록 했습니다.
-          </div></div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-q">메시지 순서 보장 대신 최신값 판정을 택한 이유<i class="fas fa-plus"></i></button>
-          <div class="faq-a"><div class="faq-a-inner">
-            서버가 받은 순서를 신뢰하지 않고, 디바이스가 값을 측정한 시각을 기준으로 최신값을 판정합니다.
-            화면용 미러 테이블은 최신값 덮어쓰기로 충분하다고 보고 별도 순서 보장 장치를 두지 않았고, 원본 이력은 전량 적재해 필요하면 타임스탬프로 재정렬할 수 있습니다.
-          </div></div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-q">DB를 스키마가 아니라 서비스 단위로 분리한 이유<i class="fas fa-plus"></i></button>
-          <div class="faq-a"><div class="faq-a-inner">
-            장애 격리(한 서비스의 쓰기 부하가 다른 서비스 커넥션 풀에 영향을 주지 않아야 함)와 배포 독립성(서비스마다 마이그레이션 시점이 다름) 때문입니다.
-            스키마만 나누면 커넥션 풀과 락 경쟁은 여전히 공유되어 리소스 격리가 되지 않습니다.
-          </div></div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-q">복잡한 병합 로직 대신 단순한 규칙을 택한 이유<i class="fas fa-plus"></i></button>
-          <div class="faq-a"><div class="faq-a-inner">
-            순찰은 회차·구역별로 담당자 1인이 배정되는 운영 구조라 동시 수정 자체가 발생하지 않도록 이미 배제돼 있었습니다.
-            그래서 복잡한 병합 로직 대신, 작성 시각 기준 업로드와 회차·포인트 단위 고유 키로 중복만 막는 단순한 규칙을 선택했습니다.
-          </div></div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-q">AlphaAdopter — AI 판단이 실패하면 알림을 막는 대신 통과시킨 이유<i class="fas fa-plus"></i></button>
-          <div class="faq-a"><div class="faq-a-inner">
-            Claude API 키가 없거나 레이트리밋·네트워크 오류가 나면 무조건 통과(relevant=true) 처리하는 fail-open 설계입니다.
-            AI는 "노이즈를 줄이는 2차 필터"일 뿐이고, 알림 서비스의 본질은 "매칭된 걸 놓치지 않고 전달하는 것"이라
-            AI 인프라 장애가 알림 전달 자체를 막는 단일 장애점이 되면 안 된다고 판단했습니다.
-          </div></div>
         </div>
       </div>
     </div>
@@ -1419,23 +1341,6 @@
     });
   });
   lightbox.addEventListener('click', function(){ lightbox.hidden = true; });
-
-  // faq accordion
-  document.querySelectorAll('.faq-item').forEach(function(item){
-    var q = item.querySelector('.faq-q');
-    var a = item.querySelector('.faq-a');
-    q.addEventListener('click', function(){
-      var isOpen = item.classList.contains('open');
-      document.querySelectorAll('.faq-item.open').forEach(function(o){
-        o.classList.remove('open');
-        o.querySelector('.faq-a').style.maxHeight = null;
-      });
-      if (!isOpen){
-        item.classList.add('open');
-        a.style.maxHeight = a.scrollHeight + 'px';
-      }
-    });
-  });
 </script>
 
 </body>
