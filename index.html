@@ -121,18 +121,14 @@
   /* ---------- Hero ---------- */
   .hero{
     min-height:100svh;display:flex;align-items:center;
-    background:
-      radial-gradient(1200px 600px at 85% -10%, rgba(255,106,19,.09), transparent 60%),
-      radial-gradient(900px 500px at -10% 110%, rgba(255,255,255,.05), transparent 55%),
-      linear-gradient(180deg,var(--ink),var(--ink-2));
+    background:linear-gradient(180deg,var(--ink),var(--ink-2));
     color:#fff;position:relative;overflow:hidden;padding:120px 0 80px;
   }
-  .hero::before,.hero::after{
-    content:"";position:absolute;border-radius:50%;filter:blur(90px);opacity:.2;
+  .hero::after{
+    content:"";position:absolute;border-radius:50%;filter:blur(90px);opacity:.12;
     z-index:0;pointer-events:none;animation:heroBlob 16s ease-in-out infinite;
+    width:380px;height:380px;background:#ffffff;bottom:-18%;left:-4%;
   }
-  .hero::before{width:440px;height:440px;background:var(--accent);top:-12%;right:2%}
-  .hero::after{width:380px;height:380px;background:#ffffff;bottom:-18%;left:-4%;animation-delay:4s}
   @keyframes heroBlob{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(34px,-26px) scale(1.14)}}
   .hero-grid{
     position:absolute;inset:0;z-index:0;opacity:.5;pointer-events:none;
@@ -148,7 +144,7 @@
   }
   .hero h1{font-size:clamp(38px,6vw,64px);font-weight:900;line-height:1.15;margin:0 0 20px;letter-spacing:-.02em}
   .hero h1 .en{display:block;font-size:.34em;font-weight:600;letter-spacing:.12em;color:var(--muted-2);margin-top:10px}
-  .hero p.desc{font-size:17px;color:var(--muted-2);max-width:560px;margin:0 auto 40px}
+  .hero p.desc{font-size:17px;color:var(--muted-2);max-width:560px;margin:0 auto 40px;word-break:keep-all}
   .btn{
     display:inline-flex;align-items:center;gap:8px;padding:13px 24px;border-radius:999px;
     font-weight:700;font-size:14px;transition:transform .2s,box-shadow .2s;
@@ -458,10 +454,9 @@
         <span class="eyebrow en">BACKEND ENGINEER</span>
         <h1>김영식<span class="en">KIM YOUNGSIK</span></h1>
         <p class="desc">
-          백엔드를 중심으로, 실시간 데이터 시스템부터 프론트엔드·모바일 앱·보안 도구까지 제품의 처음과 끝을
-          직접 만듭니다. 디바이스 3,501대 규모, 누적 27.8억 건의 데이터를 처리하는 실시간 파이프라인을
-          실무에서 설계·운영하고 있고, 앱스토어 앱 배포부터 AI 코드 보안 검사, 클라우드 인프라 구축까지
-          새로운 영역에 스스로 뛰어들며 경험을 넓혀가고 있습니다.
+          안녕하세요, 2년차 백엔드 개발자 김영식입니다.<br>
+          직장 업무 외에도 사이드 프로젝트를 꾸준히 이어가며, 새로운 것을 학습하고 성과를 만들어냅니다.<br>
+          모르는 건 빠르게 질문하고, 다양한 의견을 유연하게 수용하며, 제 생각은 적극적으로 소통하며 일합니다.
         </p>
         <div class="hero-stats">
           <div><b class="en" data-count-to="27.8" data-count-decimals="1" data-count-suffix="억+">0</b><span>누적 데이터 처리 규모</span></div>
