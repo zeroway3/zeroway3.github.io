@@ -253,6 +253,24 @@
   .career-detail .ai-note i{color:var(--accent);margin-right:6px}
   .career-detail .ai-note b{color:var(--accent-2)}
 
+  /* ---------- 경력(회사) 전용 블록 — 워크플로우 대신 한 영역에 정보를 바로 노출 ---------- */
+  .career-block{
+    background:var(--paper-2);border:1px solid var(--line);border-radius:var(--radius);
+    padding:32px 30px 28px;display:flex;flex-direction:column;gap:18px;
+  }
+  .career-block__head h4{margin:4px 0 2px;font-size:21px;font-weight:900}
+  .career-block__head .pc-period{font-size:12.5px}
+  .career-block__grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  @media(max-width:760px){.career-block__grid{grid-template-columns:1fr}}
+  .career-block .pc-block{font-size:14px;line-height:1.7}
+  .career-block .pc-block ul{padding-left:18px}
+  .career-block .pc-block li{margin-bottom:6px}
+  .career-block .pc-stack{font-size:12px}
+  .career-block .pc-actions{
+    display:flex;gap:10px;margin-top:4px;padding-top:16px;border-top:1px solid var(--line);
+  }
+  .career-block .pc-actions .btn{flex:0 0 auto}
+
   /* ---------- Tech stack ---------- */
   .stack-rows{display:flex;flex-direction:column;border-top:1px solid var(--line)}
   .stack-row{
@@ -539,7 +557,7 @@
           <div class="pc-block">
             <span class="pc-label">대표 기능</span>
             <ul>
-              <li>전체 화면 UI/UX 디자인부터 Frontend(Web) 구현까지 전담</li>
+              <li>메인·로그인·크루·대회 등 핵심 사용자 화면 UI/UX 디자인 담당</li>
               <li>STOMP 실시간 소켓·채팅 기능 구현</li>
               <li>Docker 빌드 + AWS ECS 배포 파이프라인 구성·운영, dev→prod 배포 참여</li>
             </ul>
@@ -687,13 +705,49 @@
 
       <div class="career-group reveal">
         <div class="career-group-title"><h4>경력</h4><span class="en">CAREER</span></div>
-        <div class="workflow-row">
-          <button class="workflow-node" data-modal-open="#projModal1">
-            <span class="workflow-dot"></span>
-            <span class="workflow-title">(주)엑센솔루션 · 개발팀</span>
-            <span class="workflow-period">2025.02 ~ 현재</span>
-            <span class="workflow-hint">자세히 보기 ↗</span>
-          </button>
+        <div class="career-block">
+          <div class="career-block__head">
+            <span class="project-tag">BACKEND · FRONTEND · 회사</span>
+            <h4>(주)엑센솔루션 · 개발팀</h4>
+            <span class="pc-period">2025.02 ~ 현재</span>
+          </div>
+          <div class="career-block__grid">
+            <div class="pc-block">
+              <span class="pc-label">무엇을 개발하는지</span>
+              건물관리(시설관리) 도메인의 노후 시스템을 리뉴얼하는 프로젝트입니다. 여러 현장을 하나의
+              플랫폼에서 운영하는 업무용 웹(FMS), 현장 IoT 포인트 데이터를 실시간 수집해 대시보드·알람·
+              제어규칙으로 보여주는 실시간관제 웹(SI), 현장 순찰용 모바일 앱, 이를 뒷받침하는 다수의
+              NestJS 백엔드 서비스로 구성됩니다.
+            </div>
+            <div class="pc-block">
+              <span class="pc-label">역할</span>
+              개발자 45명 규모 조직에서 프론트엔드 2개 웹 시스템(업무용·실시간관제용)을 주도적으로
+              개발했고, 일부 백엔드·모바일 앱·배포 자동화 영역에도 참여했습니다.
+            </div>
+          </div>
+          <div class="pc-block">
+            <span class="pc-label">개발한 내용 및 핵심 기능</span>
+            <ul>
+              <li><b>업무용 웹(FMS)</b>: 설비관리·자재관리·보전기준·순찰(Patrol)·점검(TBM·CBM·UBM)·
+              대시보드·CAD 도면 뷰어(DXF)·페이지/메뉴 권한관리</li>
+              <li><b>실시간관제 웹(SI)</b>: 태그(포인트) 실시간 값 표시·알람 설정/이력·SOP 시나리오·
+              제어규칙·디바이스 관리·캔버스 기반 HMI 에디터·노드 기반 수식 플로우 에디터·CCTV 연동·
+              엑셀 리포트</li>
+              <li><b>모바일 앱</b>: 순찰 업무 API 연동, 오프라인 로컬 저장·동기화 매니저 계층 구현</li>
+            </ul>
+          </div>
+          <div class="pc-stack">Next.js · React · TypeScript · NestJS · TypeORM/Prisma · PostgreSQL · TimescaleDB · Redis · GraphQL · Socket.IO · Docker</div>
+          <div class="career-detail">
+            <div class="stat-chips">
+              <span class="stat-chip"><b>535건·440건</b> 커밋·머지 PR(15개월)</span>
+              <span class="stat-chip"><b>디바이스 3,501대·태그 3만개</b> 규모</span>
+              <span class="stat-chip"><b>27.8억 건</b> 누적 시계열 이력</span>
+              <span class="stat-chip"><b>653GB→35GB</b> 압축(94.6%)</span>
+            </div>
+          </div>
+          <div class="pc-actions">
+            <button class="btn btn-outline btn-sm" data-modal-open="#projModal1"><i class="fas fa-file-alt"></i> README</button>
+          </div>
         </div>
       </div>
 
@@ -977,8 +1031,9 @@
         <span class="chip">WebSocket</span><span class="chip">Docker</span><span class="chip">AWS ECS</span>
       </div>
       <p>
-        GPS 러닝 기록, 크루 커뮤니티, 실시간 채팅을 갖춘 소셜 러닝 앱 팀 프로젝트에서 전체 화면의 UI/UX
-        디자인부터 Frontend(Web) 구현까지 전담했습니다. STOMP(WebSocket) 실시간 소켓 연동과 1:1·크루 채팅 기능을 개발했고, Docker 기반 빌드와
+        GPS 러닝 기록, 크루 커뮤니티, 실시간 채팅을 갖춘 소셜 러닝 앱 팀 프로젝트에서 Frontend(Web) 개발을
+        전담했고, 메인·로그인·크루·대회 등 핵심 사용자 화면의 UI/UX 디자인을 맡았습니다.
+        STOMP(WebSocket) 실시간 소켓 연동과 1:1·크루 채팅 기능을 개발했고, Docker 기반 빌드와
         AWS ECS 배포 파이프라인을 구성·운영하며 dev→prod 배포 머지에도 참여했습니다. 커밋 127건 · 머지 PR 40건 이상.
       </p>
 
