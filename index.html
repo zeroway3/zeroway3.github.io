@@ -152,6 +152,7 @@
   .btn{
     display:inline-flex;align-items:center;gap:8px;padding:13px 24px;border-radius:999px;
     font-weight:700;font-size:14px;transition:transform .2s,box-shadow .2s;
+    background:none;border:0;cursor:pointer;font-family:inherit;
   }
   .btn-primary{background:var(--accent);color:#fff}
   .btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(255,106,19,.4)}
@@ -278,24 +279,33 @@
   .project-detail .stack-badges{margin:14px 0 22px}
   .project-detail .stack-badges .chip{font-size:12.5px;color:var(--muted)}
 
-  /* ---------- Projects grid ---------- */
-  .project-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-  @media(max-width:1100px){.project-grid{grid-template-columns:repeat(2,1fr)}}
-  @media(max-width:560px){.project-grid{grid-template-columns:1fr}}
+  /* ---------- Projects grid (info-card) ---------- */
+  .project-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
+  @media(max-width:900px){.project-grid{grid-template-columns:1fr}}
   .project-card{
     background:var(--paper-2);border:1px solid var(--line);border-radius:var(--radius);
-    overflow:hidden;cursor:pointer;transition:transform .2s,box-shadow .2s;
-    display:flex;flex-direction:column;
+    transition:transform .2s,box-shadow .2s,border-color .2s;
+    display:flex;flex-direction:column;gap:16px;padding:26px 24px 24px;
   }
-  .project-card:hover{transform:translateY(-5px);box-shadow:0 18px 34px rgba(15,23,42,.1)}
-  .project-card .body{padding:20px;flex:1;display:flex;flex-direction:column}
-  .project-card .body p{margin-top:auto;padding-top:8px}
+  .project-card:hover{transform:translateY(-5px);box-shadow:0 18px 34px rgba(15,23,42,.1);border-color:var(--text)}
   .project-tag{
     display:inline-block;font-size:11px;font-weight:700;color:var(--accent);
     letter-spacing:.06em;margin-bottom:8px;font-family:"Poppins",sans-serif;
   }
-  .project-card h4{margin:0 0 8px;font-size:16.5px;font-weight:800}
-  .project-card p{margin:0;font-size:13.5px;color:var(--muted)}
+  .project-card h4{margin:0 0 4px;font-size:19px;font-weight:900}
+  .pc-period{display:block;font-size:12px;color:var(--muted);font-family:"Poppins",sans-serif}
+  .pc-block{font-size:13.5px;line-height:1.7;color:var(--text)}
+  .pc-block .pc-label{
+    display:block;font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--accent-2);
+    text-transform:uppercase;margin-bottom:6px;font-family:"Poppins",sans-serif;
+  }
+  .pc-block ul{margin:0;padding-left:18px}
+  .pc-block li{margin-bottom:4px}
+  .pc-links{display:flex;flex-wrap:wrap;gap:8px}
+  .btn-outline{border:1px solid var(--line);color:var(--text)}
+  .btn-outline:hover{background:var(--paper);border-color:var(--text)}
+  .pc-actions{display:flex;gap:10px;margin-top:auto;padding-top:16px;border-top:1px solid var(--line)}
+  .pc-actions .btn{flex:1;justify-content:center}
 
   /* ---------- FAQ ---------- */
   .faq{background:var(--ink-2);color:#fff}
@@ -333,6 +343,8 @@
     max-height:90vh;overflow-y:auto;padding:36px;box-shadow:0 40px 90px rgba(0,0,0,.4);
   }
   @media(max-width:600px){.modal__panel{padding:24px 20px}}
+  .gallery-only-panel{max-width:720px}
+  .gallery-only-panel .project-detail{padding-top:8px}
   .modal__close{
     position:absolute;top:18px;right:18px;background:var(--paper);border:1px solid var(--line);
     width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:15px;color:var(--muted);z-index:2;
@@ -503,43 +515,98 @@
       <div class="section-title reveal">
         <span class="eyebrow">PROJECTS</span>
         <h3>프로젝트</h3>
-        <p>카드를 클릭하면 상세 내용을 확인할 수 있어요</p>
+        <p>핵심 정보는 카드에서 바로 확인하고, 전체 기록과 스크린샷은 버튼으로 볼 수 있어요</p>
       </div>
       <div class="project-grid reveal">
 
-        <div class="project-card" data-modal-open="#projModal1">
-          <img class="thumb-real" src="/assets/images/projects/si-fms-architecture.svg" alt="SI/FMS 멀티서비스 아키텍처 다이어그램" loading="lazy">
-          <div class="body">
-            <span class="project-tag">BACKEND · 회사 · 2025.02 ~ 현재</span>
-            <h4>SI/FMS 리뉴얼</h4>
-            <p>레거시 ASP.NET을 Hexagonal Architecture 기반 NestJS·Next.js로 전면 리뉴얼, 10개+ 서비스로 재설계</p>
-          </div>
-        </div>
-
-        <div class="project-card" data-modal-open="#projModal2">
-          <img class="thumb-real" src="/assets/images/projects/randommate/02-web-running.png" alt="런덤메이트 웹 러닝 기록 화면" loading="lazy">
-          <div class="body">
-            <span class="project-tag">FRONTEND · 사이드</span>
+        <div class="project-card">
+          <div class="pc-head">
+            <span class="project-tag">FRONTEND · 사이드(팀 프로젝트)</span>
             <h4>런덤메이트</h4>
-            <p>STOMP(WebSocket) 실시간 채팅을 갖춘 러닝 크루 매칭 앱, App Store·웹 동시 배포</p>
+            <span class="pc-period">2026.01 – 2026.05</span>
+          </div>
+          <div class="pc-block">
+            <span class="pc-label">대표 기능</span>
+            GPS 러닝 기록, 크루 커뮤니티, STOMP(WebSocket) 기반 1:1·크루 실시간 채팅. App Store·웹 동시 배포.
+          </div>
+          <div class="pc-block">
+            <span class="pc-label">내가 한 일</span>
+            <ul>
+              <li>Frontend(Web) 개발 전담</li>
+              <li>STOMP 실시간 소켓·채팅 기능 구현</li>
+              <li>Docker 빌드 + AWS ECS 배포 파이프라인 구성·운영, dev→prod 배포 참여</li>
+            </ul>
+          </div>
+          <div class="chip-row">
+            <span class="chip">Next.js</span><span class="chip">React</span><span class="chip">STOMP</span>
+            <span class="chip">WebSocket</span><span class="chip">Docker</span><span class="chip">AWS ECS</span>
+          </div>
+          <div class="pc-links">
+            <a class="btn btn-outline btn-sm" href="https://apps.apple.com/kr/app/id6761368135" target="_blank" rel="noopener"><i class="fab fa-app-store-ios"></i> App Store</a>
+            <a class="btn btn-outline btn-sm" href="https://www.rundommate.com/running" target="_blank" rel="noopener"><i class="fas fa-globe"></i> Web</a>
+          </div>
+          <div class="pc-actions">
+            <button class="btn btn-outline btn-sm" data-modal-open="#projModal2"><i class="fas fa-file-alt"></i> README</button>
+            <button class="btn btn-outline btn-sm" data-modal-open="#gallery2"><i class="fas fa-image"></i> 이미지</button>
           </div>
         </div>
 
-        <div class="project-card" data-modal-open="#projModal3">
-          <img class="thumb-real" src="/assets/images/projects/vibeshield/02-dashboard.png" alt="VibeShield 대시보드 화면" loading="lazy">
-          <div class="body">
-            <span class="project-tag">SECURITY · 사이드</span>
+        <div class="project-card">
+          <div class="pc-head">
+            <span class="project-tag">SECURITY · 사이드(3인 팀)</span>
             <h4>VibeShield</h4>
-            <p>AI 환각 API 탐지 83% · 로컬 실행형 보안 검사 도구, 모두의 창업 선정</p>
+            <span class="pc-period">2026.06 – 2026.08</span>
+          </div>
+          <div class="pc-block">
+            <span class="pc-label">대표 기능</span>
+            AI 생성 코드의 보안 취약점·존재하지 않는 API(환각) 탐지. OWASP Top 10을 ISMS-P·전자금융감독규정
+            조항에 매핑한 감사 리포트 자동 생성.
+          </div>
+          <div class="pc-block">
+            <span class="pc-label">내가 한 일</span>
+            <ul>
+              <li>관제시스템·보안 아키텍처 담당</li>
+              <li>Tree-sitter AST 파서 + YAML 룰베이스 탐지 엔진 설계</li>
+              <li>PyPI·npm 화이트리스트 대조로 슬롭스쿼팅 패키지 탐지 기능 구현</li>
+            </ul>
+          </div>
+          <div class="chip-row">
+            <span class="chip">TypeScript</span><span class="chip">Electron</span><span class="chip">Next.js</span>
+            <span class="chip">YAML Rules</span><span class="chip">Vitest</span><span class="chip">Vercel</span>
+          </div>
+          <div class="pc-actions">
+            <button class="btn btn-outline btn-sm" data-modal-open="#projModal3"><i class="fas fa-file-alt"></i> README</button>
+            <button class="btn btn-outline btn-sm" data-modal-open="#gallery3"><i class="fas fa-image"></i> 이미지</button>
           </div>
         </div>
 
-        <div class="project-card" data-modal-open="#projModal4">
-          <img class="thumb-real" src="/assets/images/projects/alphaadopter/02-dashboard.png" alt="AlphaAdopter 실시간 알림 대시보드" loading="lazy">
-          <div class="body">
+        <div class="project-card">
+          <div class="pc-head">
             <span class="project-tag">BACKEND · 사이드(개인)</span>
             <h4>AlphaAdopter</h4>
-            <p>Kafka+AI 2차 필터로 뉴스 알림 노이즈 60% 감소, EKS/Terraform으로 직접 운영</p>
+            <span class="pc-period">2026.09</span>
+          </div>
+          <div class="pc-block">
+            <span class="pc-label">대표 기능</span>
+            Kafka 기반 실시간 수집·매칭 파이프라인 + Claude Haiku 2차 AI 필터로 알림 노이즈 60% 감소,
+            Redis·SSE로 실시간 알림 전달.
+          </div>
+          <div class="pc-block">
+            <span class="pc-label">내가 한 일</span>
+            <ul>
+              <li>개인 프로젝트, 설계·개발·배포 전체 담당</li>
+              <li>Kotlin/Spring Boot 백엔드, Kafka·Redis·SSE 실시간 계층 구현</li>
+              <li>Terraform으로 AWS EKS·RDS·ElastiCache IaC 구축, GitHub Actions OIDC CI/CD</li>
+            </ul>
+          </div>
+          <div class="chip-row">
+            <span class="chip">Kotlin</span><span class="chip">Spring Boot</span><span class="chip">Kafka</span>
+            <span class="chip">MongoDB</span><span class="chip">PostgreSQL</span><span class="chip">Redis</span>
+            <span class="chip">React·TypeScript·Vite</span><span class="chip">AWS EKS</span><span class="chip">Terraform</span>
+          </div>
+          <div class="pc-actions">
+            <button class="btn btn-outline btn-sm" data-modal-open="#projModal4"><i class="fas fa-file-alt"></i> README</button>
+            <button class="btn btn-outline btn-sm" data-modal-open="#gallery4"><i class="fas fa-image"></i> 이미지</button>
           </div>
         </div>
 
@@ -605,6 +672,7 @@
           <span class="stack-row__label">AI</span>
           <div class="chip-row">
             <span class="chip">Claude Code</span><span class="chip">Claude API (Anthropic)</span>
+            <span class="chip">Orca (멀티 에이전트 오케스트레이션)</span>
           </div>
         </div>
       </div>
@@ -1100,6 +1168,57 @@
         <a href="https://github.com/zeroway3/alpha-adopter" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub 저장소</a>
         &nbsp;·&nbsp; 진행 과정 전체 기록은 저장소의 <code>docs/project-story.md</code> 참고
       </p>
+    </div>
+  </div>
+</div>
+
+<!-- ================= 프로젝트 이미지 전용 모달 ================= -->
+
+<div id="gallery2" class="modal" role="dialog" aria-modal="true" hidden>
+  <div class="modal__dim" data-modal-close></div>
+  <div class="modal__panel gallery-only-panel">
+    <button class="modal__close" data-modal-close>✕</button>
+    <div class="project-detail">
+      <img class="gallery-main" src="/assets/images/projects/randommate/02-web-running.png" alt="런덤메이트 웹 러닝 기록 화면">
+      <div class="gallery-thumbs">
+        <img src="/assets/images/projects/randommate/02-web-running.png" class="active" alt="웹 러닝 기록 화면">
+        <img src="/assets/images/projects/randommate/01-server-monitoring.png" alt="서버 모니터링 대시보드">
+        <img src="/assets/images/projects/randommate/03-playstore.png" alt="Google Play 스토어 등록 화면">
+        <img src="/assets/images/projects/randommate/sequence-stomp-chat.svg" alt="STOMP 채팅 연결 시퀀스 다이어그램">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="gallery3" class="modal" role="dialog" aria-modal="true" hidden>
+  <div class="modal__dim" data-modal-close></div>
+  <div class="modal__panel gallery-only-panel">
+    <button class="modal__close" data-modal-close>✕</button>
+    <div class="project-detail">
+      <img class="gallery-main" src="/assets/images/projects/vibeshield/02-dashboard.png" alt="VibeShield 대시보드 화면">
+      <div class="gallery-thumbs">
+        <img src="/assets/images/projects/vibeshield/02-dashboard.png" class="active" alt="대시보드">
+        <img src="/assets/images/projects/vibeshield/01-findings.png" alt="탐지 결과">
+        <img src="/assets/images/projects/vibeshield/04-autofix.png" alt="자동수정 미리보기">
+        <img src="/assets/images/projects/vibeshield/05-compliance.png" alt="규정 매핑(ISMS-P·전자금융감독규정)">
+        <img src="/assets/images/projects/vibeshield/06-rules.png" alt="탐지 룰 목록">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="gallery4" class="modal" role="dialog" aria-modal="true" hidden>
+  <div class="modal__dim" data-modal-close></div>
+  <div class="modal__panel gallery-only-panel">
+    <button class="modal__close" data-modal-close>✕</button>
+    <div class="project-detail">
+      <img class="gallery-main" src="/assets/images/projects/alphaadopter/02-dashboard.png" alt="AlphaAdopter 실시간 알림 대시보드">
+      <div class="gallery-thumbs">
+        <img src="/assets/images/projects/alphaadopter/02-dashboard.png" class="active" alt="실시간 알림 대시보드">
+        <img src="/assets/images/projects/alphaadopter/01-auth.png" alt="로그인 화면">
+        <img src="/assets/images/projects/alphaadopter/03-admin.png" alt="관리자 대시보드">
+        <img src="/assets/images/projects/alphaadopter/architecture.svg" alt="AlphaAdopter 아키텍처 다이어그램">
+      </div>
     </div>
   </div>
 </div>
