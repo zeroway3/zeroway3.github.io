@@ -253,21 +253,24 @@
   .career-detail .ai-note i{color:var(--accent);margin-right:6px}
   .career-detail .ai-note b{color:var(--accent-2)}
 
-  /* ---------- 경력(회사) 전용 블록 — 워크플로우 대신 한 영역에 정보를 바로 노출 ---------- */
+  /* ---------- 경력(회사) 전용 블록 — 카드 나열 대신 텍스트 위주로 한 영역에 노출 ---------- */
   .career-block{
     background:var(--paper-2);border:1px solid var(--line);border-radius:var(--radius);
-    padding:32px 30px 28px;display:flex;flex-direction:column;gap:18px;
+    padding:34px 32px 28px;display:flex;flex-direction:column;gap:22px;
   }
-  .career-block__head h4{margin:4px 0 2px;font-size:21px;font-weight:900}
-  .career-block__head .pc-period{font-size:12.5px}
-  .career-block__grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
-  @media(max-width:760px){.career-block__grid{grid-template-columns:1fr}}
-  .career-block .pc-block{font-size:14px;line-height:1.7}
-  .career-block .pc-block ul{padding-left:18px}
-  .career-block .pc-block li{margin-bottom:6px}
-  .career-block .pc-stack{font-size:12px}
+  .career-block__head h4{margin:6px 0 4px;font-size:22px;font-weight:900}
+  .career-block__head .pc-period{font-size:12.5px;display:block}
+  .career-role{
+    display:inline-block;margin-top:10px;font-size:13px;font-weight:700;color:var(--accent-2);
+    font-family:"Poppins",sans-serif;letter-spacing:.02em;
+  }
+  .career-timeline{display:flex;flex-direction:column}
+  .career-timeline__item{padding:16px 0;border-top:1px solid var(--line)}
+  .career-timeline__item:first-child{border-top:0;padding-top:0}
+  .career-timeline__item b{display:block;font-size:15.5px;font-weight:800;color:var(--text);margin-bottom:5px}
+  .career-timeline__item p{margin:0;font-size:13.5px;color:var(--muted);line-height:1.7}
   .career-block .pc-actions{
-    display:flex;gap:10px;margin-top:4px;padding-top:16px;border-top:1px solid var(--line);
+    display:flex;gap:10px;margin-top:2px;padding-top:18px;border-top:1px solid var(--line);
   }
   .career-block .pc-actions .btn{flex:0 0 auto}
 
@@ -707,46 +710,37 @@
         <div class="career-group-title"><h4>경력</h4><span class="en">CAREER</span></div>
         <div class="career-block">
           <div class="career-block__head">
-            <span class="project-tag">BACKEND · FRONTEND · 회사</span>
             <h4>(주)엑센솔루션 · 개발팀</h4>
             <span class="pc-period">2025.02 ~ 현재</span>
+            <span class="career-role">백엔드 · 프론트엔드 개발</span>
           </div>
-          <div class="career-block__grid">
-            <div class="pc-block">
-              <span class="pc-label">무엇을 개발하는지</span>
-              건물관리(시설관리) 도메인의 노후 시스템을 리뉴얼하는 프로젝트입니다. 여러 현장을 하나의
-              플랫폼에서 운영하는 업무용 웹(FMS), 현장 IoT 포인트 데이터를 실시간 수집해 대시보드·알람·
-              제어규칙으로 보여주는 실시간관제 웹(SI), 현장 순찰용 모바일 앱, 이를 뒷받침하는 다수의
-              NestJS 백엔드 서비스로 구성됩니다.
+
+          <div class="career-timeline">
+            <div class="career-timeline__item">
+              <b>C#(.NET) 레거시 시스템 유지관리 및 현장 운영</b>
+              <p>입사 초기 3개월간 2개 현장의 레거시 C#(.NET) 패키지 프로그램을 직접 유지관리하며
+              운영상의 한계를 체감, 리뉴얼 필요성을 확인했습니다.</p>
             </div>
-            <div class="pc-block">
-              <span class="pc-label">역할</span>
-              개발자 45명 규모 조직에서 프론트엔드 2개 웹 시스템(업무용·실시간관제용)을 주도적으로
-              개발했고, 일부 백엔드·모바일 앱·배포 자동화 영역에도 참여했습니다.
+            <div class="career-timeline__item">
+              <b>SI(실시간관제) 웹 리뉴얼 개발</b>
+              <p>NestJS·Next.js 기반으로 현장 IoT 포인트 데이터를 실시간 수집·표시하는 관제 시스템을
+              리뉴얼 개발했습니다. 디바이스 3,501대·태그 3만 개 규모를 초당 9,000건 처리 용량으로 검증했습니다.</p>
             </div>
-          </div>
-          <div class="pc-block">
-            <span class="pc-label">개발한 내용 및 핵심 기능</span>
-            <ul>
-              <li><b>업무용 웹(FMS)</b>: 설비관리·자재관리·보전기준·순찰(Patrol)·점검(TBM·CBM·UBM)·
-              대시보드·페이지/메뉴 권한관리</li>
-              <li><b>실시간관제 웹(SI)</b>: 태그(포인트) 실시간 값 표시·알람 설정/이력·SOP 시나리오·
-              제어규칙·디바이스 관리·캔버스 기반 HMI 에디터·노드 기반 수식 플로우 에디터·CCTV 연동·
-              엑셀 리포트</li>
-              <li><b>모바일 앱</b>: 순찰 업무 API 연동, 오프라인 로컬 저장·동기화 매니저 계층 구현</li>
-            </ul>
-          </div>
-          <div class="pc-stack">Next.js · React · TypeScript · NestJS · TypeORM/Prisma · PostgreSQL · TimescaleDB · Redis · GraphQL · Socket.IO · Docker</div>
-          <div class="career-detail">
-            <div class="stat-chips">
-              <span class="stat-chip"><b>535건·440건</b> 커밋·머지 PR(15개월)</span>
-              <span class="stat-chip"><b>디바이스 3,501대·태그 3만개</b> 규모</span>
-              <span class="stat-chip"><b>27.8억 건</b> 누적 시계열 이력</span>
-              <span class="stat-chip"><b>653GB→35GB</b> 압축(94.6%)</span>
+            <div class="career-timeline__item">
+              <b>FMS(업무용) 웹 리뉴얼 개발</b>
+              <p>설비관리·순찰·점검 등 업무 전반을 다루는 웹 시스템을 리뉴얼 개발했습니다. 누적 27.8억 건의
+              시계열 이력을 653GB → 35GB(94.6%)로 압축해 운영 중입니다.</p>
+            </div>
+            <div class="career-timeline__item">
+              <b>실제 현장 2곳 운영 배포</b>
+              <p>오피스빌딩(약 3개월), 대기업 사옥 폐쇄망 환경(약 2개월)에 배포해 실사용 중이며,
+              15개월간 535건·440건의 커밋·머지 PR을 기록했습니다.</p>
             </div>
           </div>
+
           <div class="pc-actions">
             <button class="btn btn-outline btn-sm" data-modal-open="#projModal1"><i class="fas fa-file-alt"></i> README</button>
+            <button class="btn btn-outline btn-sm" data-modal-open="#careerResumeModal"><i class="fas fa-id-card"></i> 경력기술서</button>
           </div>
         </div>
       </div>
@@ -1020,11 +1014,53 @@
         </div>
         <p class="ai-note">
           <i class="fas fa-robot"></i><b>AI 도구 활용:</b> Claude Code를 실무에 도입한 이후, 유사 규모 시스템 통합
-          프로젝트의 업계 통상 소요 기간(9~12개월) 대비 SI 프로젝트를 4개월째(진행 중) 절반 이하 인원(BE 2·FE 1)으로
+          프로젝트의 업계 통상 소요 기간(9~12개월) 대비 SI 프로젝트를 4개월째(진행 중) 절반 가까운 기간으로
           진행하고 있고, 통상 2~3개월이 걸리는 FMS 크로스플랫폼 앱도 2주 만에(진행 중) 1인으로 iOS·Android를 동시
           지원하는 수준까지 개발 속도를 끌어올렸습니다. (수치는 유사 프로젝트의 업계 통상 소요 기간 추정치와의 비교입니다)
         </p>
       </div>
+    </div>
+  </div>
+</div>
+
+<div id="careerResumeModal" class="modal" role="dialog" aria-modal="true" hidden>
+  <div class="modal__dim" data-modal-close></div>
+  <div class="modal__panel">
+    <button class="modal__close" data-modal-close>✕</button>
+    <div class="project-detail career-detail">
+      <span class="project-tag">CAREER · (주)엑센솔루션 · 2025.02 ~ 현재</span>
+      <h4>경력기술서 — 영역별 주요 내용</h4>
+
+      <h5>백엔드</h5>
+      <p>
+        SI 백엔드·FMS API 서버 개발에도 참여했습니다(15개월간 84건의 non-merge 커밋). 순찰관리 기능에서는
+        야간 교대 일정이 자정을 넘길 때 다음 날로 쪼개지지 않고 하나의 순찰로 이어지도록 처리하고, 스케줄러가
+        중복 실행돼도 데이터가 중복 생성되지 않는 idempotency 로직을 직접 구현했습니다. 실시간 소켓 연결
+        장애 대응에도 프론트엔드 쪽에서 원인을 추적해 백엔드 게이트웨이 수정에 참여했습니다.
+      </p>
+
+      <h5>프론트엔드</h5>
+      <p>
+        업무용(FMS)·실시간관제(SI) 2개 웹 시스템의 프론트엔드 개발을 주도했습니다. 동시 401 응답을 1회
+        토큰 갱신으로 병합하는 single-flight 인터셉터, WebCrypto 기반 AES-256-GCM 브라우저 로컬 저장
+        암호화, 노드 그래프 기반 가상 태그 수식 인터프리터(순환참조 실행 중 탐지 포함), 초 단위로 갱신되는
+        대시보드의 requestAnimationFrame 배치 플러시, 도형 수백 개 규모 캔버스 HMI 에디터의 커스텀 리렌더
+        비교자, 토큰 갱신과 소켓 재연결을 분리한 라이프사이클 관리를 직접 설계·구현했습니다.
+      </p>
+
+      <h5>서버 · 인프라</h5>
+      <p>
+        Docker Compose 기반 10개 이상 서비스로 구성된 시스템 운영에 참여하고, GitHub Actions CI/CD
+        파이프라인의 진단 로직을 개선했습니다. 폐쇄망 현장의 배포 자동화에도 참여해, DB 백업 방식을
+        단일 데이터베이스만 담던 pg_dump에서 클러스터 전체를 담는 pg_dumpall로 전환했습니다.
+      </p>
+
+      <h5>운영</h5>
+      <p>
+        오피스빌딩(약 3개월), 대기업 사옥 폐쇄망 환경(약 2개월) 2곳에 실배포해 운영 중이며, 애자일
+        스크럼(2주 스프린트)으로 "과제선정 → 리뷰회의 → API 도출 및 일정 책정 → 개발 → 테스트·시연 → 회고"
+        사이클을 반복하고 있습니다.
+      </p>
     </div>
   </div>
 </div>
