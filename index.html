@@ -302,7 +302,12 @@
   .pc-block ul{margin:0;padding-left:16px}
   .pc-block li{margin-bottom:2px}
   .pc-stack{font-size:11.5px;color:var(--muted);line-height:1.5;letter-spacing:.01em}
-  .pc-links{display:flex;flex-wrap:wrap;gap:8px}
+  .pc-award{
+    display:block;margin-top:6px;font-size:11.5px;font-weight:700;color:var(--accent-2);
+  }
+  .pc-links{display:flex;flex-wrap:wrap;gap:14px}
+  .pc-link-text{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:700;color:var(--accent-2)}
+  .pc-link-text:hover{text-decoration:underline}
   .btn-outline{border:1px solid var(--line);color:var(--text)}
   .btn-outline:hover{background:var(--paper);border-color:var(--text)}
   .pc-actions{display:flex;gap:10px;margin-top:auto;padding-top:14px;border-top:1px solid var(--line)}
@@ -541,8 +546,8 @@
           </div>
           <div class="pc-stack">Next.js · React · STOMP · WebSocket · Docker · AWS ECS</div>
           <div class="pc-links">
-            <a class="btn btn-outline btn-sm" href="https://apps.apple.com/kr/app/id6761368135" target="_blank" rel="noopener"><i class="fab fa-app-store-ios"></i> App Store</a>
-            <a class="btn btn-outline btn-sm" href="https://www.rundommate.com/running" target="_blank" rel="noopener"><i class="fas fa-globe"></i> Web</a>
+            <a class="pc-link-text" href="https://apps.apple.com/kr/app/id6761368135" target="_blank" rel="noopener"><i class="fab fa-app-store-ios"></i> App Store</a>
+            <a class="pc-link-text" href="https://www.rundommate.com/running" target="_blank" rel="noopener"><i class="fas fa-globe"></i> Web</a>
           </div>
           <div class="pc-actions">
             <button class="btn btn-outline btn-sm" data-modal-open="#projModal2"><i class="fas fa-file-alt"></i> README</button>
@@ -555,6 +560,7 @@
             <span class="project-tag">SECURITY · 사이드(3인 팀)</span>
             <h4>VibeShield</h4>
             <span class="pc-period">2026.06 – 2026.08</span>
+            <span class="pc-award"><i class="fas fa-trophy"></i> 중소벤처기업부(창업진흥원) 「모두의 창업」 1차 선정</span>
           </div>
           <div class="pc-block">
             <span class="pc-label">목표</span>
@@ -964,13 +970,6 @@
     <button class="modal__nav modal__next" data-modal-switch="#projModal3" aria-label="다음 프로젝트"><i class="fas fa-chevron-right"></i></button>
     <button class="modal__close" data-modal-close>✕</button>
     <div class="project-detail">
-      <img class="gallery-main" src="/assets/images/projects/randommate/02-web-running.png" alt="런덤메이트 웹 러닝 기록 화면">
-      <div class="gallery-thumbs">
-        <img src="/assets/images/projects/randommate/02-web-running.png" class="active" alt="웹 러닝 기록 화면">
-        <img src="/assets/images/projects/randommate/01-server-monitoring.png" alt="서버 모니터링 대시보드">
-        <img src="/assets/images/projects/randommate/03-playstore.png" alt="Google Play 스토어 등록 화면">
-        <img src="/assets/images/projects/randommate/sequence-stomp-chat.svg" alt="STOMP 채팅 연결 시퀀스 다이어그램">
-      </div>
       <span class="project-tag">FRONTEND · 사이드(팀 프로젝트) · 2026.01 – 2026.05</span>
       <h4>런덤메이트</h4>
       <div class="chip-row stack-badges">
@@ -1024,14 +1023,6 @@
     <button class="modal__nav modal__next" data-modal-switch="#projModal4" aria-label="다음 프로젝트"><i class="fas fa-chevron-right"></i></button>
     <button class="modal__close" data-modal-close>✕</button>
     <div class="project-detail">
-      <img class="gallery-main" src="/assets/images/projects/vibeshield/02-dashboard.png" alt="VibeShield 대시보드 화면">
-      <div class="gallery-thumbs">
-        <img src="/assets/images/projects/vibeshield/02-dashboard.png" class="active" alt="대시보드">
-        <img src="/assets/images/projects/vibeshield/01-findings.png" alt="탐지 결과">
-        <img src="/assets/images/projects/vibeshield/04-autofix.png" alt="자동수정 미리보기">
-        <img src="/assets/images/projects/vibeshield/05-compliance.png" alt="규정 매핑(ISMS-P·전자금융감독규정)">
-        <img src="/assets/images/projects/vibeshield/06-rules.png" alt="탐지 룰 목록">
-      </div>
       <span class="project-tag">SECURITY · 사이드 · 2026.06 – 2026.08</span>
       <h4>VibeShield</h4>
       <div class="chip-row stack-badges">
@@ -1065,13 +1056,6 @@
     <button class="modal__nav modal__next" data-modal-switch="#projModal1" aria-label="다음 프로젝트"><i class="fas fa-chevron-right"></i></button>
     <button class="modal__close" data-modal-close>✕</button>
     <div class="project-detail">
-      <img class="gallery-main" src="/assets/images/projects/alphaadopter/02-dashboard.png" alt="AlphaAdopter 실시간 알림 대시보드">
-      <div class="gallery-thumbs">
-        <img src="/assets/images/projects/alphaadopter/02-dashboard.png" class="active" alt="실시간 알림 대시보드">
-        <img src="/assets/images/projects/alphaadopter/01-auth.png" alt="로그인 화면">
-        <img src="/assets/images/projects/alphaadopter/03-admin.png" alt="관리자 대시보드">
-        <img src="/assets/images/projects/alphaadopter/architecture.svg" alt="AlphaAdopter 아키텍처 다이어그램">
-      </div>
       <span class="project-tag">BACKEND · 사이드(개인) · 2026.09 · Claude Code 페어 프로그래밍</span>
       <h4>AlphaAdopter</h4>
       <div class="chip-row stack-badges">
@@ -1084,25 +1068,6 @@
         관심 키워드·종목 뉴스를 실시간으로 감지해 노이즈를 걸러내고 알려주는 개인 프로젝트입니다.
         회사 업무(NestJS/TypeScript, 산업 프로토콜)와 겹치지 않는 스택(Kotlin/Spring Boot, Kafka,
         AWS EKS, IaC, LLM 연동)을 의도적으로 골라 처음부터 설계·구현·배포까지 직접 진행했습니다.
-      </p>
-
-      <h5>왜 만들었나</h5>
-      <p>
-        이전에 Python 프로토타입으로 "뉴스 감지 → AI 중요도 스코어링 → 알림 전달" 흐름 자체는 검증한 적이
-        있어, 이번에는 그 컨셉을 실제 트래픽을 받는 시스템 규모로 재설계하는 것이 목표였습니다.
-        Kafka 기반 이벤트 파이프라인, 멀티 인스턴스를 전제로 한 실시간 전달 구조, IaC로 관리되는
-        클라우드 인프라, LLM을 실제 제품 기능으로 통합하는 것까지 — 사이드 프로젝트로 처음 다뤄보는
-        영역이었습니다.
-      </p>
-
-      <h5>아키텍처</h5>
-      <p>
-        뉴스 소스(NAVER API HUB)를 스케줄러가 주기적으로 수집해 Kafka(<code>news.raw</code>)에 발행하면,
-        MongoDB에 원본을 저장하고 PostgreSQL 매칭 엔진이 구독 키워드와 대조합니다. 문자열 매칭을 통과한
-        후보만 Claude Haiku로 2차 관련도 판단을 거쳐 Kafka(<code>news.matched</code>)에 발행하고,
-        Redis Pub/Sub을 매개로 각 인스턴스가 자신이 들고 있는 SSE 커넥션에만 실시간 전달합니다. Kafka
-        컨슈머 인스턴스와 SSE 커넥션을 들고 있는 인스턴스가 다를 수 있는 멀티 파드(EKS+HPA) 환경을
-        전제로 Redis를 매개로 분리해둔 구조입니다.
       </p>
 
       <h5>실측 결과</h5>
@@ -1147,14 +1112,6 @@
           <span class="ps-label">결과</span> 여러 프로젝트에서 반복되던 습관적 패턴임을 인지 — 코드 리뷰 체크리스트에 반영
         </li>
       </ul>
-
-      <h5>인프라</h5>
-      <p>
-        VPC·EKS·RDS·ElastiCache를 전부 Terraform으로 코드화하고, kube-prometheus-stack(Prometheus+
-        Grafana)으로 관측성을 구축했습니다. 실사용자가 없는 개인 프로젝트라 비용 관리를 위해 현재는
-        <code>terraform destroy</code>로 인프라를 종료한 상태이며, 필요 시 <code>terraform apply</code>
-        한 번으로 10~15분 안에 동일하게 재생성할 수 있습니다.
-      </p>
 
       <p style="margin-top:20px">
         <a href="https://github.com/zeroway3/alpha-adopter" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub 저장소</a>
