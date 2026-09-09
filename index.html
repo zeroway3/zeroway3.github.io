@@ -86,38 +86,6 @@
     .nav-cta{display:none}
   }
 
-  .mode-toggle-fab{
-    position:fixed;right:24px;bottom:24px;z-index:401;
-    background:var(--ink);color:#fff;border:1px solid rgba(255,255,255,.25);
-    padding:12px 20px;border-radius:999px;font-size:13px;font-weight:700;
-    font-family:inherit;letter-spacing:.02em;cursor:pointer;white-space:nowrap;
-    box-shadow:0 10px 26px rgba(0,0,0,.28);transition:transform .2s,box-shadow .2s,background .2s;
-  }
-  .mode-toggle-fab:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(0,0,0,.35)}
-  @media(max-width:600px){.mode-toggle-fab{right:16px;bottom:16px;padding:11px 16px;font-size:12.5px}}
-
-  /* ---------- Personal (Off Duty) mode ---------- */
-  .personal-mode{
-    position:fixed;inset:0;z-index:300;background:var(--ink);overflow-y:auto;
-    animation:fadeIn .3s ease;
-  }
-  .personal-mode[hidden]{display:none}
-  @keyframes fadeIn{from{opacity:0}to{opacity:1}}
-  .personal-mode__inner{max-width:var(--maxw);margin:0 auto;padding:100px 24px 80px}
-  .personal-intro{text-align:center;color:#fff;max-width:640px;margin:0 auto 56px}
-  .personal-intro h2{font-size:clamp(24px,4vw,34px);font-weight:900;margin:14px 0 16px;letter-spacing:-.02em}
-  .personal-intro p{color:var(--muted-2);font-size:15.5px;margin:0}
-  .personal-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}
-  @media(max-width:760px){.personal-grid{grid-template-columns:1fr}}
-  .personal-card{
-    margin:0;background:var(--ink-2);border:1px solid var(--line-dark);border-radius:var(--radius);
-    overflow:hidden;
-  }
-  .personal-card img{width:100%;height:320px;object-fit:cover}
-  .personal-card figcaption{padding:20px 22px}
-  .personal-card h4{color:#fff;margin:0 0 8px;font-size:16.5px;font-weight:800}
-  .personal-card p{color:var(--muted-2);margin:0;font-size:13.5px;line-height:1.7}
-
   /* ---------- Hero ---------- */
   .hero{
     min-height:100svh;display:flex;align-items:center;
@@ -329,34 +297,6 @@
     </div>
   </div>
 </header>
-
-<!-- ================= OFF DUTY (PERSONAL MODE) ================= -->
-<div id="personalMode" class="personal-mode" hidden>
-  <div class="personal-mode__inner">
-    <div class="personal-intro">
-      <span class="eyebrow en">OFF DUTY</span>
-      <h2>포트폴리오엔 못 담았지만,<br>저를 설명하는 두 장의 사진입니다</h2>
-      <p>한번 잡으면 끝까지 하는 성향은, 일할 때만 나오는 게 아니더라고요.</p>
-    </div>
-
-    <div class="personal-grid">
-      <figure class="personal-card">
-        <img src="/assets/images/hallasan.jpg" alt="한라산 정상에서 찍은 사진">
-        <figcaption>
-          <h4>한라산 정상</h4>
-          <p>가장 높은 곳까지, 일단 시작하면 끝까지 갑니다.</p>
-        </figcaption>
-      </figure>
-      <figure class="personal-card">
-        <img src="/assets/images/faker.jpg" alt="롤 프로게이머 페이커와 함께 게임했던 기념 사진">
-        <figcaption>
-          <h4>리그 오브 레전드, 그리고 페이커</h4>
-          <p>한때 프로게이머 연습생 제의를 받을 정도로 몰입했었습니다. 지금은 하지 않지만, 뭔가에 진심으로 파고들었던 경험은 여전히 남아있습니다.</p>
-        </figcaption>
-      </figure>
-    </div>
-  </div>
-</div>
 
 <main id="top">
 
