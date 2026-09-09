@@ -39,9 +39,9 @@ GPS 러닝 기록, 크루 커뮤니티, 실시간 채팅을 갖춘 소셜 러닝
 AI 코딩 도구가 생성한 코드의 취약점과 존재하지 않는 API(환각) 호출을 탐지하는 로컬 실행형 정적분석 도구입니다. Tree-sitter 기반 AST 파서와 YAML 룰베이스로 OWASP Top 10 9종을 탐지해 ISMS-P·전자금융감독규정 조항에 매핑한 감사 리포트를 자동 생성하고, PyPI·npm 공식 인덱스 화이트리스트 대조로 LLM 환각 API·슬롭스쿼팅 패키지를 잡아냅니다. 현업 개발자 9인 PoC에서 환각 API 탐지율 83%(동일 샘플 Semgrep·SonarQube 0%), 오탐률 3.8%, 평균 설치 소요 24분, 감사 리포트 증빙력 4.3/5점을 실측했고, 테스트 도입을 5개사와 협의했습니다.
 
 ### AlphaAdopter — 실시간 뉴스 알림 플랫폼
-**2026.09 · 개인 프로젝트 · Claude Code 페어 프로그래밍**
+**2026.09 ~ 현재 · 개인 프로젝트 · Claude Code 페어 프로그래밍**
 
-관심 키워드·종목 뉴스를 실시간으로 감지해 노이즈를 걸러내고 알려주는 서비스입니다. 회사 업무와 겹치지 않는 스택(Kotlin/Spring Boot, Kafka, AWS EKS, Terraform, LLM 연동)을 의도적으로 골라 설계부터 배포까지 직접 진행했습니다. Kafka 기반 수집·매칭 파이프라인 위에 Claude Haiku로 2차 관련도 판단을 얹어 실제 수집 데이터 기준 알림 노이즈를 60% 감소시켰고, k6 부하테스트로 HPA가 1→3 파드로 정상 스케일하는 것과 p95 응답시간 18ms 이하를 실측했습니다. GitHub Actions OIDC로 정적 액세스키 없는 CI/CD를 구축했고, 조직/저장소 이름 변경으로 발생한 OIDC 신뢰 정책 불일치·Spring Security Async 디스패치에서 SecurityContext가 유실돼 SSE가 끊기는 버그 등을 직접 재현·진단·수정했습니다. 프론트엔드는 바닐라 JS로 시작해 React+TypeScript+Vite로 전면 재작성했습니다.
+관심 키워드·종목 뉴스를 실시간으로 감지해 노이즈를 걸러내고 알려주는 서비스입니다. 회사 업무와 겹치지 않는 스택(Kotlin/Spring Boot, Kafka, AWS EKS, Terraform, LLM·임베딩 연동)을 의도적으로 골라 설계부터 배포까지 직접 진행했고, AI 관련도 필터는 지금도 실측하며 계속 고도화하고 있습니다. Kafka 기반 수집·매칭 파이프라인 위에 Claude Haiku로 2차 관련도 판단을 얹어 실제 수집 데이터 기준 알림 노이즈를 60% 감소시켰습니다. 이후 구조화 출력(tool use)·프롬프트 인젝션 방어·Redis 캐싱·429 재시도·Micrometer 계측까지 갖춰 프로덕션 수준으로 경화했고, 라벨링된 eval 데이터셋으로 precision·recall·F1을 측정해(78%→100%) 오탐 패턴을 찾아 프롬프트를 개선하는 사이클을 직접 수행했습니다. 여기에 Voyage AI 임베딩의 코사인 유사도로 같은 사건의 중복 보도를 감지해 중복 알림을 제거하는 기능도 추가했습니다. k6 부하테스트로 HPA가 1→3 파드로 정상 스케일하는 것과 p95 응답시간 18ms 이하를 실측했습니다. GitHub Actions OIDC로 정적 액세스키 없는 CI/CD를 구축했고, 조직/저장소 이름 변경으로 발생한 OIDC 신뢰 정책 불일치·Spring Security Async 디스패치에서 SecurityContext가 유실돼 SSE가 끊기는 버그 등을 직접 재현·진단·수정했습니다. 프론트엔드는 바닐라 JS로 시작해 React+TypeScript+Vite로 전면 재작성했습니다.
 
 - [GitHub](https://github.com/zeroway3/alpha-adopter)
 
@@ -85,7 +85,7 @@ AI 코딩 도구가 생성한 코드의 취약점과 존재하지 않는 API(환
 : Modbus, MQTT, OPC-UA, SNMP, BACnet
 
 **AI**
-: Claude Code, Claude API(Anthropic), Orca(멀티 에이전트 오케스트레이션)
+: Claude Code, Claude API(Anthropic), Voyage AI(임베딩), Orca(멀티 에이전트 오케스트레이션)
 
 ## Contact
 
