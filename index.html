@@ -463,6 +463,7 @@
             <ul>
               <li>Kotlin/Spring Boot 백엔드에 Kafka·Redis·SSE 실시간 계층 구현</li>
               <li>Claude 관련도 필터를 eval 데이터셋으로 실측하며 precision·recall·F1 78%→100%로 개선</li>
+              <li>관리자가 의심 사용자를 지목하면 모델이 스스로 조사 도구를 선택·반복 호출해 결론을 내는 멀티스텝 AI 에이전트 구현</li>
             </ul>
           </div>
           <div class="pc-stack">Kotlin · Spring Boot · Kafka · MongoDB · PostgreSQL · Redis · Claude API · Voyage AI · React·TypeScript·Vite · AWS EKS · Terraform</div>
@@ -993,6 +994,16 @@
         HPA가 1→3 파드로 정상 스케일</li>
         <li><b>CI/CD</b>: GitHub Actions OIDC로 정적 액세스키 없이 배포, 테스트(Testcontainers로 Kafka·
         Postgres·Mongo·Redis 실제 컨테이너 검증) 통과해야 배포되는 게이트 구성</li>
+        <li><b>인증/인가 보안 강화</b>: IP 기준 rate limiting으로 회원가입·로그인 무차별 대입 공격 방어,
+        JWT를 localStorage에서 httpOnly+SameSite=Strict 쿠키로 전환해 XSS 토큰 탈취 노출 표면 제거,
+        관리자 권한 판별을 배포 환경변수 화이트리스트에서 DB 기반 RBAC(역할 컬럼 + 게이트웨이 레벨
+        hasRole 검사)로 전환하고 권한 변경 이력을 감사 로그로 남기도록 개선</li>
+        <li><b>멀티스텝 AI 에이전트</b>: 기존 AI 기능(관련도 필터·임베딩 중복제거)은 전부 한 번 묻고
+        한 번 답 받는 단발성 tool use였는데, 관리자가 특정 사용자를 지목해 조사를 요청하면 모델이
+        스스로 어떤 조사 도구(가입 정보·구독 패턴·참여도)를 몇 번 호출할지 판단하며 반복하다가
+        스스로 결론을 보고하는 에이전트 루프(ReAct 패턴)를 구현 — 결론 없이 도구만 반복 호출하면
+        최대 반복 횟수에서 강제 종료해 안전하게 "조사 불가" 처리하고, 사용자 입력(구독 키워드)은
+        델리미터로 감싸 프롬프트 인젝션을 방어</li>
       </ul>
 
       <ul class="problem-solution-list">
