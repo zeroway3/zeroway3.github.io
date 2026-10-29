@@ -6,7 +6,7 @@ author_profile: true
 
 ## 소개
 
-실시간 데이터와 서버 안정성을 다루는 백엔드 개발자 김영식입니다. 백엔드를 중심으로, 필요에 따라 프론트엔드·보안까지 직접 확장해가고 있습니다.
+실시간 데이터와 서버 안정성을 다루는 백엔드 개발자 김영식입니다. 백엔드를 중심으로, 필요에 따라 프론트엔드까지 직접 확장해가고 있으며, 보안과 AI(LLM 연동·평가)는 사이드 프로젝트에서 꾸준히 개발하며 공부하고 있습니다.
 
 ## 경력
 
@@ -41,7 +41,7 @@ AI 코딩 도구가 생성한 코드의 취약점과 존재하지 않는 API(환
 ### AlphaAdopter — 실시간 뉴스 알림 플랫폼
 **2026.09 ~ 현재 · 개인 프로젝트 · Claude Code 페어 프로그래밍**
 
-관심 키워드·종목 뉴스를 실시간으로 감지해 노이즈를 걸러내고 알려주는 서비스입니다. 회사 업무와 겹치지 않는 스택(Kotlin/Spring Boot, Kafka, AWS EKS, Terraform, LLM·임베딩 연동)을 의도적으로 골라 설계부터 배포까지 직접 진행했고, AI 관련도 필터는 지금도 실측하며 계속 고도화하고 있습니다. Kafka 기반 수집·매칭 파이프라인 위에 Claude Haiku로 2차 관련도 판단을 얹어 실제 수집 데이터 기준 알림 노이즈를 60% 감소시켰습니다. 이후 구조화 출력(tool use)·프롬프트 인젝션 방어·Redis 캐싱·429 재시도·Micrometer 계측까지 갖춰 프로덕션 수준으로 경화했고, 라벨링된 eval 데이터셋으로 precision·recall·F1을 측정해(78%→100%) 오탐 패턴을 찾아 프롬프트를 개선하는 사이클을 직접 수행했습니다. 여기에 Voyage AI 임베딩의 코사인 유사도로 같은 사건의 중복 보도를 감지해 중복 알림을 제거하는 기능도 추가했습니다. k6 부하테스트로 HPA가 1→3 파드로 정상 스케일하는 것과 p95 응답시간 18ms 이하를 실측했습니다. GitHub Actions OIDC로 정적 액세스키 없는 CI/CD를 구축했고, 조직/저장소 이름 변경으로 발생한 OIDC 신뢰 정책 불일치·Spring Security Async 디스패치에서 SecurityContext가 유실돼 SSE가 끊기는 버그 등을 직접 재현·진단·수정했습니다. 프론트엔드는 바닐라 JS로 시작해 React+TypeScript+Vite로 전면 재작성했습니다. 이후 IP 기준 rate limiting, JWT를 httpOnly+SameSite=Strict 쿠키로 전환, 관리자 권한을 배포 환경변수 화이트리스트에서 DB 기반 RBAC·감사 로그로 전환하는 등 인증/인가 보안을 단계적으로 강화했고, 최근에는 관리자가 의심 사용자를 지목하면 모델이 스스로 조사 도구를 선택·반복 호출해 결론을 내리는 멀티스텝 AI 에이전트(ReAct 패턴)를 구현했습니다.
+관심 키워드·종목 뉴스를 실시간으로 감지해 노이즈를 걸러내고 알려주는 서비스입니다. 회사 업무와 겹치지 않는 스택(Kotlin/Spring Boot, Kafka, AWS EKS, Terraform, LLM·임베딩 연동)을 의도적으로 골라 설계부터 배포까지 직접 진행했고, 보안과 AI 기능은 공부하면서 단계적으로 덧붙이며 실측과 함께 계속 고도화하고 있습니다. Kafka 기반 수집·매칭 파이프라인 위에 Claude Haiku로 2차 관련도 판단을 얹어 실제 수집 데이터 기준 알림 노이즈를 60% 감소시켰습니다. 이후 구조화 출력(tool use)·프롬프트 인젝션 방어·Redis 캐싱·429 재시도·Micrometer 계측까지 갖춰 프로덕션 수준으로 경화했고, 직접 라벨링한 시드 20건 eval 데이터셋으로 precision·recall·F1을 측정해 오탐 패턴을 찾아 프롬프트를 개선하는 사이클을 직접 수행했습니다(precision 78%→100%, 튜닝에 쓴 데이터 기준이라 데이터셋 확대와 검증용 분리가 다음 과제). 여기에 Voyage AI 임베딩의 코사인 유사도로 같은 사건의 중복 보도를 감지해 중복 알림을 제거하는 기능도 추가했습니다. k6 부하테스트로 HPA가 1→3 파드로 정상 스케일하는 것과 p95 응답시간 18ms 이하를 실측했습니다. GitHub Actions OIDC로 정적 액세스키 없는 CI/CD를 구축했고, 조직/저장소 이름 변경으로 발생한 OIDC 신뢰 정책 불일치·Spring Security Async 디스패치에서 SecurityContext가 유실돼 SSE가 끊기는 버그 등을 직접 재현·진단·수정했습니다. 프론트엔드는 바닐라 JS로 시작해 React+TypeScript+Vite로 전면 재작성했습니다. 이후 IP 기준 rate limiting, JWT를 httpOnly+SameSite=Strict 쿠키로 전환, 관리자 권한을 배포 환경변수 화이트리스트에서 DB 기반 RBAC·감사 로그로 전환하는 등 인증/인가 보안을 단계적으로 강화했고, 최근에는 관리자가 의심 사용자를 지목하면 모델이 스스로 조사 도구를 선택·반복 호출해 결론을 내리는 멀티스텝 AI 에이전트(ReAct 패턴)를 구현하고 4가지 시나리오 기반 평가 하네스와 관리자 화면까지 연결했습니다. 의존성 취약점 스캔 CI(Dependency Review·Dependabot·Gradle 의존성 그래프 제출)를 붙여 운영 서버의 내장 Tomcat critical CVE 3건을 찾아 패치했고, 스키마 관리를 Flyway 마이그레이션으로 전환했습니다.
 
 - [GitHub](https://github.com/zeroway3/alpha-adopter)
 
@@ -61,7 +61,7 @@ AI 코딩 도구가 생성한 코드의 취약점과 존재하지 않는 API(환
 
 ### 국제 협업 해커톤
 
-- **싱가포르 SIT 해커톤** (2025.02) — 아시아 문명 박물관(Asian Civilisations Museum) 주관, Singapore Institute of Technology와 협업한 2주 해커톤(싱가포르 현지 진행), 수료증·장학금 수상
+- **싱가포르 SIT 해커톤** (2025.01) — 아시아 문명 박물관(Asian Civilisations Museum) 주관, Singapore Institute of Technology와 협업한 2주 해커톤(싱가포르 현지 진행), 수료증·장학금 수상
 - **영국 Brunel University 해커톤** (2024.10) — 영국 뷰티기업 Stylideas 주관, Brunel University와 협업한 2주 해커톤(LED 뷰티사업, 국내 진행), 수료증·장학금 수상
 
 ## Skills
